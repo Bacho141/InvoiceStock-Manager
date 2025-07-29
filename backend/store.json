@@ -1,0 +1,38 @@
+[{
+  "_id": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "name": "Magasin Principal",
+  "address": "Adresse principale",
+  "logoUrl": null,
+  "isActive": true,
+  "createdBy": {
+    "$oid": "68669c12b28d3892c782053e"
+  },
+  "createdAt": {
+    "$date": "2025-07-06T11:09:01.064Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T11:09:01.064Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "name": "Magasin 17 porte",
+  "address": "17 porte, Maradi",
+  "logoUrl": "https://example.com/logo.png",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "68669c12b28d3892c782053e"
+  },
+  "createdAt": {
+    "$date": "2025-07-06T12:14:09.854Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-06T12:14:09.854Z"
+  },
+  "__v": 0
+}]
