@@ -281,6 +281,7 @@ class StockService {
     debugPrint('[SERVICE][StockService] Status: ${response.statusCode}');
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
+      debugPrint('[DEBUG][StockService][checkStockAvailability] HTTP 200 Response: storeId=$storeId, productId=$productId, requestedQuantity=$requestedQuantity, data=${data['data']}');
       return Map<String, dynamic>.from(data['data'] ?? {});
     } else {
       debugPrint('[SERVICE][StockService] Erreur: ${response.body}');
@@ -416,6 +417,15 @@ class StockService {
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
       return Map<String, dynamic>.from(data['data'] ?? {});
+    } else if (response.statusCode == 404) {
+      // Aucun stock trouvé pour ce produit/magasin : retourne un stock vide
+      debugPrint('[SERVICE][StockService] Stock non trouvé (404), retourne 0');
+      return {
+        'quantity': 0,
+        'reserved': 0,
+        'available': 0,
+        'lastMovement': null,
+      };
     } else {
       debugPrint('[SERVICE][StockService] Erreur: ${response.body}');
       throw Exception('Erreur lors de la récupération du stock du produit');

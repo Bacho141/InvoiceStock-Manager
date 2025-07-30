@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../services/auth_service.dart';
+import '../services/stock_service.dart';
 import '../services/store_service.dart'; // NOUVEAU
 // NOUVEAU
 // NOUVEAU
@@ -60,32 +61,45 @@ class AuthController {
   }
 
   Future<Map<String, dynamic>> logout() async {
-    debugPrint('[CONTROLLER][AuthController] Appel logout');
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final token = prefs.getString('jwt_token');
+  debugPrint('[CONTROLLER][AuthController] Appel logout');
+  try {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('jwt_token');
+    final storeId = prefs.getString('current_store_id');
+    final sessionId = prefs.getString('session_id');
 
-      if (token != null) {
-        // Appel au serveur pour invalider la session
-        final result = await _authService.logout(token);
-        debugPrint(
-          '[CONTROLLER][AuthController] Logout serveur: ${result['statusCode']}',
-        );
+    // Libération automatique des réservations de stock
+    if (storeId != null && sessionId != null) {
+      try {
+        final stockService = StockService();
+        final released = await stockService.releaseAllSessionReservations(storeId, sessionId: sessionId);
+        debugPrint('[CONTROLLER][AuthController] Réservations libérées: $released');
+      } catch (e) {
+        debugPrint('[CONTROLLER][AuthController] Erreur libération réservations: $e');
       }
-
-      // Nettoyage des données locales
-      await prefs.clear();
-      debugPrint('[CONTROLLER][AuthController] Données locales nettoyées');
-
-      return {'success': true, 'message': 'Déconnexion réussie'};
-    } catch (e) {
-      debugPrint('[CONTROLLER][AuthController] Erreur logout: ${e.toString()}');
-      // Même en cas d'erreur, on nettoie les données locales
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.clear();
-      return {'success': true, 'message': 'Déconnexion locale effectuée'};
     }
+
+    if (token != null) {
+      // Appel au serveur pour invalider la session
+      final result = await _authService.logout(token);
+      debugPrint(
+        '[CONTROLLER][AuthController] Logout serveur: [36m${result['statusCode']}[0m',
+      );
+    }
+
+    // Nettoyage des données locales
+    await prefs.clear();
+    debugPrint('[CONTROLLER][AuthController] Données locales nettoyées');
+
+    return {'success': true, 'message': 'Déconnexion réussie'};
+  } catch (e) {
+    debugPrint('[CONTROLLER][AuthController] Erreur logout: ${e.toString()}');
+    // Même en cas d'erreur, on nettoie les données locales
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    return {'success': true, 'message': 'Déconnexion locale effectuée'};
   }
+}
 
   Future<Map<String, dynamic>> verifySession() async {
     debugPrint('[CONTROLLER][AuthController] Vérification de session');

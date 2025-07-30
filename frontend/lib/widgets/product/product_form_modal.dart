@@ -116,7 +116,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
         '[WIDGET][ProductFormModal] Sauvegarde du produit: \\${_nameController.text}',
       );
       final productData = {
-        'id': widget.product?['id'],
+        'id': widget.product?['id'] ?? DateTime.now().millisecondsSinceEpoch.toString(),
         'reference': _referenceController.text.trim(),
         'name': _nameController.text.trim(),
         'description': _descriptionController.text.trim(),

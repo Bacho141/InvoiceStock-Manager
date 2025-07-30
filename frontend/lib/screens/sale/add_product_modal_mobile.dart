@@ -140,14 +140,27 @@ class _AddProductModalMobileState extends State<AddProductModalMobile> {
         }
       }
 
-      final invoiceId = widget.facture['_id'] ?? widget.facture['id'];
-      final url = '${ApiUrls.invoices}/$invoiceId/add-lines';
+    // Construction de la liste des lignes à envoyer
+    final List<Map<String, dynamic>> lines = _selectedProducts.entries
+        .where((entry) => entry.value > 0)
+        .map((entry) {
+          final product = _products.firstWhere((p) => p.id == entry.key);
+          return {
+            'product': product.id,
+            'quantity': entry.value,
+            // Ajouter d'autres champs si besoin (prix, remise, etc.)
+          };
+        })
+        .toList();
 
-      final response = await http.patch(
-        Uri.parse(url),
-        headers: {'Content-Type': 'application/json'},
-        body: jsonEncode({'lines': lines}),
-      );
+    final invoiceId = widget.facture['_id'] ?? widget.facture['id'];
+    final url = '${ApiUrls.invoices}/$invoiceId/add-lines';
+
+    final response = await http.patch(
+      Uri.parse(url),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'lines': lines}),
+    );
 
       if (response.statusCode == 200) {
         if (mounted) {

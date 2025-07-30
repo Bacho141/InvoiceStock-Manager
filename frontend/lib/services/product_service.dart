@@ -99,7 +99,8 @@ class ProductService {
         productId,
         requestedQuantity,
       );
-      
+      debugPrint('[DEBUG][ProductService][checkProductAvailability] Response: '
+          'storeId=$storeId, productId=$productId, requestedQuantity=$requestedQuantity, availability=$availability');
       return {
         'isAvailable': availability['available'] ?? false,
         'availableQuantity': availability['availableQuantity'] ?? 0,

@@ -27,6 +27,9 @@ router.post('/:storeId/movement', checkStoreAccess, stockMovementController.addM
 router.get('/:storeId/movements', checkStoreAccess, stockMovementController.getMovements);
 // Vérification de la disponibilité d'un produit dans un magasin
 router.get('/:storeId/:productId/availability', checkStoreAccess, stockController.checkAvailability);
+// Stock d'un produit précis dans un magasin
+router.get('/:storeId/:productId', checkStoreAccess, stockController.getProductStock);
+
 // Historique d'un produit donné dans un magasin (avec filtres)
 router.get('/:storeId/:productId/movements', checkStoreAccess, stockMovementController.getProductMovements);
 

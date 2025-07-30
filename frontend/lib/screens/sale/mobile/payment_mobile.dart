@@ -468,50 +468,66 @@ class _PaymentMobileState extends State<PaymentMobile> {
                               "montantPaye": amountPaid,
                             };
                             try {
-                              final response = await InvoiceService().createInvoice(payload);
-                              final newFacture = response['data'];
+  final response = await InvoiceService().createInvoice(payload);
+  final newFacture = response['data'];
 
-                              if (!mounted) return;
+  if (!mounted) return;
 
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Facture créée avec succès !'),
-                                  duration: Duration(seconds: 1),
-                                ),
-                              );
-                              cart.clear();
+  try {
+    // Appel de validation transactionnelle (stock, statut, etc.)
+    await InvoiceService().validateInvoice(newFacture['_id'] ?? newFacture['id']);
 
-                              // Afficher le sélecteur de format
-                              final format = await showReceiptFormatSelector(context: context);
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Facture créée et validée avec succès !'),
+        duration: Duration(seconds: 1),
+      ),
+    );
+    cart.clear();
 
-                              if (format == null) return; // L'utilisateur a fermé la modale
+    // Afficher le sélecteur de format
+    final format = await showReceiptFormatSelector(context: context);
 
-                              if (!mounted) return;
+    if (format == null) return; // L'utilisateur a fermé la modale
 
-                              // Naviguer vers l'aperçu correspondant
-                              if (format == ReceiptFormat.a5) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => InvoiceA5MobilePreview(facture: newFacture),
-                                  ),
-                                );
-                              } else if (format == ReceiptFormat.pos) {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (_) => InvoicePOSMobileLayout(facture: newFacture),
-                                  ),
-                                );
-                              }
-                            } catch (e) {
-                              if (!mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text('Erreur création facture : $e'),
-                                ),
-                              );
-                            }
+    if (!mounted) return;
+
+    // Naviguer vers l'aperçu correspondant
+    if (format == ReceiptFormat.a5) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => InvoiceA5MobilePreview(facture: newFacture),
+        ),
+      );
+    } else if (format == ReceiptFormat.pos) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => InvoicePOSMobileLayout(facture: newFacture),
+        ),
+      );
+    }
+  } catch (e) {
+    if (!mounted) return;
+    // Ici, la facture a été créée mais la validation (stock, transaction) a échoué : rollback effectué côté backend
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Erreur validation facture : $e'),
+        duration: const Duration(seconds: 4),
+      ),
+    );
+    // Ne pas vider le panier, ne pas afficher le reçu
+    return;
+  }
+} catch (e) {
+  if (!mounted) return;
+  ScaffoldMessenger.of(context).showSnackBar(
+    SnackBar(
+      content: Text('Erreur création facture : $e'),
+    ),
+  );
+}
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: const Color(0xFF43A047),

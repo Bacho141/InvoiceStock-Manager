@@ -167,29 +167,37 @@ class _CatalogPanelState extends State<CatalogPanel> {
                       final products = snapshot.data!;
                       final filtered = _search.isEmpty
                           ? products
-                          : products
-                                .where(
-                                  (p) =>
-                                      (p['name'] ?? '')
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains(_search.toLowerCase()) ||
-                                      (p['ref'] ?? '')
-                                          .toString()
-                                          .toLowerCase()
-                                          .contains(_search.toLowerCase()),
-                                )
-                                .toList();
+                          : products.where((item) {
+                              final Product? product = item is Product
+                                  ? item
+                                  : (item is Map && item['product'] is Product
+                                      ? item['product']
+                                      : null);
+                              final name = (product?.name ?? '').toLowerCase();
+                              final reference = (product?.reference ?? '').toLowerCase();
+                              final search = _search.toLowerCase();
+                              return name.contains(search) || reference.contains(search);
+                            }).toList();
                       return ListView.builder(
                         itemCount: filtered.length,
                         itemBuilder: (context, index) {
-                          final p = filtered[index];
-                          final int availableQuantity =
-                              p['availableQuantity'] ?? 0;
-                          final bool isAvailable = p['isAvailable'] ?? false;
-                          final bool isLowStock = p['isLowStock'] ?? false;
+                          final dynamic item = filtered[index];
+                          final Product? product = item is Product
+                              ? item
+                              : (item is Map && item['product'] is Product
+                                  ? item['product']
+                                  : null);
+                          final int availableQuantity = (item is Map && item['availableQuantity'] != null)
+                              ? item['availableQuantity']
+                              : 0;
+                          final bool isAvailable = (item is Map && item['isAvailable'] != null)
+                              ? item['isAvailable']
+                              : false;
+                          final bool isLowStock = (item is Map && item['isLowStock'] != null)
+                              ? item['isLowStock']
+                              : false;
                           final alreadyInCart = items.any(
-                            (item) => item.product.id == p['_id'],
+                            (cartItem) => cartItem.product.id == (product?.id ?? ''),
                           );
                           return Card(
                             elevation: 1,
@@ -208,7 +216,11 @@ class _CatalogPanelState extends State<CatalogPanel> {
                                 ),
                               ),
                               title: Text(
-                                p['name'] ?? '',
+                                (product != null && product.name.trim().isNotEmpty)
+                                    ? '${product.name} (${product.reference})'
+                                    : ((product != null && product.reference != null && product.reference!.trim().isNotEmpty)
+                                        ? product.reference!
+                                        : 'Produit inconnu'),
                                 style: const TextStyle(
                                   fontWeight: FontWeight.w600,
                                 ),
@@ -216,7 +228,6 @@ class _CatalogPanelState extends State<CatalogPanel> {
                               subtitle: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text('Réf: ${p['ref'] ?? ''}'),
                                   Row(
                                     children: [
                                       Text(
@@ -263,12 +274,14 @@ class _CatalogPanelState extends State<CatalogPanel> {
                                     : _isAddingIndex == index
                                     ? null
                                     : () async {
+                                        print('[CatalogPanel] Bouton ajout panier pressé pour index=$index, produit=${product?.name}');
                                         setState(() {
                                           _isAddingIndex = index;
                                         });
+                                        print('[CatalogPanel] Vérification du storeId avant ajout panier...');
                                         final String? storeId = widget.storeId;
-                                        if (storeId == null ||
-                                            storeId.isEmpty) {
+                                        if (storeId == null || storeId.isEmpty) {
+                                          print('[CatalogPanel][ERREUR] Aucun storeId disponible, ajout annulé');
                                           ScaffoldMessenger.of(
                                             context,
                                           ).showSnackBar(
@@ -287,45 +300,18 @@ class _CatalogPanelState extends State<CatalogPanel> {
                                           });
                                           return;
                                         }
-                                        final product = Product(
-                                          id: p['_id'],
-                                          name: p['name'] ?? '',
-                                          reference: p['ref'] ?? '',
-                                          description: p['description'],
-                                          category: p['category'],
-                                          unit: p['unit'],
-                                          purchasePrice:
-                                              (p['purchasePrice'] ?? 0)
-                                                  .toDouble(),
-                                          sellingPrice: (p['sellingPrice'] ?? 0)
-                                              .toDouble(),
-                                          minStockLevel:
-                                              p['minStockLevel'] ?? 0,
-                                          maxStockLevel:
-                                              p['maxStockLevel'] ?? 0,
-                                          barcode: p['barcode'],
-                                          image: p['image'],
-                                          isActive: p['isActive'] ?? true,
-                                          createdBy: p['createdBy'],
-                                          createdAt: p['createdAt'] != null
-                                              ? DateTime.tryParse(
-                                                  p['createdAt'],
-                                                )
-                                              : null,
-                                          updatedAt: p['updatedAt'] != null
-                                              ? DateTime.tryParse(
-                                                  p['updatedAt'],
-                                                )
-                                              : null,
-                                        );
+                                        print('[CatalogPanel] Appel cart.addProduct pour ${product?.name} (id=${product?.id}) dans storeId=$storeId');
                                         final success = await cart.addProduct(
-                                          product,
+                                          product!,
                                           storeId: storeId,
                                         );
+                                        print('[CatalogPanel] Résultat cart.addProduct: $success');
                                         setState(() {
                                           _isAddingIndex = null;
                                         });
+                                        print('[CatalogPanel] _isAddingIndex remis à null après ajout panier.');
                                         if (!success && mounted) {
+                                          print('[CatalogPanel][STOCK INSUFFISANT] pour produit ${product?.name}');
                                           ScaffoldMessenger.of(
                                             context,
                                           ).showSnackBar(

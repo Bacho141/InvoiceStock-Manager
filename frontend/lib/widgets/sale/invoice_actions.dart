@@ -11,11 +11,14 @@ import './pos_ticket.dart';
 import './printer_selector.dart';
 import 'package:flutter_pos_printer_platform_image_3/flutter_pos_printer_platform_image_3.dart';
 
+import '../../utiles/store_helper.dart';
+
 class InvoiceActions extends StatelessWidget {
   final Map<String, dynamic> facture;
   final VoidCallback onReload;
   final bool isMobile;
   final CartProvider cartProvider;
+  final String? storeId;
 
   const InvoiceActions({
     Key? key,
@@ -23,6 +26,7 @@ class InvoiceActions extends StatelessWidget {
     required this.onReload,
     required this.cartProvider,
     this.isMobile = false,
+    this.storeId,
   }) : super(key: key);
 
   Future<void> _printDocument(BuildContext context) async {
@@ -220,7 +224,15 @@ class InvoiceActions extends StatelessWidget {
     }
   }
 
-  void _showAddProductModal(BuildContext context) {
+  void _showAddProductModal(BuildContext context) async {
+    String? effectiveStoreId = storeId;
+    if (effectiveStoreId == null) {
+      effectiveStoreId = await getSelectedStoreId(context: context, showError: true);
+      if (effectiveStoreId == null) {
+        // Error already shown by helper
+        return;
+      }
+    }
     showModalBottomSheet(
       context: context,
       isScrollControlled: true,
@@ -228,7 +240,7 @@ class InvoiceActions extends StatelessWidget {
         value: cartProvider,
         child: FractionallySizedBox(
           heightFactor: isMobile ? 0.8 : 0.9,
-          child: AddProductModal(facture: facture, onProductAdded: onReload),
+          child: AddProductModal(facture: facture, onProductAdded: onReload, storeId: effectiveStoreId),
         ),
       ),
     );

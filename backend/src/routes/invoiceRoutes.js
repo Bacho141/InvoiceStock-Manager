@@ -22,4 +22,7 @@ router.patch('/:id/add-lines', invoiceController.addLinesToInvoice);
 // Supprimer une ligne d'une facture existante
 router.patch('/:id/remove-line', invoiceController.removeLineFromInvoice);
 
+// Validation finale de la facture
+router.patch('/:id/validate', invoiceController.validateInvoice);
+
 export default router; 

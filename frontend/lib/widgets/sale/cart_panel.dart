@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import '../../controllers/cart_controller.dart';
 
 class CartPanel extends StatelessWidget {
-  CartPanel({Key? key}) : super(key: key);
+  final String? storeId;
+  CartPanel({Key? key, required this.storeId}) : super(key: key);
   final cart = CartController();
 
   @override

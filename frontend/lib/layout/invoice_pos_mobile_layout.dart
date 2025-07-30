@@ -4,6 +4,7 @@ import 'package:intl/intl.dart';
 import '../../services/invoice_service.dart';
 import '../../providers/cart_provider.dart';
 import '../../widgets/sale/invoice_actions.dart';
+import '../../utiles/store_helper.dart';
 
 class InvoicePOSMobileLayout extends StatefulWidget {
   final Map<String, dynamic> facture;
@@ -91,381 +92,388 @@ class _InvoicePOSMobileLayoutState extends State<InvoicePOSMobileLayout> {
       return const Center(child: CircularProgressIndicator());
     }
 
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Reçu N° $number'),
-        backgroundColor: const Color(0xFF7717E8),
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: _reloadFacture,
-          ),
-        ],
-      ),
-      backgroundColor: Colors.grey[100],
-      body: Center(
-        child: Container(
-          margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
-          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(8),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black.withOpacity(0.1),
-                blurRadius: 10,
-                offset: const Offset(0, 4),
+    return FutureBuilder<String?>(
+      future: getSelectedStoreId(context: context),
+      builder: (context, snapshot) {
+        final storeId = snapshot.data;
+        return Scaffold(
+          appBar: AppBar(
+            title: Text('Reçu N° $number'),
+            backgroundColor: const Color(0xFF7717E8),
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.refresh),
+                onPressed: _reloadFacture,
               ),
             ],
           ),
-          child: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                _buildSeparator(),
-                const Text(
-                  'ETS SALLISSOU ET FILS',
-                  style: TextStyle(
-                    fontFamily: 'monospace',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Color(0xFF7717E8),
+          backgroundColor: Colors.grey[100],
+          body: Center(
+            child: Container(
+              margin: const EdgeInsets.symmetric(vertical: 18, horizontal: 12),
+              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 16),
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(8),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.1),
+                    blurRadius: 10,
+                    offset: const Offset(0, 4),
                   ),
-                ),
-                const Text(
-                  'NIF : 12345/P',
-                  style: TextStyle(fontFamily: 'monospace', fontSize: 13),
-                ),
-                const Text(
-                  'ADRESSE : 17 Porte',
-                  style: TextStyle(fontFamily: 'monospace', fontSize: 13),
-                ),
-                const Text(
-                  'Tél : 96000000/97000000',
-                  style: TextStyle(fontFamily: 'monospace', fontSize: 13),
-                ),
-                _buildSeparator(),
-                const SizedBox(height: 4),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                ],
+              ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   children: [
+                    _buildSeparator(),
                     const Text(
-                      'Date :',
+                      'ETS SALLISSOU ET FILS',
                       style: TextStyle(
                         fontFamily: 'monospace',
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                        fontSize: 15,
+                        color: Color(0xFF7717E8),
                       ),
                     ),
-                    Text(
-                      dateFormat,
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     const Text(
-                      'Reçu N° :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
+                      'NIF : 12345/P',
+                      style: TextStyle(fontFamily: 'monospace', fontSize: 13),
                     ),
-                    Text(
-                      number,
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     const Text(
-                      'Caissier :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
+                      'ADRESSE : 17 Porte',
+                      style: TextStyle(fontFamily: 'monospace', fontSize: 13),
                     ),
-                    Text(
-                      caissier,
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
                     const Text(
-                      'Client :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
+                      'Tél : 96000000/97000000',
+                      style: TextStyle(fontFamily: 'monospace', fontSize: 13),
                     ),
-                    Flexible(
+                    _buildSeparator(),
+                    const SizedBox(height: 4),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Date :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          dateFormat,
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Reçu N° :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          number,
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Caissier :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          caissier,
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Client :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Flexible(
+                          child: Text(
+                            clientNom,
+                            style: const TextStyle(
+                              fontFamily: 'monospace',
+                              fontSize: 13,
+                            ),
+                            overflow: TextOverflow.ellipsis,
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 2),
+                    _buildSeparator(),
+                    // Table Header
+                    Row(
+                      children: const [
+                        Expanded(
+                          child: Text(
+                            'Désignation',
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 50,
+                          child: Text(
+                            'PU',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 40,
+                          child: Text(
+                            'Qté',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                        SizedBox(
+                          width: 70,
+                          child: Text(
+                            'Total',
+                            textAlign: TextAlign.right,
+                            style: TextStyle(
+                              fontFamily: 'monospace',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 13,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const Divider(),
+                    // Table Rows
+                    ...lines.map((line) {
+                      final name = line['productName'] ?? '';
+                      final qte = _parseNum(line['quantity']);
+                      final pu = _parseNum(line['unitPrice']);
+                      final mt = _parseNum(line['totalLine']);
+                      return Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                            child: Text(
+                              name,
+                              style: const TextStyle(
+                                fontFamily: 'monospace',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 50,
+                            child: Text(
+                              currencyFormat
+                                  .format(pu)
+                                  .replaceAll('FCFA', '')
+                                  .trim(),
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                fontFamily: 'monospace',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 40,
+                            child: Text(
+                              qte.toString(),
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                fontFamily: 'monospace',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                          SizedBox(
+                            width: 70,
+                            child: Text(
+                              currencyFormat
+                                  .format(mt)
+                                  .replaceAll('FCFA', '')
+                                  .trim(),
+                              textAlign: TextAlign.right,
+                              style: const TextStyle(
+                                fontFamily: 'monospace',
+                                fontSize: 13,
+                              ),
+                            ),
+                          ),
+                        ],
+                      );
+                    }).toList(),
+                    _buildSeparator(),
+                    // Totals
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Total HT :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          currencyFormat.format(total),
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Total Remise :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          currencyFormat.format(discountTotal),
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Montant Payé :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          currencyFormat.format(montantPaye),
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Reste à Payer :',
+                          style: TextStyle(
+                            fontFamily: 'monospace',
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                          ),
+                        ),
+                        Text(
+                          currencyFormat.format(resteAPayer),
+                          style: const TextStyle(
+                            fontFamily: 'monospace',
+                            fontSize: 13,
+                          ),
+                        ),
+                      ],
+                    ),
+                    _buildSeparator(),
+                    // Total in words
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 8.0),
                       child: Text(
-                        clientNom,
+                        'Arrêté la présente facture à la somme de : $totalInWords',
                         style: const TextStyle(
                           fontFamily: 'monospace',
                           fontSize: 13,
                         ),
-                        overflow: TextOverflow.ellipsis,
+                        textAlign: TextAlign.center,
                       ),
                     ),
-                  ],
-                ),
-                const SizedBox(height: 2),
-                _buildSeparator(),
-                // Table Header
-                Row(
-                  children: const [
-                    Expanded(
-                      child: Text(
-                        'Désignation',
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 50,
-                      child: Text(
-                        'PU',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 40,
-                      child: Text(
-                        'Qté',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                    SizedBox(
-                      width: 70,
-                      child: Text(
-                        'Total',
-                        textAlign: TextAlign.right,
-                        style: TextStyle(
-                          fontFamily: 'monospace',
-                          fontWeight: FontWeight.bold,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const Divider(),
-                // Table Rows
-                ...lines.map((line) {
-                  final name = line['productName'] ?? '';
-                  final qte = _parseNum(line['quantity']);
-                  final pu = _parseNum(line['unitPrice']);
-                  final mt = _parseNum(line['totalLine']);
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Expanded(
-                        child: Text(
-                          name,
-                          style: const TextStyle(
-                            fontFamily: 'monospace',
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 50,
-                        child: Text(
-                          currencyFormat
-                              .format(pu)
-                              .replaceAll('FCFA', '')
-                              .trim(),
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            fontFamily: 'monospace',
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 40,
-                        child: Text(
-                          qte.toString(),
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            fontFamily: 'monospace',
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        width: 70,
-                        child: Text(
-                          currencyFormat
-                              .format(mt)
-                              .replaceAll('FCFA', '')
-                              .trim(),
-                          textAlign: TextAlign.right,
-                          style: const TextStyle(
-                            fontFamily: 'monospace',
-                            fontSize: 13,
-                          ),
-                        ),
-                      ),
-                    ],
-                  );
-                }).toList(),
-                _buildSeparator(),
-                // Totals
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                    _buildSeparator(),
                     const Text(
-                      'Total HT :',
+                      'MERCI DE VOTRE VISITE',
                       style: TextStyle(
                         fontFamily: 'monospace',
                         fontWeight: FontWeight.bold,
-                        fontSize: 13,
+                        fontSize: 15,
+                        color: Color(0xFF7717E8),
                       ),
                     ),
-                    Text(
-                      currencyFormat.format(total),
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
+                    _buildSeparator(),
+                    const SizedBox(height: 12),
+                    // Action Buttons
+                    Consumer<CartProvider>(
+                      builder: (context, cartProvider, _) {
+                        return InvoiceActions(
+                          facture: _facture,
+                          onReload: _reloadFacture,
+                          cartProvider: cartProvider,
+                          isMobile: true,
+                          storeId: storeId,
+                        );
+                      },
                     ),
                   ],
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Total Remise :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                    ),
-                    Text(
-                      currencyFormat.format(discountTotal),
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Montant Payé :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                    ),
-                    Text(
-                      currencyFormat.format(montantPaye),
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Text(
-                      'Reste à Payer :',
-                      style: TextStyle(
-                        fontFamily: 'monospace',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 13,
-                      ),
-                    ),
-                    Text(
-                      currencyFormat.format(resteAPayer),
-                      style: const TextStyle(
-                        fontFamily: 'monospace',
-                        fontSize: 13,
-                      ),
-                    ),
-                  ],
-                ),
-                _buildSeparator(),
-                // Total in words
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 8.0),
-                  child: Text(
-                    'Arrêté la présente facture à la somme de : $totalInWords',
-                    style: const TextStyle(
-                      fontFamily: 'monospace',
-                      fontSize: 13,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-                _buildSeparator(),
-                const Text(
-                  'MERCI DE VOTRE VISITE',
-                  style: TextStyle(
-                    fontFamily: 'monospace',
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                    color: Color(0xFF7717E8),
-                  ),
-                ),
-                _buildSeparator(),
-                const SizedBox(height: 12),
-                // Action Buttons
-                Consumer<CartProvider>(
-                  builder: (context, cartProvider, _) {
-                    return InvoiceActions(
-                      facture: _facture,
-                      onReload: _reloadFacture,
-                      cartProvider: cartProvider,
-                      isMobile: true,
-                    );
-                  },
-                ),
-              ],
+              ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }

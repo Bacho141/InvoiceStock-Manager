@@ -328,6 +328,33 @@ const checkAvailability = async (req, res) => {
   }
 };
 
+/**
+ * Récupère le stock d'un produit précis dans un magasin
+ * GET /:storeId/:productId
+ */
+const getProductStock = async (req, res) => {
+  const { storeId, productId } = req.params;
+  try {
+    const stock = await Stock.findOne({ storeId, productId });
+    if (!stock) {
+      // Retourne un stock vide si non trouvé
+      return res.json({ data: { quantity: 0, reserved: 0, available: 0, lastMovement: null } });
+    }
+    // Adapte selon ton modèle de Stock
+    return res.json({
+      data: {
+        quantity: stock.quantity || 0,
+        reserved: stock.reservedQuantity || 0,
+        available: (stock.quantity || 0) - (stock.reservedQuantity || 0),
+        lastMovement: stock.lastMovement || null
+      }
+    });
+  } catch (error) {
+    console.error('[STOCK][GET_PRODUCT_STOCK] Erreur:', error.message);
+    res.status(500).json({ message: 'Erreur lors de la récupération du stock du produit.' });
+  }
+};
+
 export default {
   getStock,
   adjustStock,
@@ -336,5 +363,6 @@ export default {
   getIndicators,
   getGlobalIndicators,
   releaseAllSessionReservations,
-  checkAvailability
+  checkAvailability,
+  getProductStock
 };

@@ -6,7 +6,8 @@ import '../../services/client_service.dart';
 
 class ClientPaymentPanel extends StatefulWidget {
   final bool isTablet;
-  const ClientPaymentPanel({Key? key, this.isTablet = false}) : super(key: key);
+  final String? storeId;
+  const ClientPaymentPanel({Key? key, this.isTablet = false, this.storeId}) : super(key: key);
 
   @override
   State<ClientPaymentPanel> createState() => _ClientPaymentPanelState();

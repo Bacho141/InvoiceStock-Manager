@@ -3,8 +3,11 @@ import '../models/cart.dart';
 import '../models/cart_item.dart';
 import '../models/product.dart';
 import '../models/user.dart';
+import '../services/product_service.dart';
+import '../services/invoice_service.dart';
 
 class CartController extends ChangeNotifier {
+  final InvoiceService _invoiceService = InvoiceService();
   static final CartController _instance = CartController._internal();
   factory CartController() => _instance;
   CartController._internal();
@@ -32,7 +35,14 @@ class CartController extends ChangeNotifier {
   }
   // --- End of state for payment ---
 
-  void addProduct(Product product, {int quantity = 1, double? discount}) {
+  Future<bool> addProduct(Product product, {required String storeId, int quantity = 1, double? discount}) async {
+    // Vérification disponibilité du stock avant ajout
+    final productService = ProductService();
+    final result = await productService.checkProductAvailability(storeId, product.id ?? '', quantity);
+    if (!(result['isAvailable'] ?? false)) {
+      // Stock insuffisant
+      return false;
+    }
     final index = _cart.items.indexWhere(
       (item) => item.product.id == product.id,
     );
@@ -44,6 +54,7 @@ class CartController extends ChangeNotifier {
       );
     }
     notifyListeners();
+    return true;
   }
 
   void removeProduct(String productId) {
@@ -89,4 +100,17 @@ class CartController extends ChangeNotifier {
   double get total => _cart.total;
   User? get client => _cart.client;
   List<CartItem> get items => List.unmodifiable(_cart.items);
+
+  /// Valide la facture courante côté backend (statut "validée") après création
+  Future<Map<String, dynamic>> validateCurrentInvoice(String invoiceId) async {
+    try {
+      final validatedInvoice = await _invoiceService.validateInvoice(invoiceId);
+      debugPrint('[CONTROLLER][CartController] Facture validée: ${validatedInvoice['id']}');
+      return validatedInvoice;
+    } catch (e) {
+      debugPrint('[CONTROLLER][CartController] Erreur validation: $e');
+      rethrow;
+    }
+  }
 }
+

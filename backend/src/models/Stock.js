@@ -21,6 +21,11 @@ const stockSchema = new mongoose.Schema({
     default: 0,
     min: 0
   }, // Pour les commandes en cours
+  reservationUserId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+    required: false
+  }, // Pour la réservation liée à un utilisateur
   lastUpdated: { 
     type: Date, 
     default: Date.now 

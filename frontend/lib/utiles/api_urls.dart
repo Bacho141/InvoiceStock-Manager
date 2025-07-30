@@ -26,5 +26,18 @@ class ApiUrls {
   static String stockIndicators(String storeId) =>
       '$baseUrl/stocks/$storeId/indicators';
 
+  // Nouvelles URLs pour synchronisation vente-stock
+  static String checkStockAvailability(String storeId, String productId) =>
+      '$baseUrl/stocks/$storeId/$productId/availability';
+  static String reserveStock(String storeId) =>
+      '$baseUrl/stocks/$storeId/reserve';
+  static String releaseReservation(String storeId) =>
+      '$baseUrl/stocks/$storeId/release';
+  static String recordSaleMovement(String storeId) =>
+      '$baseUrl/stocks/$storeId/sale-movement';
+  static String getProductStock(String storeId, String productId) =>
+      '$baseUrl/stocks/$storeId/$productId';
+
   static String invoicesRemoveLine(String invoiceId) => '$invoices/$invoiceId/remove-line';
+static String invoicesValidate(String invoiceId) => '$invoices/$invoiceId/validate';
 }

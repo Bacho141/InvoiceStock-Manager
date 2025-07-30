@@ -11,6 +11,8 @@ class AddProductsMobile extends StatefulWidget {
 }
 
 class _AddProductsMobileState extends State<AddProductsMobile> {
+  int? _isAddingIndex;
+
   final cart = CartController();
   final ProductService _productService = ProductService();
   final TextEditingController _searchController = TextEditingController();
@@ -250,7 +252,30 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                                   ),
                                   onPressed: alreadyInCart
                                       ? null
-                                      : () => cart.addProduct(product),
+                                      : _isAddingIndex == index
+                                          ? null
+                                          : () async {
+                                              setState(() {
+                                                _isAddingIndex = index;
+                                              });
+                                              // À ADAPTER : récupérer le storeId depuis le contexte ou un Provider
+                                              final String storeId = 'default';
+                                              final success = await cart.addProduct(product, storeId: storeId);
+                                              setState(() {
+                                                _isAddingIndex = null;
+                                              });
+                                              if (!success && mounted) {
+                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                  SnackBar(
+                                                    content: Text(
+                                                      'Stock insuffisant pour ce produit',
+                                                      style: const TextStyle(color: Colors.white),
+                                                    ),
+                                                    backgroundColor: Colors.red,
+                                                  ),
+                                                );
+                                              }
+                                            },
                                   tooltip: alreadyInCart
                                       ? 'Ajouté'
                                       : 'Ajouter au panier',

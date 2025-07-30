@@ -48,7 +48,8 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
           padding: const EdgeInsets.symmetric(vertical: 8.0),
           child: StoreSelector(
             onStoreChanged: _onStoreChanged,
-            currentStore: null, // Optionnel: peut être reconstruit pour afficher le store courant
+            currentStore:
+                null, // Optionnel: peut être reconstruit pour afficher le store courant
           ),
         ),
         Expanded(
@@ -71,7 +72,10 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                     const SizedBox(height: 12),
                     SizedBox(
                       height: 400,
-                      child: ClientPaymentPanel(isTablet: true, storeId: _selectedStoreId),
+                      child: ClientPaymentPanel(
+                        isTablet: true,
+                        storeId: _selectedStoreId,
+                      ),
                     ),
                   ],
                 );
@@ -79,11 +83,20 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                 return Row(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    Expanded(flex: 3, child: CatalogPanel(storeId: _selectedStoreId)),
+                    Expanded(
+                      flex: 3,
+                      child: CatalogPanel(storeId: _selectedStoreId),
+                    ),
                     VerticalDivider(width: 1),
-                    Expanded(flex: 4, child: CartPanel(storeId: _selectedStoreId)),
+                    Expanded(
+                      flex: 4,
+                      child: CartPanel(storeId: _selectedStoreId),
+                    ),
                     VerticalDivider(width: 1),
-                    Expanded(flex: 3, child: ClientPaymentPanel(storeId: _selectedStoreId)),
+                    Expanded(
+                      flex: 3,
+                      child: ClientPaymentPanel(storeId: _selectedStoreId),
+                    ),
                   ],
                 );
               }

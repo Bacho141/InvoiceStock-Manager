@@ -1,5 +1,5 @@
 class Product {
-  final String? id;
+  final String id;
   final String name;
   final String? description;
   final String? category;
@@ -17,7 +17,7 @@ class Product {
   final String? reference;
 
   Product({
-    this.id,
+    required this.id,
     required this.name,
     this.reference,
     this.description,
@@ -37,7 +37,7 @@ class Product {
 
   factory Product.fromJson(Map<String, dynamic> json) {
     return Product(
-      id: json['_id'] ?? json['id'],
+      id: (json['_id'] ?? json['id'] ?? '').toString(),
       name: json['name'],
       reference: json['reference'],
       description: json['description'],
@@ -64,6 +64,7 @@ class Product {
 
   Map<String, dynamic> toJson() {
     return {
+      'id': id, // Ajouté pour l'API
       'name': name,
       'reference': reference,
       'description': description,

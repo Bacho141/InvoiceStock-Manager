@@ -160,18 +160,16 @@ class _AddProductModalState extends State<AddProductModal> {
 
     // Construction de la liste des lignes à envoyer
     final List<Map<String, dynamic>> lines = _selected.entries
-        .where((entry) => entry.value > 0)
-        .map((entry) {
-          final product = _filtered.firstWhere((p) => p['id'] == entry.key, orElse: () => null);
-          if (product == null) return null;
-          return {
-            'product': product['id'],
-            'quantity': entry.value,
-            // Ajouter d'autres champs si besoin (prix, remise, etc.)
-          };
-        })
-        .whereType<Map<String, dynamic>>()
-        .toList();
+    .where((entry) => entry.value > 0 && _filtered.any((p) => p['id'] == entry.key))
+    .map((entry) {
+      final product = _filtered.firstWhere((p) => p['id'] == entry.key);
+      return {
+        'product': product['id'],
+        'quantity': entry.value,
+        // Ajouter d'autres champs si besoin (prix, remise, etc.)
+      };
+    })
+    .toList();
 
     final invoiceId = widget.facture['_id'] ?? widget.facture['id'];
     final url = '${ApiUrls.invoices}/$invoiceId/add-lines';
