@@ -9,7 +9,8 @@ import '../../services/invoice_service.dart';
 import '../../utiles/number_to_words_fr.dart';
 
 class SaleActionBar extends StatefulWidget {
-  const SaleActionBar({Key? key}) : super(key: key);
+  final String? storeId;
+  const SaleActionBar({Key? key, required this.storeId}) : super(key: key);
 
   @override
   State<SaleActionBar> createState() => _SaleActionBarState();
@@ -35,11 +36,11 @@ class _SaleActionBarState extends State<SaleActionBar> {
   }
 
   Future<void> _handleValidateInvoice() async {
-    debugPrint('[UI] Validation facture appelée');
+    debugPrint('[SALE_ACTION_BAR] Validation facture appelée pour le magasin: ${widget.storeId}');
     final cart = CartController();
     final prefs = await SharedPreferences.getInstance();
     final currentUserId = prefs.getString('user_id');
-    final selectedStoreId = prefs.getString('selected_store_id');
+    final selectedStoreId = widget.storeId; // Utilise la valeur passée en paramètre
 
     if (selectedStoreId == null || selectedStoreId == 'all') {
       if (!mounted) return;
@@ -59,34 +60,47 @@ class _SaleActionBarState extends State<SaleActionBar> {
       return;
     }
 
-    final payload = {
-      "client": cart.client?.id,
-      "store": selectedStoreId,
-      "user": currentUserId,
-      "lines": cart.items
-          .map((item) => {
-                "product": item.product.id,
-                "productName": item.product.name,
-                "quantity": item.quantity,
-                "unitPrice": item.product.sellingPrice,
-                "discount": item.discount ?? 0,
-                "totalLine": item.total,
-              })
-          .toList(),
-      "total": cart.total,
-      "totalInWords": numberToWordsFr(cart.total.toInt()),
-      "discountTotal": cart.totalDiscount,
-      "paymentMethod": cart.paymentMethod,
-      "status": cart.dueAmount <= 0 ? "payee" : "reste_a_payer",
-      "format": _selectedFormat,
-      "montantPaye": cart.amountPaid,
-    };
-
+  
     try {
+      debugPrint('[SALE_ACTION_BAR][TRY] Début du bloc try. Préparation du payload.');
+      final payload = {
+        "client": cart.client?.id,
+        "store": selectedStoreId,
+        "user": currentUserId,
+        "lines": cart.items
+            .map((item) => {
+                  "product": item.product.id,
+                  "productName": item.product.name,
+                  "quantity": item.quantity,
+                  "unitPrice": item.product.sellingPrice,
+                  "discount": item.discount ?? 0,
+                  "totalLine": item.total,
+                })
+            .toList(),
+        "total": cart.total,
+        "totalInWords": numberToWordsFr(cart.total.toInt()),
+        "discountTotal": cart.totalDiscount,
+        "paymentMethod": cart.paymentMethod,
+        "status": cart.dueAmount <= 0 ? "payee" : "reste_a_payer",
+        "format": _selectedFormat,
+        "montantPaye": cart.amountPaid,
+      };
+
+      debugPrint('[SALE_ACTION_BAR][TRY] Payload prêt à être envoyé: ${payload.toString()}');
+
       final invoiceData = await InvoiceService().createInvoice(payload);
+
+      debugPrint('[SALE_ACTION_BAR][TRY] Réponse reçue du service: ${invoiceData.toString()}');
+
+      final newFacture = invoiceData['data'];
+      final newFactureId = newFacture?['_id'];
+
+      debugPrint('[SALE_ACTION_BAR][TRY] ID de la nouvelle facture extrait: $newFactureId');
 
       if (!mounted) return;
       cart.clear();
+
+      debugPrint('[SALE_ACTION_BAR][TRY] Panier vidé. Préparation de la navigation.');
 
       if (_selectedFormat == 'A5') {
         Navigator.of(context).push(

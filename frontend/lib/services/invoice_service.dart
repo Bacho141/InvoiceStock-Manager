@@ -9,22 +9,44 @@ import 'stock_service.dart';
 
 class InvoiceService {
   /// Valide une facture après transaction stock
-  Future<Map<String, dynamic>> validateInvoice(String id) async {
+  Future<Map<String, dynamic>> validateInvoice(
+    String id,
+    String storeId,
+  ) async {
+    final url = ApiUrls.invoicesValidate(id, storeId);
+    debugPrint('[INVOICE_SERVICE] Appel de la route de validation: POST $url');
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
-    final response = await http.patch(
-      Uri.parse(ApiUrls.invoicesValidate(id)),
-      headers: {'Authorization': 'Bearer $token'},
+
+    if (token == null) {
+      debugPrint(
+        '[INVOICE_SERVICE] ERREUR: Token non trouvé. Validation annulée.',
+      );
+      throw Exception('Token non trouvé.');
+    }
+
+    final response = await http.post(
+      Uri.parse(url),
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer $token',
+      },
     );
+
+    debugPrint(
+      '[INVOICE_SERVICE] Réponse de la validation: ${response.statusCode} - ${response.body}',
+    );
+
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
-    } else {
-      throw Exception('Erreur validation facture');
     }
+    throw Exception('Erreur validation facture: ${response.body}');
   }
 
   Future<Map<String, dynamic>> createInvoice(Map<String, dynamic> data) async {
-    debugPrint('[SERVICE][InvoiceService] Tentative de création facture (transactionnelle): ${jsonEncode(data)}');
+    debugPrint(
+      '[SERVICE][InvoiceService] Tentative de création facture (transactionnelle): ${jsonEncode(data)}',
+    );
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
 
@@ -37,20 +59,30 @@ class InvoiceService {
       },
       body: jsonEncode(data),
     );
-    debugPrint('[SERVICE][InvoiceService] Status: ${response.statusCode}, Body: ${response.body}');
+    debugPrint(
+      '[SERVICE][InvoiceService] Status: ${response.statusCode}, Body: ${response.body}',
+    );
 
     if (response.statusCode == 201 || response.statusCode == 200) {
       final invoiceResult = jsonDecode(response.body);
-      final invoiceId = invoiceResult['data']?['id'] ?? invoiceResult['id'];
-      debugPrint('[SERVICE][InvoiceService] Facture créée avec succès, ID: $invoiceId');
+      final invoiceId = invoiceResult['data']?['_id'] ?? invoiceResult['_id'];
+      debugPrint(
+        '[SERVICE][InvoiceService] Facture créée avec succès, ID: $invoiceId',
+      );
 
       // 2. Transaction stock : tout ou rien
       final stockService = StockService();
-      final storeId = data['storeId'];
-if (storeId == null || storeId == 'default') {
-  debugPrint('[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide (reçu: "$storeId")');
-  throw Exception('Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.');
-}
+      // final storeId = data['storeId'];
+      final storeId = data['store'];
+      print("ALLAH : $storeId");
+      if (storeId == null || storeId == 'default') {
+        debugPrint(
+          '[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide (reçu: "$storeId")',
+        );
+        throw Exception(
+          'Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.',
+        );
+      }
       final lines = List<Map<String, dynamic>>.from(data['lines'] ?? []);
       final userId = data['userId'];
       final sessionId = data['sessionId'];
@@ -70,11 +102,14 @@ if (storeId == null || storeId == 'default') {
               quantity: quantity,
               invoiceId: invoiceId.toString(),
               userId: userId?.toString(),
-              notes: 'Vente - Facture $invoiceId - ${line['productName'] ?? 'Produit'}',
+              notes:
+                  'Vente - Facture $invoiceId - ${line['productName'] ?? 'Produit'}',
             );
             if (success) {
               mouvementsOk.add({'productId': productId, 'quantity': quantity});
-              debugPrint('[SERVICE][InvoiceService] Mouvement OK: $productId ($quantity)');
+              debugPrint(
+                '[SERVICE][InvoiceService] Mouvement OK: $productId ($quantity)',
+              );
             } else {
               echec = true;
               produitEchec = productId;
@@ -92,7 +127,9 @@ if (storeId == null || storeId == 'default') {
 
       if (echec) {
         // Rollback : réajuster le stock pour tous les mouvements déjà faits
-        debugPrint('[SERVICE][InvoiceService] Echec transactionnel sur $produitEchec : rollback...');
+        debugPrint(
+          '[SERVICE][InvoiceService] Echec transactionnel sur $produitEchec : rollback...',
+        );
         for (final m in mouvementsOk) {
           try {
             await stockService.adjustStock(
@@ -102,7 +139,9 @@ if (storeId == null || storeId == 'default') {
               'Rollback vente - Facture $invoiceId',
             );
           } catch (e) {
-            debugPrint('[SERVICE][InvoiceService] Erreur rollback sur produit ${m['productId']}: $e');
+            debugPrint(
+              '[SERVICE][InvoiceService] Erreur rollback sur produit ${m['productId']}: $e',
+            );
           }
         }
         // Supprimer la facture créée
@@ -111,60 +150,83 @@ if (storeId == null || storeId == 'default') {
             Uri.parse('${ApiUrls.invoices}/$invoiceId'),
             headers: {'Authorization': 'Bearer $token'},
           );
-          debugPrint('[SERVICE][InvoiceService] Facture $invoiceId supprimée suite à échec transactionnel');
+          debugPrint(
+            '[SERVICE][InvoiceService] Facture $invoiceId supprimée suite à échec transactionnel',
+          );
         } catch (e) {
-          debugPrint('[SERVICE][InvoiceService] Erreur suppression facture $invoiceId: $e');
+          debugPrint(
+            '[SERVICE][InvoiceService] Erreur suppression facture $invoiceId: $e',
+          );
         }
         // Feedback utilisateur centralisé (snackbar)
         if (navigatorKey.currentContext != null) {
           final context = navigatorKey.currentContext!;
           ScaffoldMessenger.of(context).showSnackBar(
             const SnackBar(
-              content: Text('Erreur critique : la facture a été annulée, aucun produit n\'a été déduit du stock.'),
+              content: Text(
+                'Erreur critique : la facture a été annulée, aucun produit n\'a été déduit du stock.',
+              ),
               backgroundColor: Colors.red,
               duration: Duration(seconds: 6),
             ),
           );
         }
         throw Exception(
-          "Erreur transactionnelle lors de la déduction du stock (produit $produitEchec): $erreurMouvement. Aucun produit n'a été déduit, la facture a été annulée."
+          "Erreur transactionnelle lors de la déduction du stock (produit $produitEchec): $erreurMouvement. Aucun produit n'a été déduit, la facture a été annulée.",
         );
       }
 
       // 3. Libérer les réservations de la session après validation
       if (sessionId != null) {
         try {
-          await stockService.releaseAllSessionReservations(storeId, sessionId: sessionId.toString());
-          debugPrint('[SERVICE][InvoiceService] Réservations libérées pour session $sessionId');
+          await stockService.releaseAllSessionReservations(
+            storeId,
+            sessionId: sessionId.toString(),
+          );
+          debugPrint(
+            '[SERVICE][InvoiceService] Réservations libérées pour session $sessionId',
+          );
         } catch (e) {
-          debugPrint('[SERVICE][InvoiceService] Erreur libération réservations: $e');
+          debugPrint(
+            '[SERVICE][InvoiceService] Erreur libération réservations: $e',
+          );
         }
       }
 
       return invoiceResult;
     } else {
-      debugPrint('[SERVICE][InvoiceService] Erreur création facture: ${response.body}');
+      debugPrint(
+        '[SERVICE][InvoiceService] Erreur création facture: ${response.body}',
+      );
       throw Exception('Erreur création facture: ${response.body}');
     }
   }
 
   /// Crée une facture avec vérification préalable du stock
-  Future<Map<String, dynamic>> createInvoiceWithStockValidation(Map<String, dynamic> data) async {
-    debugPrint('[SERVICE][InvoiceService] Création facture avec validation stock');
-    
+  Future<Map<String, dynamic>> createInvoiceWithStockValidation(
+    Map<String, dynamic> data,
+  ) async {
+    debugPrint(
+      '[SERVICE][InvoiceService] Création facture avec validation stock',
+    );
+
     final stockService = StockService();
     final storeId = data['storeId'];
-if (storeId == null || storeId == 'default') {
-  debugPrint('[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide (reçu: "$storeId")');
-  throw Exception('Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.');
-}
+    if (storeId == null || storeId == 'default') {
+      debugPrint(
+        '[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide (reçu: "$storeId")',
+      );
+      throw Exception(
+        'Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.',
+      );
+    }
     final lines = List<Map<String, dynamic>>.from(data['lines'] ?? []);
-    
+
     // Vérifier la disponibilité de tous les produits avant création
     for (final line in lines) {
       final productId = line['productId']?.toString();
       final quantity = (line['quantity'] as num?)?.toInt() ?? 0;
-      
+
       if (productId != null && quantity > 0) {
         try {
           final availability = await stockService.checkStockAvailability(
@@ -172,7 +234,7 @@ if (storeId == null || storeId == 'default') {
             productId,
             quantity,
           );
-          
+
           if (!(availability['available'] ?? false)) {
             throw Exception(
               'Stock insuffisant pour ${line['productName'] ?? 'produit'} (${availability['message'] ?? 'quantité demandée: $quantity'})',
@@ -183,7 +245,7 @@ if (storeId == null || storeId == 'default') {
         }
       }
     }
-    
+
     // Si toutes les vérifications passent, créer la facture
     return await createInvoice(data);
   }
@@ -243,22 +305,24 @@ if (storeId == null || storeId == 'default') {
 
   Future<void> cancelInvoice(String id) async {
     debugPrint('[SERVICE][InvoiceService] Annulation facture $id');
-    
+
     // Récupérer les détails de la facture avant annulation pour traiter le stock
     Map<String, dynamic>? invoiceDetails;
     try {
       invoiceDetails = await getInvoiceById(id);
     } catch (e) {
-      debugPrint('[SERVICE][InvoiceService] Impossible de récupérer détails facture pour annulation: $e');
+      debugPrint(
+        '[SERVICE][InvoiceService] Impossible de récupérer détails facture pour annulation: $e',
+      );
     }
-    
+
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
     final response = await http.delete(
       Uri.parse('${ApiUrls.invoices}/$id'),
       headers: {'Authorization': 'Bearer $token'},
     );
-    
+
     if (response.statusCode == 200) {
       // Traiter les mouvements de stock d'annulation
       if (invoiceDetails != null) {
@@ -270,7 +334,9 @@ if (storeId == null || storeId == 'default') {
         final context = navigatorKey.currentContext!;
         ScaffoldMessenger.of(context).showSnackBar(
           const SnackBar(
-            content: Text('Erreur critique : la facture n\'a pas pu être annulée, le stock n\'a pas été modifié.'),
+            content: Text(
+              'Erreur critique : la facture n\'a pas pu être annulée, le stock n\'a pas été modifié.',
+            ),
             backgroundColor: Colors.red,
             duration: Duration(seconds: 6),
           ),
@@ -281,23 +347,31 @@ if (storeId == null || storeId == 'default') {
   }
 
   /// Traite les mouvements de stock suite à l'annulation d'une facture
-  Future<void> _processStockCancellation(Map<String, dynamic> invoiceData, String invoiceId) async {
-    debugPrint('[SERVICE][InvoiceService] Traitement annulation stock pour facture $invoiceId');
+  Future<void> _processStockCancellation(
+    Map<String, dynamic> invoiceData,
+    String invoiceId,
+  ) async {
+    debugPrint(
+      '[SERVICE][InvoiceService] Traitement annulation stock pour facture $invoiceId',
+    );
 
     try {
       final stockService = StockService();
       final storeId = invoiceData['storeId'];
-if (storeId == null || storeId == 'default') {
-  debugPrint('[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide lors d\'une annulation (reçu: "$storeId")');
-  throw Exception('Aucun magasin sélectionné ou storeId invalide pour l\'annulation.');
-}
+      if (storeId == null || storeId == 'default') {
+        debugPrint(
+          '[SERVICE][InvoiceService] ERREUR: storeId absent ou invalide lors d\'une annulation (reçu: "$storeId")',
+        );
+        throw Exception(
+          'Aucun magasin sélectionné ou storeId invalide pour l\'annulation.',
+        );
+      }
       final lines = List<Map<String, dynamic>>.from(invoiceData['lines'] ?? []);
 
-      
       for (final line in lines) {
         final productId = line['productId']?.toString();
         final quantity = (line['quantity'] as num?)?.toInt() ?? 0;
-        
+
         if (productId != null && quantity > 0) {
           try {
             // Créer un mouvement de stock d'annulation (ajout)
@@ -307,7 +381,7 @@ if (storeId == null || storeId == 'default') {
               quantity, // Quantité à remettre en stock
               'Annulation facture $invoiceId - ${line['productName'] ?? 'Produit'}',
             );
-            
+
             if (success) {
               debugPrint(
                 '[SERVICE][InvoiceService] Stock restauré: produit $productId, quantité +$quantity',
@@ -321,7 +395,9 @@ if (storeId == null || storeId == 'default') {
         }
       }
     } catch (e) {
-      debugPrint('[SERVICE][InvoiceService] Erreur générale annulation stock: $e');
+      debugPrint(
+        '[SERVICE][InvoiceService] Erreur générale annulation stock: $e',
+      );
     }
   }
 

@@ -68,11 +68,13 @@ const invoiceController = {
   },
   // [INVOICE][CREATE] Créer une nouvelle facture avec logique transactionnelle avancée
   async createInvoice(req, res) {
+    console.log('[INVOICE][CREATE] Corps de la requête reçu:', JSON.stringify(req.body, null, 2));
     console.log('[INVOICE][CREATE] Tentative de création de facture');
+    let invoiceData;
     const session = await Stock.startSession();
     session.startTransaction();
     try {
-      const invoiceData = req.body;
+      invoiceData = req.body;
       if (!invoiceData.client) {
         await session.abortTransaction();
         return res.status(400).json({ message: 'Un client est obligatoire pour chaque facture.' });
@@ -101,18 +103,18 @@ const invoiceController = {
         stock.lastUpdated = new Date();
         await stock.save({ session });
         // Mouvement OUT
-        await StockMovement.create({
+        await StockMovement.create([{
           productId: line.product,
           storeId: invoiceData.store,
           type: 'OUT',
           quantity: line.quantity,
-          previousQuantity,
+          previousQuantity: previousQuantity,
           newQuantity: stock.quantity,
           reason: 'Décrémentation stock à la création facture',
           reference: invoiceData.number,
           referenceType: 'INVOICE',
           userId: invoiceData.user,
-        }, { session });
+        }], { session });
         console.log(`[INVOICE][CREATE][STOCK] Produit ${line.product} - Stock décrémenté de ${line.quantity} (avant: ${previousQuantity}, après: ${stock.quantity})`);
       }
       const invoice = new Invoice(invoiceData);

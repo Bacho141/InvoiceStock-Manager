@@ -1,0 +1,6126 @@
+[{
+  "_id": {
+    "$oid": "687cf7248ab23f00a6a9c8de"
+  },
+  "number": "INV-2025-0001",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 3,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 12600,
+      "_id": {
+        "$oid": "687cf7248ab23f00a6a9c8df"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 5,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 21000,
+      "_id": {
+        "$oid": "687cf7248ab23f00a6a9c8e0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687cf7248ab23f00a6a9c8e1"
+      }
+    }
+  ],
+  "total": 33950,
+  "totalInWords": "Trente-trois mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T14:03:16.199Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T14:03:16.204Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T14:03:16.207Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T14:03:16.207Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d347a8ab23f00a6a9c8fe"
+  },
+  "number": "INV-2025-0002",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 6,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 25200,
+      "_id": {
+        "$oid": "687d347a8ab23f00a6a9c8ff"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3806"
+      },
+      "productName": "Savon 102",
+      "quantity": 4,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 1400,
+      "_id": {
+        "$oid": "687d347a8ab23f00a6a9c900"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 3,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 1050,
+      "_id": {
+        "$oid": "687d347a8ab23f00a6a9c901"
+      }
+    }
+  ],
+  "total": 27650,
+  "totalInWords": "Vingt-sept mille six cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T18:24:58.772Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T18:24:58.773Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T18:24:58.775Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T18:24:58.775Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d387e8ab23f00a6a9c91c"
+  },
+  "number": "INV-2025-0003",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687d387e8ab23f00a6a9c91d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d387e8ab23f00a6a9c91e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3807"
+      },
+      "productName": "Savon 103",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d387e8ab23f00a6a9c91f"
+      }
+    }
+  ],
+  "total": 4900,
+  "totalInWords": "Quatre mille neuf cents francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T18:42:06.694Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T18:42:06.695Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T18:42:06.697Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T18:42:06.697Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d3a468ab23f00a6a9c946"
+  },
+  "number": "INV-2025-0004",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d3a468ab23f00a6a9c947"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d3a468ab23f00a6a9c948"
+      }
+    }
+  ],
+  "total": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T18:49:42.471Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T18:49:42.472Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T18:49:42.473Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T18:49:42.473Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d3c3e8ab23f00a6a9c960"
+  },
+  "number": "INV-2025-0005",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d3c3e8ab23f00a6a9c961"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d3c3e8ab23f00a6a9c962"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687d3c3e8ab23f00a6a9c963"
+      }
+    }
+  ],
+  "total": 47950,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T18:58:06.106Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T18:58:06.108Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T18:58:06.109Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T18:58:06.109Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d3db48ab23f00a6a9c97b"
+  },
+  "number": "INV-2025-0006",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d3db48ab23f00a6a9c97c"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d3db48ab23f00a6a9c97d"
+      }
+    }
+  ],
+  "total": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T19:04:20.461Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T19:04:20.462Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T19:04:20.463Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T19:04:20.463Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d3ef80bb9a0d81c066e8f"
+  },
+  "number": "INV-2025-0007",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d3ef80bb9a0d81c066e90"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687d3ef80bb9a0d81c066e91"
+      }
+    }
+  ],
+  "total": 45000,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T19:09:44.897Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T19:09:44.901Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T19:09:44.903Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T19:09:44.903Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d44fa0bb9a0d81c066ebb"
+  },
+  "number": "INV-2025-0008",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ebc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ebd"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ebe"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3808"
+      },
+      "productName": "Savon 104",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ebf"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3807"
+      },
+      "productName": "Savon 103",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ec0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3806"
+      },
+      "productName": "Savon 102",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ec1"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3804"
+      },
+      "productName": "Savon de Marseille",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ec2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3805"
+      },
+      "productName": "Savon 101",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687d44fa0bb9a0d81c066ec3"
+      }
+    }
+  ],
+  "total": 14350,
+  "totalInWords": "Quatorze mille trois cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T19:35:22.938Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T19:35:22.941Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T19:35:22.943Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T19:35:22.943Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d47580bb9a0d81c066eef"
+  },
+  "number": "INV-2025-0009",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d47580bb9a0d81c066ef0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d47580bb9a0d81c066ef1"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687d47580bb9a0d81c066ef2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686cd0fd030cf5b7e6371a62"
+      },
+      "productName": "ezerezr",
+      "quantity": 1,
+      "unitPrice": 1524,
+      "discount": 0,
+      "totalLine": 1524,
+      "_id": {
+        "$oid": "687d47580bb9a0d81c066ef3"
+      }
+    }
+  ],
+  "total": 49474,
+  "totalInWords": "Quarante-neuf mille quatre cent soixante-quatorze francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T19:45:28.673Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T19:45:28.675Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T19:45:28.677Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T19:45:28.677Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d491d0bb9a0d81c066f15"
+  },
+  "number": "INV-2025-0010",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d491d0bb9a0d81c066f16"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d491d0bb9a0d81c066f17"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687d491d0bb9a0d81c066f18"
+      }
+    }
+  ],
+  "total": 47950,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T19:53:01.522Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T19:53:01.523Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T19:53:01.525Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T19:53:01.525Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d4b9b0bb9a0d81c066f37"
+  },
+  "number": "INV-2025-0011",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d4b9b0bb9a0d81c066f38"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d4b9b0bb9a0d81c066f39"
+      }
+    }
+  ],
+  "total": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T20:03:39.582Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T20:03:39.584Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T20:03:39.585Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T20:03:39.585Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d4d680bb9a0d81c066f57"
+  },
+  "number": "INV-2025-0012",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 3,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 8850,
+      "_id": {
+        "$oid": "687d4d680bb9a0d81c066f58"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 3,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 82500,
+      "_id": {
+        "$oid": "687d4d680bb9a0d81c066f59"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d4d680bb9a0d81c066f5a"
+      }
+    }
+  ],
+  "total": 108850,
+  "totalInWords": "Cent huit mille huit cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T20:11:20.136Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T20:11:20.137Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T20:11:20.139Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T20:11:20.139Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d4fda0bb9a0d81c066f76"
+  },
+  "number": "INV-2025-0013",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d4fda0bb9a0d81c066f77"
+      }
+    }
+  ],
+  "total": 17500,
+  "totalInWords": "Dix-sept mille cinq cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T20:21:46.877Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T20:21:46.878Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T20:21:46.878Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T20:21:46.878Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687d50f474e38be20bd0d153"
+  },
+  "number": "INV-2025-0014",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687d50f474e38be20bd0d154"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687d50f474e38be20bd0d155"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687d50f474e38be20bd0d156"
+      }
+    }
+  ],
+  "total": 47950,
+  "montantPaye": 40950,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-20T20:26:28.802Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-20T20:26:28.806Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-20T20:26:28.809Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-20T20:26:28.809Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687e214a74e38be20bd0d178"
+  },
+  "number": "INV-2025-0015",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687e214a74e38be20bd0d179"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686cd0fd030cf5b7e6371a62"
+      },
+      "productName": "ezerezr",
+      "quantity": 1,
+      "unitPrice": 1524,
+      "discount": 0,
+      "totalLine": 1524,
+      "_id": {
+        "$oid": "687e214a74e38be20bd0d17a"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687e214a74e38be20bd0d17b"
+      }
+    }
+  ],
+  "total": 36524,
+  "montantPaye": 30000,
+  "totalInWords": "Trente-six mille cinq cent vingt-quatre francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T11:15:22.779Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T11:15:22.781Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T11:15:22.783Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T11:15:22.783Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687e237474e38be20bd0d19d"
+  },
+  "number": "INV-2025-0016",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687e237474e38be20bd0d19e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687e237474e38be20bd0d19f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687e237474e38be20bd0d1a0"
+      }
+    }
+  ],
+  "total": 47950,
+  "montantPaye": 40950,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T11:24:36.701Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T11:24:36.702Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T11:24:36.704Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T11:24:36.704Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687e8fe8627b2f2f02610d41"
+  },
+  "number": "INV-2025-0017",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687e8fe8627b2f2f02610d42"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687e8fe8627b2f2f02610d43"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687e8fe8627b2f2f02610d44"
+      }
+    }
+  ],
+  "total": 25900,
+  "montantPaye": 20900,
+  "totalInWords": "Vingt-cinq mille neuf cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T19:07:20.953Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T19:07:20.956Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T19:07:20.958Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T19:07:20.958Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687eab43627b2f2f02610d5b"
+  },
+  "number": "INV-2025-0018",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 3,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 12600,
+      "_id": {
+        "$oid": "687eab43627b2f2f02610d5c"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 2,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 8400,
+      "_id": {
+        "$oid": "687eab43627b2f2f02610d5d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 4,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 16800,
+      "_id": {
+        "$oid": "687eab43627b2f2f02610d5e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3806"
+      },
+      "productName": "Savon 102",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687eab43627b2f2f02610d5f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3807"
+      },
+      "productName": "Savon 103",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "687eab43627b2f2f02610d60"
+      }
+    }
+  ],
+  "total": 38500,
+  "montantPaye": 20500,
+  "totalInWords": "Trente-huit mille cinq cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T21:04:03.662Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T21:04:03.664Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T21:04:03.666Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T21:04:03.666Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687eb3563d82a82eb1cc40a2"
+  },
+  "number": "INV-2025-0019",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687eb3563d82a82eb1cc40a3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 5,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 87500,
+      "_id": {
+        "$oid": "687eb3563d82a82eb1cc40a4"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 3,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 82500,
+      "_id": {
+        "$oid": "687eb3563d82a82eb1cc40a5"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687eb3563d82a82eb1cc40a6"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "687eb3563d82a82eb1cc40a7"
+      }
+    }
+  ],
+  "total": 181350,
+  "montantPaye": 150350,
+  "totalInWords": "Cent quatre-vingt-un mille trois cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T21:38:30.390Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T21:38:30.394Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T21:38:30.397Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T21:38:30.397Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687eb6433d82a82eb1cc40e2"
+  },
+  "number": "INV-2025-0020",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687eb6433d82a82eb1cc40e3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687eb6433d82a82eb1cc40e4"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T21:50:59.493Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T21:50:59.494Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T21:50:59.495Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T21:50:59.495Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687eb65f3d82a82eb1cc40f2"
+  },
+  "number": "INV-2025-0021",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687eb65f3d82a82eb1cc40f3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687eb65f3d82a82eb1cc40f4"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T21:51:27.370Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T21:51:27.371Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T21:51:27.372Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T21:51:27.372Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687eb7e33d82a82eb1cc4127"
+  },
+  "number": "INV-2025-0022",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687eb7e33d82a82eb1cc4128"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687eb7e33d82a82eb1cc4129"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-21T21:57:55.769Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-21T21:57:55.772Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-21T21:57:55.774Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-21T21:57:55.774Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f6fbf397a814d47a71949"
+  },
+  "number": "INV-2025-0023",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687f6fbf397a814d47a7194a"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687f6fbf397a814d47a7194b"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:02:23.741Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T11:02:23.745Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T11:02:23.748Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T11:02:23.748Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f72c4c0fd8489e853d4c2"
+  },
+  "number": "INV-2025-0024",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687f72c4c0fd8489e853d4c3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687f72c4c0fd8489e853d4c4"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:15:16.468Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T11:15:16.470Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T11:15:16.472Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T11:15:16.472Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687f73d9f89022aeda3a1298"
+  },
+  "number": "INV-2025-0025",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687f73d9f89022aeda3a1299"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687f73d9f89022aeda3a129a"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687f73e0f89022aeda3a12ac"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 2,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 5900,
+      "_id": {
+        "$oid": "687f73f0f89022aeda3a12c8"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3801"
+      },
+      "productName": "Biscuit Chocolat",
+      "quantity": 3,
+      "unitPrice": 750,
+      "discount": 0,
+      "totalLine": 2250,
+      "_id": {
+        "$oid": "687f77a2f89022aeda3a12ec"
+      }
+    }
+  ],
+  "total": 56100,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:19:53.053Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:20:00.199Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:20:16.925Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T11:36:02.132Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T11:19:53.056Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T11:19:53.059Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T11:36:02.136Z"
+  },
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "687f80294915e49fa0e68fcf"
+  },
+  "number": "INV-2025-0026",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687f80294915e49fa0e68fd0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687f80294915e49fa0e68fd1"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T12:12:25.325Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T12:12:25.329Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T12:12:25.331Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T12:12:25.331Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687fbd3d4915e49fa0e68fee"
+  },
+  "number": "INV-2025-0027",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687fbd3d4915e49fa0e68fef"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687fbd3d4915e49fa0e68ff0"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T16:33:01.520Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T16:33:01.521Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T16:33:01.523Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T16:33:01.523Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687fc9cefe3ad48d80f9635f"
+  },
+  "number": "INV-2025-0028",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 2,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 5900,
+      "_id": {
+        "$oid": "687fca28fe3ad48d80f96382"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687fca28fe3ad48d80f96383"
+      }
+    }
+  ],
+  "total": 23400,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T17:26:38.198Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T17:27:35.023Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T17:28:07.495Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T17:28:08.241Z"
+      },
+      "reason": "Modification du reçu via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T17:26:38.201Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T17:26:38.203Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T17:28:08.242Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687fd8aefe3ad48d80f963a2"
+  },
+  "number": "INV-2025-0029",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687fd8aefe3ad48d80f963a3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687fd8aefe3ad48d80f963a4"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T18:30:06.053Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T18:30:06.054Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T18:30:06.056Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T18:30:06.056Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687fd8d3fe3ad48d80f963b2"
+  },
+  "number": "INV-2025-0030",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 10,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 175000,
+      "_id": {
+        "$oid": "687fd9f5fe3ad48d80f963ce"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "687fda90fe3ad48d80f963e3"
+      }
+    }
+  ],
+  "total": 202500,
+  "montantPaye": 20450,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "payee",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T18:30:43.120Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T18:31:04.334Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T18:35:33.630Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T18:38:08.003Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    },
+    {
+      "action": "remove_line",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T19:05:02.305Z"
+      },
+      "reason": "Suppression de la ligne produit JJJJ (ID: 687fd9f5fe3ad48d80f963cf)"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T18:30:43.121Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T18:30:43.122Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T19:05:02.310Z"
+  },
+  "__v": 2
+},
+{
+  "_id": {
+    "$oid": "687fe9fd41e61ccd4ff744d4"
+  },
+  "number": "INV-2025-0031",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687fe9fd41e61ccd4ff744d5"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687fe9fd41e61ccd4ff744d6"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 0,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T19:43:57.584Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T19:43:57.586Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T19:43:57.588Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T19:43:57.588Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687fec3a41e61ccd4ff744f3"
+  },
+  "number": "INV-2025-0032",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "687fec3a41e61ccd4ff744f4"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "687fec3a41e61ccd4ff744f5"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-22T19:53:30.263Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-22T19:53:30.269Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-22T19:53:30.273Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-22T19:53:30.273Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6880f5def5564c442c293328"
+  },
+  "number": "INV-2025-0033",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6880f5def5564c442c293329"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6880f5def5564c442c29332a"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T14:46:54.814Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T14:46:54.819Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T14:46:54.824Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T14:46:54.824Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68812359f5564c442c293362"
+  },
+  "number": "INV-2025-0034",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68812359f5564c442c293363"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68812359f5564c442c293364"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T18:00:57.994Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T18:00:57.995Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T18:00:57.996Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T18:00:57.996Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68812fcaf5564c442c293381"
+  },
+  "number": "INV-2025-0035",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68812fcaf5564c442c293382"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68812fcaf5564c442c293383"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T18:54:02.492Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T18:54:02.494Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T18:54:02.496Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T18:54:02.496Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688131daf5564c442c2933bb"
+  },
+  "number": "INV-2025-0036",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "688131daf5564c442c2933bc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688131daf5564c442c2933bd"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 0,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T19:02:50.329Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T19:02:50.331Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T19:02:50.333Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T19:02:50.333Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68813446f5564c442c2933df"
+  },
+  "number": "INV-2025-0037",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68813446f5564c442c2933e0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68813446f5564c442c2933e1"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 0,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T19:13:10.814Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T19:13:10.816Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T19:13:10.818Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T19:13:10.818Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6881347af5564c442c2933fe"
+  },
+  "number": "INV-2025-0038",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6881347af5564c442c2933ff"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6881347af5564c442c293400"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 0,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T19:14:02.129Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T19:14:02.131Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T19:14:02.133Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T19:14:02.133Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6881349af5564c442c293418"
+  },
+  "number": "INV-2025-0039",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6881349af5564c442c293419"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6881349af5564c442c29341a"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-23T19:14:34.640Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-23T19:14:34.642Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-23T19:14:34.643Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-23T19:14:34.643Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6881f3b1f5564c442c293453"
+  },
+  "number": "INV-2025-0040",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6881f3b1f5564c442c293454"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6881f3b1f5564c442c293455"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T08:49:53.388Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T08:49:53.388Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T08:49:53.389Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T08:49:53.389Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6881fbf5f5564c442c29346d"
+  },
+  "number": "INV-2025-0041",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6881fbf5f5564c442c29346e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6881fbf5f5564c442c29346f"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 0,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T09:25:09.279Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T09:25:09.281Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T09:25:09.282Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T09:25:09.282Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6881fd8df5564c442c29348c"
+  },
+  "number": "INV-2025-0042",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6881fd8df5564c442c29348d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6881fd8df5564c442c29348e"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T09:31:57.397Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T09:31:57.397Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T09:31:57.398Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T09:31:57.398Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6882054af5564c442c29349d"
+  },
+  "number": "INV-2025-0043",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6882054af5564c442c29349e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6882054af5564c442c29349f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "6882054af5564c442c2934a0"
+      }
+    }
+  ],
+  "total": 47950,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:04:58.562Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:04:58.565Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:04:58.568Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:04:58.568Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820580f5564c442c2934bf"
+  },
+  "number": "INV-2025-0044",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68820580f5564c442c2934c0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68820580f5564c442c2934c1"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:05:52.501Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:05:52.503Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:05:52.505Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:05:52.505Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688205cef5564c442c2934de"
+  },
+  "number": "INV-2025-0045",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "688205cef5564c442c2934df"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688205cef5564c442c2934e0"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:07:10.911Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:07:10.912Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:07:10.913Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:07:10.913Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6882066bf5564c442c2934fd"
+  },
+  "number": "INV-2025-0046",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6882066bf5564c442c2934fe"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6882066bf5564c442c2934ff"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:09:47.115Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:09:47.116Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:09:47.116Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:09:47.116Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6882087ef5564c442c29351b"
+  },
+  "number": "INV-2025-0047",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6882087ef5564c442c29351c"
+      }
+    }
+  ],
+  "total": 2950,
+  "montantPaye": 2000,
+  "totalInWords": "Deux mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:18:38.355Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:18:38.355Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:18:38.356Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:18:38.356Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820a9bf5564c442c293536"
+  },
+  "number": "INV-2025-0048",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68820a9bf5564c442c293537"
+      }
+    }
+  ],
+  "total": 2950,
+  "montantPaye": 2000,
+  "totalInWords": "Deux mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:27:39.417Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:27:39.417Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:27:39.418Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:27:39.418Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820b24f5564c442c293542"
+  },
+  "number": "INV-2025-0049",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68820b24f5564c442c293543"
+      }
+    }
+  ],
+  "total": 2950,
+  "montantPaye": 0,
+  "totalInWords": "Deux mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:29:56.897Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:29:56.898Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:29:56.899Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:29:56.899Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820b3ff5564c442c29355d"
+  },
+  "number": "INV-2025-0050",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68820b3ff5564c442c29355e"
+      }
+    }
+  ],
+  "total": 2950,
+  "montantPaye": 0,
+  "totalInWords": "Deux mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:30:23.497Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:30:23.498Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:30:23.499Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:30:23.499Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820b82f5564c442c293577"
+  },
+  "number": "INV-2025-0051",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68820b82f5564c442c293578"
+      }
+    }
+  ],
+  "total": 17500,
+  "montantPaye": 0,
+  "totalInWords": "Dix-sept mille cinq cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:31:30.057Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:31:30.058Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:31:30.059Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:31:30.059Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820bcdf5564c442c293591"
+  },
+  "number": "INV-2025-0052",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68820bcdf5564c442c293592"
+      }
+    }
+  ],
+  "total": 17500,
+  "montantPaye": 0,
+  "totalInWords": "Dix-sept mille cinq cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:32:45.823Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:32:45.824Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:32:45.825Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:32:45.825Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68820e5ef5564c442c2935ac"
+  },
+  "number": "INV-2025-0053",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68820e5ef5564c442c2935ad"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "68820e5ef5564c442c2935ae"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68820e95f5564c442c2935c2"
+      }
+    }
+  ],
+  "total": 47950,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:43:42.792Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:44:37.282Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:43:42.792Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:43:42.793Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:44:37.284Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68820ec3f5564c442c2935e6"
+  },
+  "number": "INV-2025-0054",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 11,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 302500,
+      "_id": {
+        "$oid": "688212d8f5564c442c29361c"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688212d8f5564c442c29361d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6882130ef5564c442c293651"
+      }
+    }
+  ],
+  "total": 337500,
+  "montantPaye": 0,
+  "totalInWords": "Vingt-sept mille cinq cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:45:23.267Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:53:30.304Z"
+      },
+      "reason": "Ajout de 2 ligne(s) via POS"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:02:48.208Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "remove_line",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:03:05.712Z"
+      },
+      "reason": "Suppression de la ligne produit Carte (ID: 688212d8f5564c442c29361e)"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:03:42.461Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:45:23.267Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:45:23.268Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T11:03:42.462Z"
+  },
+  "__v": 3
+},
+{
+  "_id": {
+    "$oid": "68820efaf5564c442c2935f2"
+  },
+  "number": "INV-2025-0055",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "68820efaf5564c442c2935f3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68820efaf5564c442c2935f4"
+      }
+    }
+  ],
+  "total": 45000,
+  "montantPaye": 40000,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T10:46:18.172Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T10:46:18.173Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T10:46:18.174Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:46:18.174Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688213a5f5564c442c293676"
+  },
+  "number": "INV-2025-0056",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "688213a5f5564c442c293677"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686cd0fd030cf5b7e6371a62"
+      },
+      "productName": "ezerezr",
+      "quantity": 1,
+      "unitPrice": 1524,
+      "discount": 0,
+      "totalLine": 1524,
+      "_id": {
+        "$oid": "688213a5f5564c442c293678"
+      }
+    }
+  ],
+  "total": 29024,
+  "montantPaye": 0,
+  "totalInWords": "Vingt-neuf mille vingt-quatre francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:06:13.829Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T11:06:13.830Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T11:06:13.831Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T11:06:13.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688214c4f5564c442c29368f"
+  },
+  "number": "INV-2025-0057",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688214c4f5564c442c293690"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "688214c4f5564c442c293691"
+      }
+    }
+  ],
+  "total": 45000,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:11:00.329Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T11:11:00.329Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T11:11:00.330Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T11:11:00.330Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68821863376061affa26a1de"
+  },
+  "number": "INV-2025-0058",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68821863376061affa26a1df"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "68821863376061affa26a1e0"
+      }
+    }
+  ],
+  "total": 45000,
+  "montantPaye": 30000,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T11:26:27.922Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T11:26:27.930Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T11:26:27.936Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T11:26:27.936Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688247b7376061affa26a20b"
+  },
+  "number": "INV-2025-0059",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 5,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 21000,
+      "_id": {
+        "$oid": "688247fa376061affa26a215"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "68824925376061affa26a227"
+      }
+    }
+  ],
+  "total": 23950,
+  "montantPaye": 6000,
+  "totalInWords": "Seize mille huit cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T14:48:23.045Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T14:49:30.501Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T14:54:29.072Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T14:48:23.048Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T14:48:23.051Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T14:54:29.079Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68827bd3df33e6d42b55d02e"
+  },
+  "number": "INV-2025-0060",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 11,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 32450,
+      "_id": {
+        "$oid": "68827beedf33e6d42b55d03b"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68827beedf33e6d42b55d03c"
+      }
+    }
+  ],
+  "total": 49950,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T18:30:43.039Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T18:31:10.047Z"
+      },
+      "reason": "Modification du reçu via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T18:30:43.042Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T18:30:43.044Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T18:31:10.049Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "68827c6bdf33e6d42b55d04b"
+  },
+  "number": "INV-2025-0061",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68827c6bdf33e6d42b55d04c"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "68827c6bdf33e6d42b55d04d"
+      }
+    }
+  ],
+  "total": 45000,
+  "montantPaye": 20000,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-24T18:33:15.279Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-24T18:33:15.280Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-24T18:33:15.281Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T18:33:15.281Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688343c4df33e6d42b55d06c"
+  },
+  "number": "INV-2025-0062",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "688343c4df33e6d42b55d06d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688343c4df33e6d42b55d06e"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:43:48.283Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T08:43:48.284Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T08:43:48.285Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T08:43:48.285Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688344badf33e6d42b55d08d"
+  },
+  "number": "INV-2025-0063",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 10,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 29500,
+      "_id": {
+        "$oid": "688344dedf33e6d42b55d09a"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688344dedf33e6d42b55d09b"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688344e9df33e6d42b55d0af"
+      }
+    }
+  ],
+  "total": 64500,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:47:54.330Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:48:30.187Z"
+      },
+      "reason": "Modification du reçu via POS"
+    },
+    {
+      "action": "add_lines",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:48:41.330Z"
+      },
+      "reason": "Ajout de 1 ligne(s) via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T08:47:54.331Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T08:47:54.332Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T08:48:41.333Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "68834502df33e6d42b55d0cb"
+  },
+  "number": "INV-2025-0064",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "68834502df33e6d42b55d0cc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "68834502df33e6d42b55d0cd"
+      }
+    }
+  ],
+  "total": 45000,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:49:06.769Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T08:49:06.770Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T08:49:06.772Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T08:49:06.772Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883453ddf33e6d42b55d0e9"
+  },
+  "number": "INV-2025-0065",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "6883454ddf33e6d42b55d0f6"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 11,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 192500,
+      "_id": {
+        "$oid": "6883454ddf33e6d42b55d0f7"
+      }
+    }
+  ],
+  "total": 220000,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-cinq mille franc CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "A5",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:50:05.069Z"
+      },
+      "reason": "Création de la facture"
+    },
+    {
+      "action": "update",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T08:50:21.502Z"
+      },
+      "reason": "Modification du reçu via POS"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T08:50:05.070Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T08:50:05.071Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T08:50:21.503Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688359d8df33e6d42b55d116"
+  },
+  "number": "INV-2025-0066",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "688359d8df33e6d42b55d117"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "688359d8df33e6d42b55d118"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T10:18:00.701Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T10:18:00.702Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T10:18:00.703Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T10:18:00.703Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883a3ea74bff4d13949fe8c"
+  },
+  "number": "INV-2025-0067",
+  "client": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6883a3ea74bff4d13949fe8d"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6883a3ea74bff4d13949fe8e"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T15:34:02.497Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T15:34:02.501Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T15:34:02.503Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T15:34:02.503Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883a79a74bff4d13949feb0"
+  },
+  "number": "INV-2025-0068",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883a79a74bff4d13949feb1"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883a79a74bff4d13949feb2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883a79a74bff4d13949feb3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883a79a74bff4d13949feb4"
+      }
+    }
+  ],
+  "total": 12950,
+  "montantPaye": 10000,
+  "totalInWords": "Douze mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T15:49:46.657Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T15:49:46.658Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T15:49:46.660Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T15:49:46.660Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883affb74bff4d13949feda"
+  },
+  "number": "INV-2025-0069",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883affb74bff4d13949fedb"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380a"
+      },
+      "productName": "Riz Thaï 5kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883affb74bff4d13949fedc"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883affb74bff4d13949fedd"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3808"
+      },
+      "productName": "Savon 104",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883affb74bff4d13949fede"
+      }
+    }
+  ],
+  "total": 9100,
+  "montantPaye": 7500,
+  "totalInWords": "Neuf mille cent francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T16:25:31.596Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T16:25:31.597Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T16:25:31.598Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T16:25:31.598Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883b2c174bff4d13949feff"
+  },
+  "number": "INV-2025-0070",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6883b2c174bff4d13949ff00"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6883b2c174bff4d13949ff01"
+      }
+    }
+  ],
+  "total": 20450,
+  "montantPaye": 20000,
+  "totalInWords": "Vingt mille quatre cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T16:37:21.397Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T16:37:21.399Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T16:37:21.402Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T16:37:21.402Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883b61774bff4d13949ff21"
+  },
+  "number": "INV-2025-0071",
+  "client": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6883b61774bff4d13949ff22"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686cd0fd030cf5b7e6371a62"
+      },
+      "productName": "ezerezr",
+      "quantity": 1,
+      "unitPrice": 1524,
+      "discount": 0,
+      "totalLine": 1524,
+      "_id": {
+        "$oid": "6883b61774bff4d13949ff23"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "6883b61774bff4d13949ff24"
+      }
+    }
+  ],
+  "total": 46524,
+  "montantPaye": 25000,
+  "totalInWords": "Quarante-six mille cinq cent vingt-quatre francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T16:51:35.518Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T16:51:35.521Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T16:51:35.523Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T16:51:35.523Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883bc1274bff4d13949ff4d"
+  },
+  "number": "INV-2025-0072",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff4e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff4f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff50"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3808"
+      },
+      "productName": "Savon 104",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff51"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff52"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3807"
+      },
+      "productName": "Savon 103",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff53"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3804"
+      },
+      "productName": "Savon de Marseille",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883bc1274bff4d13949ff54"
+      }
+    }
+  ],
+  "total": 37300,
+  "montantPaye": 25000,
+  "totalInWords": "Trente-sept mille trois cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T17:17:06.200Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T17:17:06.201Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T17:17:06.203Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T17:17:06.203Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883cfbb74bff4d13949ff7e"
+  },
+  "number": "INV-2025-0073",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883cfbb74bff4d13949ff7f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883cfbb74bff4d13949ff80"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883cfbb74bff4d13949ff81"
+      }
+    }
+  ],
+  "total": 8750,
+  "montantPaye": 8000,
+  "totalInWords": "Huit mille sept cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T18:40:59.257Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T18:40:59.258Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T18:40:59.261Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T18:40:59.261Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883d14974bff4d13949ffa1"
+  },
+  "number": "INV-2025-0074",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870e95f236368c05cbeaf8a"
+      },
+      "productName": "JJJJ",
+      "quantity": 1,
+      "unitPrice": 2950,
+      "discount": 0,
+      "totalLine": 2950,
+      "_id": {
+        "$oid": "6883d14974bff4d13949ffa2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e368e4b3b865d340c43b"
+      },
+      "productName": "BBBB",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6883d14974bff4d13949ffa3"
+      }
+    },
+    {
+      "product": {
+        "$oid": "6870e2a0e4b3b865d340c409"
+      },
+      "productName": "RIZ",
+      "quantity": 1,
+      "unitPrice": 27500,
+      "discount": 0,
+      "totalLine": 27500,
+      "_id": {
+        "$oid": "6883d14974bff4d13949ffa4"
+      }
+    }
+  ],
+  "total": 47950,
+  "montantPaye": 0,
+  "totalInWords": "Quarante-sept mille neuf cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T18:47:37.763Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T18:47:37.766Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T18:47:37.768Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T18:47:37.768Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883d4b774bff4d13949ffdf"
+  },
+  "number": "INV-2025-0075",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 2,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 8400,
+      "_id": {
+        "$oid": "6883d4b774bff4d13949ffe0"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883d4b774bff4d13949ffe1"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 4,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 1400,
+      "_id": {
+        "$oid": "6883d4b774bff4d13949ffe2"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3808"
+      },
+      "productName": "Savon 104",
+      "quantity": 5,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 1750,
+      "_id": {
+        "$oid": "6883d4b774bff4d13949ffe3"
+      }
+    }
+  ],
+  "total": 15750,
+  "montantPaye": 10000,
+  "totalInWords": "Quinze mille sept cent cinquante francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T19:02:15.213Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T19:02:15.216Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T19:02:15.218Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T19:02:15.218Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6883dd1274bff4d1394a003d"
+  },
+  "number": "INV-2025-0076",
+  "client": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "store": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "user": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "lines": [
+    {
+      "product": {
+        "$oid": "6870db9fe4b3b865d340c30c"
+      },
+      "productName": "Carte",
+      "quantity": 1,
+      "unitPrice": 17500,
+      "discount": 0,
+      "totalLine": 17500,
+      "_id": {
+        "$oid": "6883dd1274bff4d1394a003e"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380b"
+      },
+      "productName": "Riz Thaï 50kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883dd1274bff4d1394a003f"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c380c"
+      },
+      "productName": "Riz Thaï 25kg",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "discount": 0,
+      "totalLine": 4200,
+      "_id": {
+        "$oid": "6883dd1274bff4d1394a0040"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3809"
+      },
+      "productName": "Savon 105",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883dd1274bff4d1394a0041"
+      }
+    },
+    {
+      "product": {
+        "$oid": "686ccb445e953fa0070c3808"
+      },
+      "productName": "Savon 104",
+      "quantity": 1,
+      "unitPrice": 350,
+      "discount": 0,
+      "totalLine": 350,
+      "_id": {
+        "$oid": "6883dd1274bff4d1394a0042"
+      }
+    }
+  ],
+  "total": 26600,
+  "montantPaye": 16000,
+  "totalInWords": "Vingt-six mille six cents francs CFA",
+  "discountTotal": 0,
+  "status": "reste_a_payer",
+  "format": "POS",
+  "history": [
+    {
+      "action": "created",
+      "user": {
+        "$oid": "686a7dfbb2c9b6b488f4d378"
+      },
+      "date": {
+        "$date": "2025-07-25T19:37:54.566Z"
+      },
+      "reason": "Création de la facture"
+    }
+  ],
+  "date": {
+    "$date": "2025-07-25T19:37:54.567Z"
+  },
+  "createdAt": {
+    "$date": "2025-07-25T19:37:54.569Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-25T19:37:54.569Z"
+  },
+  "__v": 0
+}]

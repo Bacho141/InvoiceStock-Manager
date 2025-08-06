@@ -6,6 +6,8 @@ import '../models/user.dart';
 import '../services/product_service.dart';
 import '../services/invoice_service.dart';
 
+import 'package:shared_preferences/shared_preferences.dart';
+
 class CartController extends ChangeNotifier {
   final InvoiceService _invoiceService = InvoiceService();
   static final CartController _instance = CartController._internal();
@@ -103,12 +105,23 @@ class CartController extends ChangeNotifier {
 
   /// Valide la facture courante côté backend (statut "validée") après création
   Future<Map<String, dynamic>> validateCurrentInvoice(String invoiceId) async {
+    debugPrint('[CART_CONTROLLER] Début validation pour facture ID: $invoiceId');
     try {
-      final validatedInvoice = await _invoiceService.validateInvoice(invoiceId);
-      debugPrint('[CONTROLLER][CartController] Facture validée: ${validatedInvoice['id']}');
+      final prefs = await SharedPreferences.getInstance();
+      final storeId = prefs.getString('selected_store_id');
+      debugPrint('[CART_CONTROLLER] Store ID lu depuis prefs: $storeId');
+
+      if (storeId == null || storeId == 'all') {
+        debugPrint('[CART_CONTROLLER] ERREUR: storeId est null ou \'all\'. Validation annulée.');
+        throw Exception('Erreur interne: storeId non trouvé lors de la validation.');
+      }
+
+      debugPrint('[CART_CONTROLLER] Appel de invoiceService.validateInvoice avec invoiceId: $invoiceId et storeId: $storeId');
+      final validatedInvoice = await _invoiceService.validateInvoice(invoiceId, storeId);
+      debugPrint('[CART_CONTROLLER] Facture validée avec succès: ${validatedInvoice['id']}');
       return validatedInvoice;
     } catch (e) {
-      debugPrint('[CONTROLLER][CartController] Erreur validation: $e');
+      debugPrint('[CART_CONTROLLER] ERREUR lors de la validation: $e');
       rethrow;
     }
   }

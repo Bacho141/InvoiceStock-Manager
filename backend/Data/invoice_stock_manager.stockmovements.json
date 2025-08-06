@@ -1,0 +1,2349 @@
+[{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8a3"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 5,
+  "previousQuantity": 23,
+  "newQuantity": 28,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.818Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.818Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8a6"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 4,
+  "previousQuantity": 28,
+  "newQuantity": 24,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.826Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8a9"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 14,
+  "previousQuantity": 24,
+  "newQuantity": 14,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.831Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.831Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8b4"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 9,
+  "previousQuantity": 9,
+  "newQuantity": 18,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.849Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.849Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8b7"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 5,
+  "previousQuantity": 18,
+  "newQuantity": 13,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.854Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.854Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8ba"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 47,
+  "previousQuantity": 13,
+  "newQuantity": 47,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.858Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.858Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8bf"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 1,
+  "previousQuantity": 6,
+  "newQuantity": 7,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.870Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.870Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8c1"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 6,
+  "previousQuantity": 7,
+  "newQuantity": 1,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.874Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.874Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8c3"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 5,
+  "previousQuantity": 1,
+  "newQuantity": 5,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.877Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.877Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8c8"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 6,
+  "previousQuantity": 12,
+  "newQuantity": 18,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.889Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.889Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8ca"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 3,
+  "previousQuantity": 18,
+  "newQuantity": 15,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.893Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.893Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8cc"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 6,
+  "previousQuantity": 15,
+  "newQuantity": 6,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.896Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.896Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8d1"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 9,
+  "previousQuantity": 39,
+  "newQuantity": 48,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.906Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.906Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8d3"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 4,
+  "previousQuantity": 48,
+  "newQuantity": 44,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.909Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.909Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8d5"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 9,
+  "previousQuantity": 44,
+  "newQuantity": 9,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.912Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.912Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8da"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 3,
+  "previousQuantity": 28,
+  "newQuantity": 31,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.921Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.921Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8dc"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 8,
+  "previousQuantity": 31,
+  "newQuantity": 23,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.925Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.925Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8de"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 2,
+  "previousQuantity": 23,
+  "newQuantity": 2,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.928Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.928Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8e3"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 2,
+  "previousQuantity": 13,
+  "newQuantity": 15,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.937Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.937Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8e5"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 7,
+  "previousQuantity": 15,
+  "newQuantity": 8,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.940Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.940Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8e7"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 47,
+  "previousQuantity": 8,
+  "newQuantity": 47,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.943Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.943Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8ec"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 3,
+  "previousQuantity": 18,
+  "newQuantity": 21,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.952Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.952Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8ee"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 3,
+  "previousQuantity": 21,
+  "newQuantity": 18,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.955Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.955Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8f0"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 36,
+  "previousQuantity": 18,
+  "newQuantity": 36,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.958Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.958Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8f5"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 8,
+  "previousQuantity": 7,
+  "newQuantity": 15,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.968Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.968Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8f7"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 5,
+  "previousQuantity": 15,
+  "newQuantity": 10,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.971Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.971Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8f9"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 15,
+  "previousQuantity": 10,
+  "newQuantity": 15,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.974Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.974Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca8fe"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 9,
+  "previousQuantity": 21,
+  "newQuantity": 30,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.983Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.983Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca900"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 6,
+  "previousQuantity": 30,
+  "newQuantity": 24,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.986Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.986Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca902"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 33,
+  "previousQuantity": 24,
+  "newQuantity": 33,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:54.989Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:54.989Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a289f7dba3fbdca907"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 4,
+  "previousQuantity": 14,
+  "newQuantity": 18,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:54.997Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:54.997Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca909"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 2,
+  "previousQuantity": 18,
+  "newQuantity": 16,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:54.999Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:54.999Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca90b"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 25,
+  "previousQuantity": 16,
+  "newQuantity": 25,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.002Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.002Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca910"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 2,
+  "previousQuantity": 51,
+  "newQuantity": 53,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.010Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.010Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca912"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 2,
+  "previousQuantity": 53,
+  "newQuantity": 51,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.012Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.012Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca914"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 38,
+  "previousQuantity": 51,
+  "newQuantity": 38,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.015Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.015Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca919"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "IN",
+  "quantity": 1,
+  "previousQuantity": 35,
+  "newQuantity": 36,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.022Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.022Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca91b"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "OUT",
+  "quantity": 9,
+  "previousQuantity": 36,
+  "newQuantity": 27,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.025Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.025Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca91d"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 10,
+  "previousQuantity": 27,
+  "newQuantity": 10,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.027Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.027Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca922"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 4,
+  "previousQuantity": 13,
+  "newQuantity": 17,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.034Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.034Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca924"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 4,
+  "previousQuantity": 17,
+  "newQuantity": 13,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.036Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.036Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca926"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 4,
+  "previousQuantity": 13,
+  "newQuantity": 4,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.039Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.039Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca92b"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 10,
+  "previousQuantity": 46,
+  "newQuantity": 56,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.045Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.045Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca92d"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 10,
+  "previousQuantity": 56,
+  "newQuantity": 46,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.048Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.048Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca92f"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 23,
+  "previousQuantity": 46,
+  "newQuantity": 23,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.051Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.051Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca934"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 4,
+  "previousQuantity": 45,
+  "newQuantity": 49,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.058Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.058Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca936"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 10,
+  "previousQuantity": 49,
+  "newQuantity": 39,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.060Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.060Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca938"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 15,
+  "previousQuantity": 39,
+  "newQuantity": 15,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.062Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.062Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca93d"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 8,
+  "previousQuantity": 13,
+  "newQuantity": 21,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.070Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.070Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca93f"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 2,
+  "previousQuantity": 21,
+  "newQuantity": 19,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.073Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.073Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca941"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 18,
+  "previousQuantity": 19,
+  "newQuantity": 18,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.076Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.076Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca946"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 7,
+  "previousQuantity": 15,
+  "newQuantity": 22,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.082Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.082Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca948"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 10,
+  "previousQuantity": 22,
+  "newQuantity": 12,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.085Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.085Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca94a"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 16,
+  "previousQuantity": 12,
+  "newQuantity": 16,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.087Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.087Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca94f"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 6,
+  "previousQuantity": 46,
+  "newQuantity": 52,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.093Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.093Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca951"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 4,
+  "previousQuantity": 52,
+  "newQuantity": 48,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.096Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.096Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca953"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 20,
+  "previousQuantity": 48,
+  "newQuantity": 20,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.098Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.098Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca958"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 5,
+  "previousQuantity": 6,
+  "newQuantity": 11,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.105Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.105Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca95a"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 6,
+  "previousQuantity": 11,
+  "newQuantity": 5,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.108Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.108Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca95c"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 17,
+  "previousQuantity": 5,
+  "newQuantity": 17,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.110Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.110Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca961"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 1,
+  "previousQuantity": 53,
+  "newQuantity": 54,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.117Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.117Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca963"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 3,
+  "previousQuantity": 54,
+  "newQuantity": 51,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.120Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.120Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca965"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 19,
+  "previousQuantity": 51,
+  "newQuantity": 19,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.122Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.122Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca96a"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 8,
+  "previousQuantity": 37,
+  "newQuantity": 45,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.129Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.129Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca96c"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 3,
+  "previousQuantity": 45,
+  "newQuantity": 42,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.131Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.131Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca96e"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 8,
+  "previousQuantity": 42,
+  "newQuantity": 8,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.134Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.134Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca973"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 3,
+  "previousQuantity": 10,
+  "newQuantity": 13,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.140Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.140Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca975"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 5,
+  "previousQuantity": 13,
+  "newQuantity": 8,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.142Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.142Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca977"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 10,
+  "previousQuantity": 8,
+  "newQuantity": 10,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.144Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.144Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca97c"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 2,
+  "previousQuantity": 31,
+  "newQuantity": 33,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.153Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.153Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca97e"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 9,
+  "previousQuantity": 33,
+  "newQuantity": 24,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.156Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.156Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca980"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 13,
+  "previousQuantity": 24,
+  "newQuantity": 13,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.159Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.159Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca985"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 3,
+  "previousQuantity": 45,
+  "newQuantity": 48,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.166Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.166Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca987"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 1,
+  "previousQuantity": 48,
+  "newQuantity": 47,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.169Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.169Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca989"
+  },
+  "productId": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 48,
+  "previousQuantity": 47,
+  "newQuantity": 48,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.172Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.172Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca98e"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "IN",
+  "quantity": 3,
+  "previousQuantity": 47,
+  "newQuantity": 50,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Réception fournisseur",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-09T14:45:55.181Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-09T14:45:55.181Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca990"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "OUT",
+  "quantity": 9,
+  "previousQuantity": 50,
+  "newQuantity": 41,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Vente",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T14:45:55.183Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T14:45:55.183Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686e80a389f7dba3fbdca992"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 1,
+  "previousQuantity": 41,
+  "newQuantity": 1,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "Ajustement inventaire",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T14:45:55.185Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T14:45:55.185Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686fda27e4b3b865d340c2c6"
+  },
+  "productId": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 50,
+  "previousQuantity": 35,
+  "newQuantity": 50,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "achat",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-10T15:20:07.423Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-10T15:20:07.423Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6870e972236368c05cbeaf93"
+  },
+  "productId": {
+    "$oid": "6870e95f236368c05cbeaf8a"
+  },
+  "storeId": {
+    "$oid": "686a6891dbbd34486d469845"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 230,
+  "previousQuantity": 0,
+  "newQuantity": 230,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "SI",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-11T10:37:38.988Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-11T10:37:38.988Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884d9861b0afe059df8f199"
+  },
+  "productId": {
+    "$oid": "6884d9741b0afe059df8f190"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "type": "ADJUSTMENT",
+  "quantity": 50,
+  "previousQuantity": 0,
+  "newQuantity": 50,
+  "previousReservedQuantity": 0,
+  "newReservedQuantity": 0,
+  "reason": "SI",
+  "referenceType": "MANUAL",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T13:35:02.318Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-26T13:35:02.318Z"
+  },
+  "__v": 0
+}]

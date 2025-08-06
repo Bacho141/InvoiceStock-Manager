@@ -1,5 +1,7 @@
 import express from 'express';
 import invoiceController from '../controllers/invoiceController.js';
+import { checkStoreAccess } from '../middleware/storeAccessMiddleware.js';
+
 
 const router = express.Router();
 
@@ -23,6 +25,6 @@ router.patch('/:id/add-lines', invoiceController.addLinesToInvoice);
 router.patch('/:id/remove-line', invoiceController.removeLineFromInvoice);
 
 // Validation finale de la facture
-router.patch('/:id/validate', invoiceController.validateInvoice);
+router.post('/:id/validate/:storeId', checkStoreAccess, invoiceController.validateInvoice);
 
 export default router; 

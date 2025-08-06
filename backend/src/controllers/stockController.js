@@ -197,28 +197,59 @@ const transferStock = async (req, res) => {
  */
 const getIndicators = async (req, res) => {
   const { storeId } = req.params;
+  console.log(`[STOCK][INDICATORS] Début du calcul pour le magasin: ${storeId}`);
   try {
     // Récupérer tous les stocks du magasin avec les produits
+    console.log(`[STOCK][INDICATORS] Récupération des stocks...`);
     const stocks = await Stock.find({ storeId }).populate('productId');
+    console.log(`[STOCK][INDICATORS] ${stocks.length} stocks trouvés.`);
+
+    const validStocks = stocks.filter(s => {
+      if (!s.productId) {
+        console.warn(`[STOCK][INDICATORS] Stock orphelin trouvé (ID: ${s._id}), produit non existant. Il sera ignoré.`);
+        return false;
+      }
+      return true;
+    });
+    console.log(`[STOCK][INDICATORS] ${validStocks.length} stocks valides après filtrage.`);
+
     // Valeur totale du stock
-    const valeurTotale = stocks.reduce((sum, s) => sum + ((s.productId?.purchasePrice || 0) * (s.quantity || 0)), 0);
+    const valeurTotale = validStocks.reduce((sum, s) => {
+      const price = s.productId?.purchasePrice || 0;
+      const quantity = s.quantity || 0;
+      return sum + (price * quantity);
+    }, 0);
+    console.log(`[STOCK][INDICATORS] Valeur totale calculée: ${valeurTotale}`);
+
     // Nombre de références actives (stock > 0)
-    const nbActives = stocks.filter(s => s.quantity > 0).length;
+    const nbActives = validStocks.filter(s => s.quantity > 0).length;
+    console.log(`[STOCK][INDICATORS] Nombre de références actives: ${nbActives}`);
+
     // Nombre de produits en rupture (stock = 0)
-    const nbRuptures = stocks.filter(s => s.quantity === 0).length;
+    const nbRuptures = validStocks.filter(s => s.quantity === 0).length;
+    console.log(`[STOCK][INDICATORS] Nombre de produits en rupture: ${nbRuptures}`);
+
     // Nombre d'alertes (seuil critique ou rupture)
+    console.log(`[STOCK][INDICATORS] Comptage des alertes...`);
     const nbAlertes = await StockAlert.countDocuments({ storeId, isResolved: false });
+    console.log(`[STOCK][INDICATORS] Nombre d'alertes trouvées: ${nbAlertes}`);
+
     // Nombre d'alertes de seuil (stock <= minQuantity mais > 0)
-    const nbAlertesSeuil = stocks.filter(s => s.quantity <= (s.minQuantity || 0) && s.quantity > 0).length;
+    const nbAlertesSeuil = validStocks.filter(s => s.quantity <= (s.minQuantity || 0) && s.quantity > 0).length;
+    console.log(`[STOCK][INDICATORS] Nombre d'alertes de seuil: ${nbAlertesSeuil}`);
+
+    const responseData = {
+      valeurTotale,
+      nbActives,
+      nbRuptures,
+      nbAlertes,
+      nbAlertesSeuil
+    };
+    console.log('[STOCK][INDICATORS] Données finales:', responseData);
+
     res.json({
       success: true,
-      data: {
-        valeurTotale,
-        nbActives,
-        nbRuptures,
-        nbAlertes,
-        nbAlertesSeuil
-      }
+      data: responseData
     });
   } catch (error) {
     console.error('[STOCK][INDICATORS] Erreur:', error.message);
@@ -233,16 +264,17 @@ const getGlobalIndicators = async (req, res) => {
   try {
     // Récupérer tous les stocks avec les produits
     const stocks = await Stock.find({}).populate('productId');
+    const validStocks = stocks.filter(s => s.productId);
     // Valeur totale du stock
-    const valeurTotale = stocks.reduce((sum, s) => sum + ((s.productId?.purchasePrice || 0) * (s.quantity || 0)), 0);
+    const valeurTotale = validStocks.reduce((sum, s) => sum + ((s.productId?.purchasePrice || 0) * (s.quantity || 0)), 0);
     // Nombre de références actives (stock > 0)
-    const nbActives = stocks.filter(s => s.quantity > 0).length;
+    const nbActives = validStocks.filter(s => s.quantity > 0).length;
     // Nombre de produits en rupture (stock = 0)
-    const nbRuptures = stocks.filter(s => s.quantity === 0).length;
+    const nbRuptures = validStocks.filter(s => s.quantity === 0).length;
     // Nombre d'alertes (seuil critique ou rupture)
     const nbAlertes = await StockAlert.countDocuments({ isResolved: false });
     // Nombre d'alertes de seuil (stock <= minQuantity mais > 0)
-    const nbAlertesSeuil = stocks.filter(s => s.quantity <= (s.minQuantity || 0) && s.quantity > 0).length;
+    const nbAlertesSeuil = validStocks.filter(s => s.quantity <= (s.minQuantity || 0) && s.quantity > 0).length;
     res.json({
       success: true,
       data: {

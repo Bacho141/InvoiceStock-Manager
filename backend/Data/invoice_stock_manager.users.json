@@ -1,0 +1,102 @@
+[{
+  "_id": {
+    "$oid": "68669ff82b16ec94f84cbd6e"
+  },
+  "username": "gestion",
+  "passwordHash": "$2b$10$.SfwLRY1CuCJNqofQegIFeAUVcC/JyL4yjQn0s1n97XhlLqSqHgI6",
+  "role": "gestionnaire",
+  "createdAt": {
+    "$date": "2025-07-03T15:21:28.238Z"
+  },
+  "__v": 1,
+  "isActive": true,
+  "assignedStores": [
+    {
+      "$oid": "686a594d49c13566b897496f"
+    }
+  ],
+  "tempPassword": "2222"
+},
+{
+  "_id": {
+    "$oid": "6866a02b2b16ec94f84cbd71"
+  },
+  "username": "caisse",
+  "passwordHash": "$2b$10$dsg13gzylVx38P9w5YbLjefuwEpLngjenYaEdGnJ3XTKn3rcBKbji",
+  "role": "caissier",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-07-03T15:22:19.352Z"
+  },
+  "__v": 1,
+  "assignedStores": [
+    {
+      "$oid": "686a594d49c13566b897496f"
+    }
+  ],
+  "tempPassword": "2222"
+},
+{
+  "_id": {
+    "$oid": "68693e3ecbd222c923e47330"
+  },
+  "username": "caissiers",
+  "passwordHash": "$2b$10$SYnWXMlDZvWmh8G7R2Vy2OszoKrSHxuenAHusl4zr0k7eebKDfRhe",
+  "role": "caissier",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-07-05T15:01:18.637Z"
+  },
+  "__v": 1,
+  "assignedStores": [
+    {
+      "$oid": "686a594d49c13566b897496f"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "68693e3ecbd222c923e47333"
+  },
+  "username": "gestionnaire",
+  "passwordHash": "$2b$10$hElnh6bVkGbB4Alf89gGyuiNVTi4zKHssLEbILJ8q.TFasahxV.u2",
+  "role": "gestionnaire",
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-07-05T15:01:18.827Z"
+  },
+  "__v": 1,
+  "assignedStores": [
+    {
+      "$oid": "686a594d49c13566b897496f"
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "username": "admin",
+  "passwordHash": "$2b$10$6fIP4WO5cfCSMQksZqvt.eK3gALMQGqu7x6z2239UnvqOwlb4DObK",
+  "role": "super-admin",
+  "assignedStores": [],
+  "isActive": true,
+  "createdAt": {
+    "$date": "2025-07-06T13:45:31.746Z"
+  },
+  "__v": 1
+},
+{
+  "_id": {
+    "$oid": "686a84922bdfce29f51ecf4a"
+  },
+  "username": "Kader",
+  "passwordHash": "$2b$10$katFHNpPfvqtD8XmqiTtbeDjdR8GJ/EHhFdAydZcp4oBM.zqE3odC",
+  "role": "caissier",
+  "assignedStores": [],
+  "isActive": false,
+  "createdAt": {
+    "$date": "2025-07-06T14:13:38.274Z"
+  },
+  "__v": 0
+}]

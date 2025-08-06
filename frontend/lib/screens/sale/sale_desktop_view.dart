@@ -62,7 +62,7 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                   children: [
                     SizedBox(
                       height: 320,
-                      child: CatalogPanel(storeId: _selectedStoreId),
+                      child: CatalogPanel(key: ValueKey<String?>(_selectedStoreId), storeId: _selectedStoreId),
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
@@ -85,7 +85,7 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                   children: [
                     Expanded(
                       flex: 3,
-                      child: CatalogPanel(storeId: _selectedStoreId),
+                      child: CatalogPanel(key: ValueKey<String?>(_selectedStoreId), storeId: _selectedStoreId),
                     ),
                     VerticalDivider(width: 1),
                     Expanded(
@@ -103,7 +103,7 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
             },
           ),
         ),
-        const SaleActionBar(),
+        SaleActionBar(storeId: _selectedStoreId),
       ],
     );
   }

@@ -208,8 +208,12 @@ class StockService {
       final data = jsonDecode(response.body);
       final storeId = data['storeId'];
       if (storeId == null || storeId == 'default') {
-        debugPrint('[SERVICE][StockService] ERREUR: storeId absent ou invalide (reçu: "$storeId")');
-        throw Exception('Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.');
+        debugPrint(
+          '[SERVICE][StockService] ERREUR: storeId absent ou invalide (reçu: "$storeId")',
+        );
+        throw Exception(
+          'Aucun magasin sélectionné ou storeId invalide. Veuillez sélectionner un magasin avant de poursuivre.',
+        );
       }
       return List<Map<String, dynamic>>.from(
         data['stocks'] ?? data['data'] ?? [],
@@ -260,34 +264,70 @@ class StockService {
   // ========== NOUVELLES MÉTHODES POUR SYNCHRONISATION VENTE-STOCK ==========
 
   /// Vérifie la disponibilité d'un produit dans un magasin
+  // Future<Map<String, dynamic>> checkStockAvailability(
+  //   String storeId,
+  //   String productId,
+  //   int requestedQuantity,
+  // ) async {
+  //   debugPrint(
+  //     '[SERVICE][StockService] Vérification disponibilité produit $productId dans magasin $storeId (quantité: $requestedQuantity)',
+  //   );
+  //   final uri = Uri.parse(
+  //     ApiUrls.checkStockAvailability(storeId, productId),
+  //   ).replace(queryParameters: {'quantity': requestedQuantity.toString()});
+  //   final token = await getTokenFromPrefs();
+  //   final headers = {
+  //     'Content-Type': 'application/json',
+  //     if (token != null) 'Authorization': 'Bearer $token',
+  //   };
+  //   final response = await http.get(uri, headers: headers);
+  //   debugPrint('[SERVICE][StockService] Status: ${response.statusCode}');
+
+  //   if (response.statusCode == 200) {
+  //   print("Resultat stock_service : ${response.body}");
+  //     final data = jsonDecode(response.body);
+  //     debugPrint(
+  //       '[DEBUG][StockService][checkStockAvailability] HTTP 200 Response: storeId=$storeId, productId=$productId, requestedQuantity=$requestedQuantity, data=${data['data']}',
+  //     );
+  //     return Map<String, dynamic>.from(data['data'] ?? {});
+  //   } else {
+  //     debugPrint('[SERVICE][StockService] Erreur: ${response.body}');
+  //     throw Exception('Erreur lors de la vérification de disponibilité');
+  //   }
+  // }
+
   Future<Map<String, dynamic>> checkStockAvailability(
-    String storeId,
-    String productId,
-    int requestedQuantity,
-  ) async {
-    debugPrint(
-      '[SERVICE][StockService] Vérification disponibilité produit $productId dans magasin $storeId (quantité: $requestedQuantity)',
-    );
-    final uri = Uri.parse(ApiUrls.checkStockAvailability(storeId, productId))
-        .replace(queryParameters: {
-      'quantity': requestedQuantity.toString(),
-    });
-    final token = await getTokenFromPrefs();
-    final headers = {
-      'Content-Type': 'application/json',
-      if (token != null) 'Authorization': 'Bearer $token',
-    };
-    final response = await http.get(uri, headers: headers);
-    debugPrint('[SERVICE][StockService] Status: ${response.statusCode}');
-    if (response.statusCode == 200) {
-      final data = jsonDecode(response.body);
-      debugPrint('[DEBUG][StockService][checkStockAvailability] HTTP 200 Response: storeId=$storeId, productId=$productId, requestedQuantity=$requestedQuantity, data=${data['data']}');
-      return Map<String, dynamic>.from(data['data'] ?? {});
-    } else {
-      debugPrint('[SERVICE][StockService] Erreur: ${response.body}');
-      throw Exception('Erreur lors de la vérification de disponibilité');
-    }
+  String storeId,
+  String productId,
+  int requestedQuantity,
+) async {
+  final uri = Uri.parse(ApiUrls.checkStockAvailability(storeId, productId))
+      .replace(queryParameters: {
+    'quantity': requestedQuantity.toString(),
+  });
+  final token = await getTokenFromPrefs();
+  final headers = {
+    'Content-Type': 'application/json',
+    if (token != null) 'Authorization': 'Bearer $token',
+  };
+
+  final response = await http.get(uri, headers: headers);
+  if (response.statusCode != 200) {
+    throw Exception('Erreur vérification disponibilité: ${response.body}');
   }
+
+  final decoded = jsonDecode(response.body) as Map<String, dynamic>;
+
+  // Si l'API enveloppe les données dans { data: { ... } }, on l'utilise,
+  // sinon on retourne directement le map racine.
+  final payload = decoded.containsKey('data')
+      ? (decoded['data'] as Map<String, dynamic>)
+      : decoded;
+  debugPrint('[StockService] payload: $payload');
+
+  return Map<String, dynamic>.from(payload);
+}
+
 
   /// Réserve temporairement du stock pour un panier
   Future<bool> reserveStock(
@@ -312,7 +352,11 @@ class StockService {
       body: jsonEncode({
         'productId': productId,
         'quantity': quantity,
-        'sessionId': sessionId == null || sessionId == 'default' ? (throw Exception('Session ID absent ou invalide pour la réservation/libération.')) : sessionId,
+        'sessionId': sessionId == null || sessionId == 'default'
+            ? (throw Exception(
+                'Session ID absent ou invalide pour la réservation/libération.',
+              ))
+            : sessionId,
         'durationMinutes': duration?.inMinutes ?? 30, // 30 min par défaut
       }),
     );
@@ -347,7 +391,11 @@ class StockService {
       body: jsonEncode({
         'productId': productId,
         'quantity': quantity,
-        'sessionId': sessionId == null || sessionId == 'default' ? (throw Exception('Session ID absent ou invalide pour la réservation/libération.')) : sessionId,
+        'sessionId': sessionId == null || sessionId == 'default'
+            ? (throw Exception(
+                'Session ID absent ou invalide pour la réservation/libération.',
+              ))
+            : sessionId,
       }),
     );
     debugPrint('[SERVICE][StockService] Status: ${response.statusCode}');
@@ -450,7 +498,11 @@ class StockService {
       url,
       headers: headers,
       body: jsonEncode({
-        'sessionId': sessionId == null || sessionId == 'default' ? (throw Exception('Session ID absent ou invalide pour la réservation/libération.')) : sessionId,
+        'sessionId': sessionId == null || sessionId == 'default'
+            ? (throw Exception(
+                'Session ID absent ou invalide pour la réservation/libération.',
+              ))
+            : sessionId,
         'releaseAll': true,
       }),
     );

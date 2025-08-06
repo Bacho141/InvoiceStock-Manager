@@ -417,6 +417,7 @@ class _PaymentMobileState extends State<PaymentMobile> {
                             final prefs = await SharedPreferences.getInstance();
                             final currentUserId = prefs.getString('user_id');
                             final selectedStoreId = prefs.getString('selected_store_id');
+                            debugPrint('[PAYMENT_MOBILE] LECTURE DEPUIS PREFS: selected_store_id = $selectedStoreId');
                             if (selectedStoreId == null || selectedStoreId == 'all') {
                               debugPrint('[UI] Erreur : Aucun magasin valide sélectionné');
                               if (!mounted) return;
@@ -475,7 +476,13 @@ class _PaymentMobileState extends State<PaymentMobile> {
 
   try {
     // Appel de validation transactionnelle (stock, statut, etc.)
-    await InvoiceService().validateInvoice(newFacture['_id'] ?? newFacture['id']);
+    final selectedStoreId = prefs.getString('selected_store_id');
+    debugPrint('[PAYMENT_MOBILE] Préparation de la validation. Facture ID: ${newFacture['_id']}, Store ID: $selectedStoreId');
+    if (selectedStoreId == null || selectedStoreId == 'all') {
+        debugPrint('[PAYMENT_MOBILE] ERREUR: Tentative de validation avec un storeId invalide.');
+        throw Exception('Tentative de validation avec un storeId invalide.');
+    }
+    await InvoiceService().validateInvoice(newFacture['_id'] ?? newFacture['id'], selectedStoreId);
 
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(

@@ -27,8 +27,7 @@ const getAllProducts = async (req, res) => {
     if (search) {
       filter.$or = [
         { name: { $regex: search, $options: 'i' } },
-        { description: { $regex: search, $options: 'i' } },
-        { barcode: { $regex: search, $options: 'i' } }
+        { description: { $regex: search, $options: 'i' } }
       ];
     }
     
@@ -141,8 +140,7 @@ const createProduct = async (req, res) => {
       purchasePrice,
       sellingPrice,
       minStockLevel,
-      maxStockLevel,
-      barcode
+      maxStockLevel
     } = req.body;
 
     // On ne prend jamais createdBy du body !
@@ -167,18 +165,6 @@ const createProduct = async (req, res) => {
       });
     }
 
-    // Vérifier si le code-barres existe déjà
-    if (barcode) {
-      const existingProduct = await Product.findOne({ barcode });
-      if (existingProduct) {
-        console.log('[PRODUCT][CREATE] Code-barres déjà existant');
-        return res.status(400).json({
-          success: false,
-          message: 'Ce code-barres existe déjà'
-        });
-      }
-    }
-
     // Créer le produit (createdBy injecté côté serveur)
     const product = new Product({
       name,
@@ -190,7 +176,6 @@ const createProduct = async (req, res) => {
       sellingPrice,
       minStockLevel: minStockLevel || 0,
       maxStockLevel: maxStockLevel || 0,
-      barcode,
       createdBy: userId
     });
 
@@ -235,7 +220,6 @@ const updateProduct = async (req, res) => {
       sellingPrice,
       minStockLevel,
       maxStockLevel,
-      barcode,
       isActive
     } = req.body;
     
@@ -279,18 +263,6 @@ const updateProduct = async (req, res) => {
       }
     }
     
-    // Vérifier si le code-barres existe déjà (sauf pour ce produit)
-    if (barcode && barcode !== existingProduct.barcode) {
-      const duplicateBarcode2 = await Product.findOne({ barcode, _id: { $ne: id } });
-      if (duplicateBarcode2) {
-        console.log('[PRODUCT][UPDATE] Code-barres déjà existant');
-        return res.status(400).json({
-          success: false,
-          message: 'Ce code-barres existe déjà'
-        });
-      }
-    }
-    
     // Mettre à jour le produit
     const updatedProduct = await Product.findByIdAndUpdate(
       id,
@@ -304,7 +276,6 @@ const updateProduct = async (req, res) => {
         sellingPrice,
         minStockLevel,
         maxStockLevel,
-        barcode,
         isActive,
         updatedAt: new Date()
       },

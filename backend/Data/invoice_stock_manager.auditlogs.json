@@ -1,0 +1,126 @@
+[{
+  "_id": {
+    "$oid": "688e7140df9c7a7a8e3dfdb5"
+  },
+  "event": "INVOICE_ROLLBACK",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "details": {
+    "data": {
+      "client": "687bfa4ce2a54acbbfeb3ac4",
+      "store": "686a594d49c13566b897496f",
+      "user": "686a7dfbb2c9b6b488f4d378",
+      "lines": [
+        {
+          "product": "6884d9741b0afe059df8f190",
+          "productName": "Ciment",
+          "quantity": 3,
+          "unitPrice": 3800,
+          "discount": 0,
+          "totalLine": 11400
+        },
+        {
+          "product": "686ccb445e953fa0070c380c",
+          "productName": "Riz Thaï 25kg",
+          "quantity": 2,
+          "unitPrice": 4200,
+          "discount": 0,
+          "totalLine": 8400
+        }
+      ],
+      "total": 19800,
+      "totalInWords": "Dix-neuf mille huit cents francs CFA",
+      "discountTotal": 0,
+      "paymentMethod": "especes",
+      "status": "reste_a_payer",
+      "montantPaye": 19000,
+      "number": "INV-2025-0077",
+      "history": [
+        {
+          "action": "created",
+          "user": "686a7dfbb2c9b6b488f4d378",
+          "date": {
+            "$date": "2025-08-02T20:12:48.118Z"
+          },
+          "reason": "Création de la facture"
+        }
+      ]
+    }
+  },
+  "message": "Transaction numbers are only allowed on a replica set member or mongos",
+  "createdAt": {
+    "$date": "2025-08-02T20:12:48.123Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "688f287d1cbaf3a117db9a28"
+  },
+  "event": "INVOICE_ROLLBACK",
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "storeId": {
+    "$oid": "686a594d49c13566b897496f"
+  },
+  "details": {
+    "data": {
+      "client": "687bfa4ce2a54acbbfeb3ac4",
+      "store": "686a594d49c13566b897496f",
+      "user": "686a7dfbb2c9b6b488f4d378",
+      "lines": [
+        {
+          "product": "6884d9741b0afe059df8f190",
+          "productName": "Ciment",
+          "quantity": 1,
+          "unitPrice": 3800,
+          "discount": 0,
+          "totalLine": 3800
+        },
+        {
+          "product": "686ccb445e953fa0070c380c",
+          "productName": "Riz Thaï 25kg",
+          "quantity": 1,
+          "unitPrice": 4200,
+          "discount": 0,
+          "totalLine": 4200
+        },
+        {
+          "product": "686ccb445e953fa0070c380b",
+          "productName": "Riz Thaï 50kg",
+          "quantity": 1,
+          "unitPrice": 4200,
+          "discount": 0,
+          "totalLine": 4200
+        }
+      ],
+      "total": 12200,
+      "totalInWords": "Douze mille deux cents francs CFA",
+      "discountTotal": 0,
+      "paymentMethod": "especes",
+      "status": "reste_a_payer",
+      "montantPaye": 7500,
+      "number": "INV-2025-0077",
+      "history": [
+        {
+          "action": "created",
+          "user": "686a7dfbb2c9b6b488f4d378",
+          "date": {
+            "$date": "2025-08-03T09:14:37.485Z"
+          },
+          "reason": "Création de la facture"
+        }
+      ]
+    }
+  },
+  "message": "Transaction numbers are only allowed on a replica set member or mongos",
+  "createdAt": {
+    "$date": "2025-08-03T09:14:37.489Z"
+  },
+  "__v": 0
+}]

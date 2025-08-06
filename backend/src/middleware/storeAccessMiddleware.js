@@ -5,39 +5,43 @@ import User from '../models/User.js';
  * Utilisé pour les routes qui nécessitent un storeId dans les paramètres
  */
 export const checkStoreAccess = async (req, res, next) => {
-  console.log('[STORE][ACCESS] Vérification accès magasin');
+  console.log('[STORE_ACCESS_MIDDLEWARE] Exécution pour la route:', req.originalUrl);
   
   try {
     const { storeId } = req.params;
     const user = req.user;
     
+    console.log('[STORE_ACCESS_MIDDLEWARE] storeId reçu (params): ', storeId);
+    console.log('[STORE_ACCESS_MIDDLEWARE] Utilisateur:', user ? user.username : 'Non authentifié');
+
+    if (!user) {
+      return res.status(401).json({ message: 'Utilisateur non authentifié.' });
+    }
+
     if (!storeId) {
-      console.log('[STORE][ACCESS] Aucun storeId fourni');
+      console.log('[STORE_ACCESS_MIDDLEWARE] ERREUR: Aucun storeId fourni dans les paramètres de la route.');
       return res.status(400).json({ 
-        message: 'ID du magasin requis' 
+        message: 'ID du magasin manquant dans l\'URL' 
       });
     }
     
-    // Super-admin a accès à tous les magasins
     if (user.role === 'super-admin') {
-      console.log('[STORE][ACCESS] Super-admin - accès autorisé');
+      console.log('[STORE_ACCESS_MIDDLEWARE] Accès autorisé pour Super-admin.');
       return next();
     }
     
-    // Vérifier si l'utilisateur a accès au magasin
     const hasAccess = user.assignedStores.some(
       store => store.toString() === storeId
     );
     
     if (!hasAccess) {
-      console.log('[STORE][ACCESS] Accès refusé pour utilisateur:', user.username);
-      return res.status(403).json({ 
-        message: 'Accès refusé à ce magasin',
-        error: 'STORE_ACCESS_DENIED'
+      console.log(`[STORE_ACCESS_MIDDLEWARE] REFUS: L\'utilisateur ${user.username} n\'a pas accès au magasin ${storeId}.`);
+      return res.status(403).json({
+        message: 'Accès refusé à ce magasin'
       });
     }
     
-    console.log('[STORE][ACCESS] Accès autorisé pour utilisateur:', user.username);
+    console.log(`[STORE_ACCESS_MIDDLEWARE] AUTORISÉ: L\'utilisateur ${user.username} a accès au magasin ${storeId}.`);
     next();
   } catch (error) {
     console.error('[STORE][ACCESS] Erreur:', error.message);

@@ -43,11 +43,16 @@ class _CatalogPanelState extends State<CatalogPanel> {
   }
 
   void _loadProducts() {
-    if (widget.storeId == null || widget.storeId!.isEmpty) {
-      debugPrint('[CatalogPanel] Aucun storeId fourni, chargement bloqué');
-      _futureProducts = Future.value([]);
+    if (widget.storeId == null || widget.storeId!.isEmpty || widget.storeId == 'all') {
+      debugPrint('[CATALOG_PANEL] storeId invalide (${widget.storeId}). Chargement des produits annulé.');
+      if (mounted) {
+        setState(() {
+          _futureProducts = Future.value([]);
+        });
+      }
       return;
     }
+    debugPrint('[CATALOG_PANEL] Chargement des produits pour le magasin: ${widget.storeId}');
     _futureProducts = _productService.getProductsWithStock(widget.storeId!);
   }
 

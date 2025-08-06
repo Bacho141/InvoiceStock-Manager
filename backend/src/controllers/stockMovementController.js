@@ -111,8 +111,5 @@ const getProductMovements = async (req, res) => {
   }
 };
 
-export default {
-  addMovement,
-  getMovements,
-  getProductMovements
-}; 
+
+export default { addMovement, getMovements, getProductMovements }; 

@@ -203,6 +203,7 @@ class _StoreSelectorState extends State<StoreSelector> {
                     // Stocke l’ID du magasin sélectionné
                     final prefs = await SharedPreferences.getInstance();
                     await prefs.setString('selected_store_id', newStore.id);
+                    debugPrint('[STORE_SELECTOR] SAUVEGARDE DANS PREFS: selected_store_id = ${newStore.id}');
                   }
                 },
               ),

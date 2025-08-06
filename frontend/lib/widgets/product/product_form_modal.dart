@@ -16,7 +16,6 @@ class _ProductFormModalState extends State<ProductFormModal> {
   final _referenceController = TextEditingController();
   final _nameController = TextEditingController();
   final _descriptionController = TextEditingController();
-  final _barcodeController = TextEditingController();
   final _purchasePriceController = TextEditingController();
   final _sellingPriceController = TextEditingController();
   final _minStockController = TextEditingController();
@@ -63,7 +62,6 @@ class _ProductFormModalState extends State<ProductFormModal> {
       _referenceController.text = widget.product!['reference'] ?? '';
       _nameController.text = widget.product!['name'] ?? '';
       _descriptionController.text = widget.product!['description'] ?? '';
-      _barcodeController.text = widget.product!['barcode'] ?? '';
       _purchasePriceController.text = (widget.product!['purchasePrice'] ?? 0)
           .toString();
       _sellingPriceController.text = (widget.product!['sellingPrice'] ?? 0)
@@ -86,7 +84,6 @@ class _ProductFormModalState extends State<ProductFormModal> {
     _referenceController.dispose();
     _nameController.dispose();
     _descriptionController.dispose();
-    _barcodeController.dispose();
     _purchasePriceController.dispose();
     _sellingPriceController.dispose();
     _minStockController.dispose();
@@ -128,7 +125,6 @@ class _ProductFormModalState extends State<ProductFormModal> {
         'minStock': int.parse(_minStockController.text),
         'maxStock': int.parse(_maxStockController.text),
         'unit': _selectedUnit,
-        'barcode': _barcodeController.text.trim(),
         'isActive': _isActive,
         'image': _selectedImage,
         'createdAt': (widget.product?['createdAt'] ?? DateTime.now())
@@ -214,16 +210,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        _buildField(
-                          'Code-barres',
-                          _barcodeController,
-                          hint: '1234567890123',
-                          inputPadding: const EdgeInsets.symmetric(
-                            vertical: 8,
-                            horizontal: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 10),
+                        
                         _buildField(
                           'Prix d\'Achat H.T. *',
                           _purchasePriceController,
@@ -427,7 +414,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   const Text(
-                                    'Code-barres',
+                                    'Designation *',
                                     style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 14,
@@ -435,15 +422,22 @@ class _ProductFormModalState extends State<ProductFormModal> {
                                   ),
                                   const SizedBox(height: 8),
                                   TextFormField(
-                                    controller: _barcodeController,
+                                    controller: _nameController,
                                     decoration: InputDecoration(
-                                      hintText: '1234567890123',
+                                      hintText: 'Nom du produit',
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.circular(8),
                                       ),
                                       filled: true,
                                       fillColor: Colors.grey[50],
                                     ),
+                                    validator: (value) {
+                                      if (value == null ||
+                                          value.trim().isEmpty) {
+                                        return 'La designation est obligatoire';
+                                      }
+                                      return null;
+                                    },
                                   ),
                                 ],
                               ),
@@ -545,40 +539,6 @@ class _ProductFormModalState extends State<ProductFormModal> {
                         // Troisième ligne
                         Row(
                           children: [
-                            Expanded(
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  const Text(
-                                    'Description *',
-                                    style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 14,
-                                    ),
-                                  ),
-                                  const SizedBox(height: 8),
-                                  TextFormField(
-                                    controller: _nameController,
-                                    decoration: InputDecoration(
-                                      hintText: 'Nom du produit',
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(8),
-                                      ),
-                                      filled: true,
-                                      fillColor: Colors.grey[50],
-                                    ),
-                                    validator: (value) {
-                                      if (value == null ||
-                                          value.trim().isEmpty) {
-                                        return 'La description est obligatoire';
-                                      }
-                                      return null;
-                                    },
-                                  ),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(width: 16),
                             Expanded(
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,

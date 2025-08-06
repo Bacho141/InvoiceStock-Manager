@@ -1,0 +1,28 @@
+[{
+  "_id": {
+    "$oid": "688f28461cbaf3a117db994f"
+  },
+  "userId": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODZhN2RmYmIyYzliNmI0ODhmNGQzNzgiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6InN1cGVyLWFkbWluIiwiYXNzaWduZWRTdG9yZXMiOltdLCJpYXQiOjE3NTQyMTI0MjIsImV4cCI6MTc1NDI0MTIyMn0.gG4qZZw2eT8u2LfQMzpgjO_JLaHDYMzIsY35c_SPkpM",
+  "deviceInfo": {
+    "userAgent": "Dart/3.8 (dart:io)",
+    "ip": "::ffff:10.10.10.48",
+    "platform": ""
+  },
+  "isActive": true,
+  "expiresAt": {
+    "$date": "2025-08-03T17:13:42.000Z"
+  },
+  "lastActivity": {
+    "$date": "2025-08-03T09:14:12.324Z"
+  },
+  "createdAt": {
+    "$date": "2025-08-03T09:13:42.256Z"
+  },
+  "updatedAt": {
+    "$date": "2025-08-03T09:14:12.324Z"
+  },
+  "__v": 0
+}]

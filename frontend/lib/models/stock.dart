@@ -7,6 +7,7 @@ class Stock {
   final bool isActive;
   final DateTime lastUpdated;
   final String? description;
+  final String? name;
   final String? storeName;
 
   Stock({
@@ -18,6 +19,7 @@ class Stock {
     required this.isActive,
     required this.lastUpdated,
     this.description,
+    this.name,
     this.storeName,
   });
 
@@ -41,6 +43,7 @@ class Stock {
           DateTime.tryParse(json['lastUpdated'] ?? json['updatedAt'] ?? '') ??
           DateTime.now(),
       description: product is Map ? product['description']?.toString() : null,
+      name: product is Map ? product['name']?.toString() : null,
       storeName: store is Map ? store['name']?.toString() : null,
     );
   }
@@ -57,5 +60,5 @@ class Stock {
     'storeName': storeName,
   };
 
-  String get productName => description ?? productId;
+  String get productName => name ?? description ?? productId;
 }

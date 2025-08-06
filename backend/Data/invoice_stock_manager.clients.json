@@ -1,0 +1,50 @@
+[{
+  "_id": {
+    "$oid": "687bfa4ce2a54acbbfeb3ac4"
+  },
+  "firstName": "Bachir",
+  "lastName": "Sadda",
+  "phone": "96412146",
+  "purchaseHistory": [],
+  "createdAt": {
+    "$date": "2025-07-19T20:04:28.449Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-19T20:04:28.449Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "687bfb1ce2a54acbbfeb3ad4"
+  },
+  "firstName": "Moussa",
+  "lastName": "Alio",
+  "phone": "0201030504",
+  "purchaseHistory": [],
+  "createdAt": {
+    "$date": "2025-07-19T20:07:56.383Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-24T10:44:03.395Z"
+  },
+  "__v": 0,
+  "address": null,
+  "email": null
+},
+{
+  "_id": {
+    "$oid": "687bfd80e2a54acbbfeb3b05"
+  },
+  "firstName": "Abdou",
+  "lastName": "Bala",
+  "phone": "98453467",
+  "purchaseHistory": [],
+  "createdAt": {
+    "$date": "2025-07-19T20:18:08.063Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-19T20:18:08.063Z"
+  },
+  "__v": 0
+}]

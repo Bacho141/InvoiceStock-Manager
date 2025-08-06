@@ -25,21 +25,15 @@ router.post('/:storeId/adjust', checkStoreAccess, stockController.adjustStock);
 // Mouvements de stock
 router.post('/:storeId/movement', checkStoreAccess, stockMovementController.addMovement);
 router.get('/:storeId/movements', checkStoreAccess, stockMovementController.getMovements);
+router.get('/:storeId/:productId/movements', checkStoreAccess, stockMovementController.getProductMovements);
 // Vérification de la disponibilité d'un produit dans un magasin
 router.get('/:storeId/:productId/availability', checkStoreAccess, stockController.checkAvailability);
 // Stock d'un produit précis dans un magasin
-router.get('/:storeId/:productId', checkStoreAccess, stockController.getProductStock);
-
-// Historique d'un produit donné dans un magasin (avec filtres)
-router.get('/:storeId/:productId/movements', checkStoreAccess, stockMovementController.getProductMovements);
-
-// Alertes de stock
+router.get('/:storeId/indicators', checkStoreAccess, stockController.getIndicators);
 router.get('/:storeId/alerts', checkStoreAccess, stockAlertController.getAlerts);
 router.post('/:storeId/alerts/:alertId/read', checkStoreAccess, stockAlertController.markAsRead);
 router.post('/:storeId/alerts/:alertId/resolve', checkStoreAccess, stockAlertController.resolveAlert);
-
-// Indicateurs clés du stock
-router.get('/:storeId/indicators', checkStoreAccess, stockController.getIndicators);
+router.get('/:storeId/:productId', checkStoreAccess, stockController.getProductStock);
 
 // Listing avancé des stocks avec indicateurs et filtres
 router.get('/', stockController.listStocks);

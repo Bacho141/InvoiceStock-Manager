@@ -16,7 +16,6 @@ const productSchema = new mongoose.Schema({
   },
   description: { 
     type: String,
-    unique: true,
     trim: true,
     maxlength: 500
   },
@@ -50,12 +49,6 @@ const productSchema = new mongoose.Schema({
     default: 0,
     min: 0
   },
-  barcode: { 
-    type: String, 
-    trim: true,
-    unique: true,
-    sparse: true // Permet les valeurs null
-  },
   image: { 
     type: String 
   },
@@ -85,7 +78,6 @@ const productSchema = new mongoose.Schema({
 // Index pour optimiser les recherches
 productSchema.index({ name: 1 });
 productSchema.index({ category: 1 });
-productSchema.index({ barcode: 1 });
 productSchema.index({ isActive: 1 });
 productSchema.index({ createdAt: -1 });
 productSchema.index({ reference: 1 });

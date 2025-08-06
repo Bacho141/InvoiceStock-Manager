@@ -1,0 +1,494 @@
+[{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3801"
+  },
+  "name": "Biscuit Chocolat",
+  "reference": "BISCUIT-CHOCOLAT",
+  "description": "Biscuit fourré au chocolat",
+  "category": "Snacks",
+  "unit": "paquet",
+  "purchasePrice": 600,
+  "sellingPrice": 750,
+  "minStockLevel": 5,
+  "maxStockLevel": 50,
+  "barcode": "1234567890125",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:37:47.421Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:37:47.421Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3802"
+  },
+  "name": "Coca-Cola 33cl",
+  "reference": "COCA-COLA-33CL",
+  "description": "Boisson gazeuse rafraîchissante",
+  "category": "Boissons",
+  "unit": "bouteille",
+  "purchasePrice": 400,
+  "sellingPrice": 500,
+  "minStockLevel": 10,
+  "maxStockLevel": 100,
+  "barcode": "1234567890123",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:38:44.717Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:38:44.717Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3803"
+  },
+  "name": "Eau Minérale 1.5L",
+  "reference": "EAU-MINERALE-1.5L",
+  "description": "Eau minérale naturelle",
+  "category": "Boissons",
+  "unit": "bouteille",
+  "purchasePrice": 200,
+  "sellingPrice": 300,
+  "minStockLevel": 20,
+  "maxStockLevel": 200,
+  "barcode": "1234567890124",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:39:22.074Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:39:22.074Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3804"
+  },
+  "name": "Savon de Marseille",
+  "reference": "SAVON-MARSEILLE",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1234567890126",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:39:41.752Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:39:41.752Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3805"
+  },
+  "name": "Savon 101",
+  "reference": "SAVON-101",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1234521890126",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:40:32.221Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:40:32.221Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3806"
+  },
+  "name": "Savon 102",
+  "reference": "SAVON-102",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1234521230126",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:40:49.780Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:40:49.780Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3807"
+  },
+  "name": "Savon 103",
+  "reference": "SAVON-103",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1234521230000",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:40:59.739Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:40:59.739Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3808"
+  },
+  "name": "Savon 104",
+  "reference": "SAVON-104",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1231421230000",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:41:08.605Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:41:08.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c3809"
+  },
+  "name": "Savon 105",
+  "reference": "SAVON-105",
+  "description": "Savon naturel pour l'hygiène",
+  "category": "Hygiène",
+  "unit": "pièce",
+  "purchasePrice": 250,
+  "sellingPrice": 350,
+  "minStockLevel": 10,
+  "maxStockLevel": 80,
+  "barcode": "1111421230000",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:41:27.486Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:41:27.486Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c380a"
+  },
+  "name": "Riz Thaï 5kg",
+  "reference": "RIZ-THAI-5KG",
+  "description": "Sac de riz thaïlandais 5kg",
+  "category": "Alimentation",
+  "unit": "kg",
+  "purchasePrice": 3500,
+  "sellingPrice": 4200,
+  "minStockLevel": 15,
+  "maxStockLevel": 100,
+  "barcode": "1234567890127",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:41:40.826Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:41:40.826Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c380b"
+  },
+  "name": "Riz Thaï 50kg",
+  "reference": "RIZ-THAI-50KG",
+  "description": "Sac de riz thaïlandais 5kg",
+  "category": "Alimentation",
+  "unit": "kg",
+  "purchasePrice": 3500,
+  "sellingPrice": 4200,
+  "minStockLevel": 15,
+  "maxStockLevel": 100,
+  "barcode": "1234545890127",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:41:53.596Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:41:53.596Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686ccb445e953fa0070c380c"
+  },
+  "name": "Riz Thaï 25kg",
+  "reference": "RIZ-THAI-25KG",
+  "description": "Sac de riz thaïlandais 5kg",
+  "category": "Alimentation",
+  "unit": "kg",
+  "purchasePrice": 3500,
+  "sellingPrice": 4200,
+  "minStockLevel": 15,
+  "maxStockLevel": 100,
+  "barcode": "1234545894127",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-07T12:42:04.605Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-07T12:42:04.605Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "686cd0fd030cf5b7e6371a62"
+  },
+  "name": "ezerezr",
+  "reference": "AAAA",
+  "description": "Teste",
+  "category": "Snacks",
+  "unit": "m²",
+  "purchasePrice": 1200,
+  "sellingPrice": 1524,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "10101010101010",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-08T08:04:13.983Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-08T08:22:41.750Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6870db9fe4b3b865d340c30c"
+  },
+  "name": "Carte",
+  "reference": "CTRA",
+  "description": "",
+  "category": "Snacks",
+  "unit": "cm",
+  "purchasePrice": 15000,
+  "sellingPrice": 17500,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "1010102545231",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-11T09:38:39.787Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-11T09:38:39.787Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6870e2a0e4b3b865d340c409"
+  },
+  "name": "RIZ",
+  "reference": "WXSD",
+  "description": "",
+  "category": "Alimentation",
+  "unit": "kg",
+  "purchasePrice": 25800,
+  "sellingPrice": 27500,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "0120152458965",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-11T10:08:32.435Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-11T10:08:32.435Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6870e368e4b3b865d340c43b"
+  },
+  "name": "BBBB",
+  "reference": "ezrz",
+  "description": "",
+  "category": "Snacks",
+  "unit": "ml",
+  "purchasePrice": 15000,
+  "sellingPrice": 17500,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-11T10:11:52.065Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-11T10:11:52.065Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6870e95f236368c05cbeaf8a"
+  },
+  "name": "JJJJ",
+  "reference": "AAASA",
+  "description": "SSSS",
+  "category": "Snacks",
+  "unit": "cm",
+  "purchasePrice": 2500,
+  "sellingPrice": 2950,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "0125462310000",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-11T10:37:19.355Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-11T10:37:19.355Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884d9061b0afe059df8f188"
+  },
+  "name": "Quart",
+  "reference": "QZERT",
+  "description": "",
+  "category": "Snacks",
+  "unit": "cm",
+  "purchasePrice": 1500,
+  "sellingPrice": 1800,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "0120123521453",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T13:32:54.721Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-26T13:32:54.721Z"
+  },
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "6884d9741b0afe059df8f190"
+  },
+  "name": "Ciment",
+  "reference": "CMT T20",
+  "description": "",
+  "category": "Snacks",
+  "unit": "kg",
+  "purchasePrice": 3500,
+  "sellingPrice": 3800,
+  "minStockLevel": 0,
+  "maxStockLevel": 0,
+  "barcode": "1020301548562",
+  "isActive": true,
+  "createdBy": {
+    "$oid": "686a7dfbb2c9b6b488f4d378"
+  },
+  "createdAt": {
+    "$date": "2025-07-26T13:34:44.804Z"
+  },
+  "updatedAt": {
+    "$date": "2025-07-26T13:34:44.804Z"
+  },
+  "__v": 0
+}]
