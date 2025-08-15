@@ -43,7 +43,7 @@ class _CatalogPanelState extends State<CatalogPanel> {
   }
 
   void _loadProducts() {
-    if (widget.storeId == null || widget.storeId!.isEmpty || widget.storeId == 'all') {
+    if (widget.storeId == null || widget.storeId!.isEmpty) {
       debugPrint('[CATALOG_PANEL] storeId invalide (${widget.storeId}). Chargement des produits annulé.');
       if (mounted) {
         setState(() {
@@ -51,9 +51,13 @@ class _CatalogPanelState extends State<CatalogPanel> {
         });
       }
       return;
+    } else if (widget.storeId == 'all') {
+      debugPrint('[CATALOG_PANEL] Chargement de tous les produits avec stock agrégé.');
+      _futureProducts = _productService.getProductsWithAggregatedStock();
+    } else {
+      debugPrint('[CATALOG_PANEL] Chargement des produits pour le magasin: ${widget.storeId}');
+      _futureProducts = _productService.getProductsWithStock(widget.storeId!);
     }
-    debugPrint('[CATALOG_PANEL] Chargement des produits pour le magasin: ${widget.storeId}');
-    _futureProducts = _productService.getProductsWithStock(widget.storeId!);
   }
 
   @override
@@ -173,11 +177,16 @@ class _CatalogPanelState extends State<CatalogPanel> {
                       final filtered = _search.isEmpty
                           ? products
                           : products.where((item) {
-                              final Product? product = item is Product
-                                  ? item
-                                  : (item is Map && item['product'] is Product
-                                      ? item['product']
-                                      : null);
+                              final Product? product;
+                              if (widget.storeId == 'all') {
+                                product = Product.fromJson(item);
+                              } else {
+                                product = item is Product
+                                    ? item
+                                    : (item is Map && item['product'] is Product
+                                        ? item['product']
+                                        : null);
+                              }
                               final name = (product?.name ?? '').toLowerCase();
                               final reference = (product?.reference ?? '').toLowerCase();
                               final search = _search.toLowerCase();
@@ -187,11 +196,16 @@ class _CatalogPanelState extends State<CatalogPanel> {
                         itemCount: filtered.length,
                         itemBuilder: (context, index) {
                           final dynamic item = filtered[index];
-                          final Product? product = item is Product
-                              ? item
-                              : (item is Map && item['product'] is Product
-                                  ? item['product']
-                                  : null);
+                          final Product? product;
+                          if (widget.storeId == 'all') {
+                            product = Product.fromJson(item);
+                          } else {
+                            product = item is Product
+                                ? item
+                                : (item is Map && item['product'] is Product
+                                    ? item['product']
+                                    : null);
+                          }
                           final int availableQuantity = (item is Map && item['availableQuantity'] != null)
                               ? item['availableQuantity']
                               : 0;
@@ -269,12 +283,12 @@ class _CatalogPanelState extends State<CatalogPanel> {
                                       : Icons.add_circle,
                                   color: alreadyInCart
                                       ? Colors.green
-                                      : (isAvailable
+                                      : (isAvailable && widget.storeId != 'all'
                                             ? const Color(0xFF43A047)
                                             : Colors.grey),
                                   size: 28,
                                 ),
-                                onPressed: alreadyInCart || !isAvailable
+                                onPressed: alreadyInCart || !isAvailable || widget.storeId == 'all'
                                     ? null
                                     : _isAddingIndex == index
                                     ? null
@@ -334,6 +348,8 @@ class _CatalogPanelState extends State<CatalogPanel> {
                                       },
                                 tooltip: alreadyInCart
                                     ? 'Ajouté'
+                                    : widget.storeId == 'all'
+                                    ? 'Veuillez selectionner un magazin'
                                     : isAvailable
                                     ? 'Ajouter au panier'
                                     : 'Stock indisponible',

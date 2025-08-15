@@ -7,6 +7,8 @@ import '../../layout/invoice_pos_mobile_layout.dart';
 import '../../screens/sale/receipt_format_selector.dart' show ReceiptFormat, showReceiptFormatSelector;
 import '../../services/invoice_service.dart';
 import '../../utiles/number_to_words_fr.dart';
+import '../../services/product_service.dart';
+import '../../models/cart.dart';
 
 class SaleActionBar extends StatefulWidget {
   final String? storeId;
@@ -36,11 +38,19 @@ class _SaleActionBarState extends State<SaleActionBar> {
   }
 
   Future<void> _handleValidateInvoice() async {
-    debugPrint('[SALE_ACTION_BAR] Validation facture appelée pour le magasin: ${widget.storeId}');
+    await _createInvoiceWithStatus(null);
+  }
+
+  Future<void> _handleSetOnHold() async {
+    await _createInvoiceWithStatus('en_attente');
+  }
+
+  Future<void> _createInvoiceWithStatus(String? status) async {
+    debugPrint('[SALE_ACTION_BAR] Création facture avec statut: $status pour le magasin: ${widget.storeId}');
     final cart = CartController();
     final prefs = await SharedPreferences.getInstance();
     final currentUserId = prefs.getString('user_id');
-    final selectedStoreId = widget.storeId; // Utilise la valeur passée en paramètre
+    final selectedStoreId = widget.storeId;
 
     if (selectedStoreId == null || selectedStoreId == 'all') {
       if (!mounted) return;
@@ -60,9 +70,27 @@ class _SaleActionBarState extends State<SaleActionBar> {
       return;
     }
 
-  
     try {
-      debugPrint('[SALE_ACTION_BAR][TRY] Début du bloc try. Préparation du payload.');
+      // Vérification de la disponibilité du stock pour chaque produit
+      final productService = ProductService();
+      for (var item in cart.items) {
+        final availability = await productService.checkProductAvailability(
+          selectedStoreId,
+          item.product.id!,
+          item.quantity,
+        );
+
+        if (!(availability['isAvailable'] as bool)) {
+          if (!mounted) return;
+          _showErrorDialog(
+            'Stock insuffisant pour le produit "${item.product.name}". \n'
+            'Quantité demandée: ${item.quantity}, \n'
+            'Quantité disponible: ${availability['availableQuantity']}.',
+          );
+          return; // Arrête le processus
+        }
+      }
+
       final payload = {
         "client": cart.client?.id,
         "store": selectedStoreId,
@@ -81,50 +109,50 @@ class _SaleActionBarState extends State<SaleActionBar> {
         "totalInWords": numberToWordsFr(cart.total.toInt()),
         "discountTotal": cart.totalDiscount,
         "paymentMethod": cart.paymentMethod,
-        "status": cart.dueAmount <= 0 ? "payee" : "reste_a_payer",
         "format": _selectedFormat,
         "montantPaye": cart.amountPaid,
+        if (status != null) "status": status,
       };
 
-      debugPrint('[SALE_ACTION_BAR][TRY] Payload prêt à être envoyé: ${payload.toString()}');
-
       final invoiceData = await InvoiceService().createInvoice(payload);
-
-      debugPrint('[SALE_ACTION_BAR][TRY] Réponse reçue du service: ${invoiceData.toString()}');
 
       final newFacture = invoiceData['data'];
       final newFactureId = newFacture?['_id'];
 
-      debugPrint('[SALE_ACTION_BAR][TRY] ID de la nouvelle facture extrait: $newFactureId');
-
       if (!mounted) return;
       cart.clear();
 
-      debugPrint('[SALE_ACTION_BAR][TRY] Panier vidé. Préparation de la navigation.');
-
-      if (_selectedFormat == 'A5') {
-        Navigator.of(context).push(
-          MaterialPageRoute(
-            builder: (_) => InvoiceA5Layout(facture: invoiceData['data']),
+      if (status == 'en_attente') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text('La vente a été mise en attente.'),
+            backgroundColor: Colors.orange,
           ),
         );
       } else {
-        // Détecter la plateforme pour choisir la bonne mise en page POS
-        final platform = Theme.of(context).platform;
-        final isMobile = platform == TargetPlatform.android || platform == TargetPlatform.iOS;
-
-        if (isMobile) {
+        if (_selectedFormat == 'A5') {
           Navigator.of(context).push(
             MaterialPageRoute(
-              builder: (_) => InvoicePOSMobileLayout(facture: invoiceData['data']),
+              builder: (_) => InvoiceA5Layout(facture: invoiceData['data']),
             ),
           );
         } else {
-          Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) => InvoicePOSLayout(facture: invoiceData['data']),
-            ),
-          );
+          final platform = Theme.of(context).platform;
+          final isMobile = platform == TargetPlatform.android || platform == TargetPlatform.iOS;
+
+          if (isMobile) {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => InvoicePOSMobileLayout(facture: invoiceData['data']),
+              ),
+            );
+          } else {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (_) => InvoicePOSLayout(facture: invoiceData['data']),
+              ),
+            );
+          }
         }
       }
     } catch (e) {
@@ -152,6 +180,8 @@ class _SaleActionBarState extends State<SaleActionBar> {
 
   @override
   Widget build(BuildContext context) {
+    final cart = CartController();
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -166,7 +196,7 @@ class _SaleActionBarState extends State<SaleActionBar> {
                 label: 'Mettre en attente',
                 icon: Icons.pause_circle_outline,
                 color: const Color(0xFF7717E8),
-                onPressed: () {},
+                onPressed: _handleSetOnHold,
               ),
               const SizedBox(width: 24),
               _ActionButton(
@@ -174,14 +204,30 @@ class _SaleActionBarState extends State<SaleActionBar> {
                 icon: Icons.cancel_outlined,
                 color: Colors.redAccent,
                 outlined: true,
-                onPressed: () {},
+                onPressed: cart.clear,
               ),
               const SizedBox(width: 24),
-              _ActionButton(
-                label: 'Valider la Facture',
-                icon: Icons.attach_money,
-                color: const Color(0xFF43A047),
-                onPressed: _showReceiptFormatSelector,
+              AnimatedBuilder(
+                animation: cart,
+                builder: (context, child) {
+                  final isClientSelected = cart.client != null;
+                  final isStoreSelected = widget.storeId != null &&
+                      widget.storeId!.isNotEmpty &&
+                      widget.storeId != 'all';
+                  return Tooltip(
+                    message: isStoreSelected
+                        ? ''
+                        : 'Veuillez sélectionner un magasin spécifique pour valider la facture.',
+                    child: _ActionButton(
+                      label: 'Valider la Facture',
+                      icon: Icons.attach_money,
+                      color: const Color(0xFF43A047),
+                      onPressed: (isClientSelected && isStoreSelected)
+                          ? _showReceiptFormatSelector
+                          : null,
+                    ),
+                  );
+                },
               ),
             ],
           ),
@@ -196,7 +242,7 @@ class _ActionButton extends StatelessWidget {
   final IconData icon;
   final Color color;
   final bool outlined;
-  final VoidCallback onPressed;
+  final VoidCallback? onPressed;
 
   const _ActionButton({
     required this.label,

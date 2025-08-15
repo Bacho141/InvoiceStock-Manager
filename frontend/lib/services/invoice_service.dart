@@ -18,6 +18,9 @@ class InvoiceService {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
 
+    debugPrint('[INVOICE_SERVICE][VALIDATE] Token récupéré pour validation: ${token != null ? token.substring(0, 10) + '...' : 'null'}');
+    debugPrint("[INVOICE_SERVICE][VALIDATE] Headers envoyés: {'Content-Type': 'application/json', 'Authorization': 'Bearer $token'}");
+
     if (token == null) {
       debugPrint(
         '[INVOICE_SERVICE] ERREUR: Token non trouvé. Validation annulée.',
@@ -49,8 +52,11 @@ class InvoiceService {
     );
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
+    debugPrint('[SERVICE][InvoiceService] Token récupéré: ${token != null ? token.substring(0, 10) + '...' : 'null'}');
 
     // 1. Créer la facture (statut provisoire)
+    debugPrint('[SERVICE][InvoiceService] Envoi de la requête POST ${ApiUrls.invoices}');
+    debugPrint('[SERVICE][InvoiceService] Headers: \{\'Authorization\': \'Bearer $token\', \'Content-Type\': \'application/json\'\}');
     final response = await http.post(
       Uri.parse(ApiUrls.invoices),
       headers: {
@@ -250,20 +256,24 @@ class InvoiceService {
     return await createInvoice(data);
   }
 
-  Future<List<Map<String, dynamic>>> getInvoices({
-    Map<String, String>? filters,
-  }) async {
+  Future<Map<String, dynamic>> getInvoices({Map<String, String>? filters}) async {
     final prefs = await SharedPreferences.getInstance();
     final token = prefs.getString('jwt_token');
     final uri = Uri.parse(ApiUrls.invoices).replace(queryParameters: filters);
+
+    debugPrint('[SERVICE][InvoiceService] Fetching invoices from: $uri');
+
     final response = await http.get(
       uri,
       headers: {'Authorization': 'Bearer $token'},
     );
+
     if (response.statusCode == 200) {
       final data = jsonDecode(response.body);
-      return List<Map<String, dynamic>>.from(data['data'] ?? []);
+      // The backend now returns an object with 'data', 'total', etc.
+      return data as Map<String, dynamic>;
     } else {
+      debugPrint('[SERVICE][InvoiceService] Error fetching invoices: ${response.body}');
       throw Exception('Erreur chargement factures');
     }
   }
@@ -300,6 +310,36 @@ class InvoiceService {
       return jsonDecode(response.body);
     } else {
       throw Exception('Erreur modification facture');
+    }
+  }
+
+  Future<Map<String, dynamic>> addPayment(
+    String id,
+    double amount,
+    String method,
+  ) async {
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('jwt_token');
+    final paymentData = {
+      'payment': {
+        'amount': amount,
+        'method': method,
+      }
+    };
+
+    final response = await http.put(
+      Uri.parse('${ApiUrls.invoices}/$id'),
+      headers: {
+        'Authorization': 'Bearer $token',
+        'Content-Type': 'application/json',
+      },
+      body: jsonEncode(paymentData),
+    );
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Erreur lors de l\'ajout du paiement');
     }
   }
 

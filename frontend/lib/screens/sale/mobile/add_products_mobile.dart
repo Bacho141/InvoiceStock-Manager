@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
+import '../../../models/store.dart';
 import '../../../controllers/cart_controller.dart';
 import '../../../models/product.dart';
 import '../../../services/product_service.dart';
 
 class AddProductsMobile extends StatefulWidget {
   final VoidCallback onNext;
-  const AddProductsMobile({Key? key, required this.onNext}) : super(key: key);
+  final Store? currentStore;
+
+  const AddProductsMobile({Key? key, required this.onNext, this.currentStore})
+      : super(key: key);
   @override
   State<AddProductsMobile> createState() => _AddProductsMobileState();
 }
@@ -16,7 +20,7 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
   final cart = CartController();
   final ProductService _productService = ProductService();
   final TextEditingController _searchController = TextEditingController();
-  Future<List<Product>>? _futureProducts;
+  Future<List<Map<String, dynamic>>>? _futureProducts;
   String _search = '';
   final List<String> _categories = ['Tous', 'Boissons', 'Snacks', 'Autres'];
 
@@ -27,6 +31,14 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
     _searchController.addListener(_onSearchChanged);
   }
 
+  @override
+  void didUpdateWidget(covariant AddProductsMobile oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.currentStore?.id != widget.currentStore?.id) {
+      _loadProducts();
+    }
+  }
+
   void _onSearchChanged() {
     setState(() {
       _search = _searchController.text;
@@ -35,10 +47,16 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
   }
 
   void _loadProducts() {
-    _futureProducts = _productService
-        .getProducts(); // À adapter si l’API accepte un filtre
-    // Si l’API accepte un filtre :
-    // _futureProducts = _productService.getProducts(search: _search);
+    if (widget.currentStore?.id == null || widget.currentStore!.id.isEmpty) {
+      setState(() {
+        _futureProducts = Future.value([]);
+      });
+      return;
+    } else if (widget.currentStore!.id == 'all') {
+      _futureProducts = _productService.getProductsWithAggregatedStock();
+    } else {
+      _futureProducts = _productService.getProductsWithStock(widget.currentStore!.id!);
+    }
   }
 
   @override
@@ -169,41 +187,49 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                 const SizedBox(height: 8),
                 // Liste des produits
                 Expanded(
-                  child: FutureBuilder<List<Product>>(
+                  child: FutureBuilder<List<Map<String, dynamic>>>(
                     future: _futureProducts,
                     builder: (context, snapshot) {
                       if (snapshot.connectionState == ConnectionState.waiting) {
                         return const Center(child: CircularProgressIndicator());
                       } else if (snapshot.hasError) {
                         return Center(
-                          child: Text('Erreur chargement produits'),
+                          child: Text('Erreur chargement produits: ${snapshot.error}'),
                         );
                       } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
                         return const Center(
                           child: Text('Aucun produit disponible.'),
                         );
                       }
-                      final products = snapshot.data!;
+                      final productsWithStock = snapshot.data!;
                       final filtered = _search.isEmpty
-                          ? products
-                          : products
+                          ? productsWithStock
+                          : productsWithStock
                                 .where(
-                                  (p) =>
-                                      p.name.toLowerCase().contains(
-                                        _search.toLowerCase(),
-                                      ) ||
-                                      (p.ref.toLowerCase().contains(
-                                        _search.toLowerCase(),
-                                      )),
+                                  (item) {
+                                    final Product product = item['product'];
+                                    final name = product.name.toLowerCase();
+                                    final ref = product.ref.toLowerCase();
+                                    final searchLower = _search.toLowerCase();
+                                    return name.contains(searchLower) || ref.contains(searchLower);
+                                  },
                                 )
                                 .toList();
                       return ListView.separated(
                         itemCount: filtered.length,
                         separatorBuilder: (_, __) => const SizedBox(height: 2),
                         itemBuilder: (context, index) {
-                          final product = filtered[index];
+                          final item = filtered[index];
+                          final Product product;
+                          if (widget.currentStore?.id == 'all') {
+                            product = Product.fromJson(item);
+                          } else {
+                            product = item['product'];
+                          }
+                          final int availableQuantity = item['availableQuantity'];
+                          final bool isAvailable = item['isAvailable'];
                           final alreadyInCart = cart.items.any(
-                            (item) => item.product.id == product.id,
+                            (cartItem) => cartItem.product.id == product.id,
                           );
                           return Card(
                             elevation: 0,
@@ -235,7 +261,7 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                                   ),
                                 ),
                                 subtitle: Text(
-                                  '${product.sellingPrice.toStringAsFixed(0)} F',
+                                  '${product.sellingPrice.toStringAsFixed(0)} F (Stock: $availableQuantity)',
                                   style: const TextStyle(
                                     fontWeight: FontWeight.w500,
                                   ),
@@ -247,10 +273,10 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                                         : Icons.add_circle,
                                     color: alreadyInCart
                                         ? Colors.green
-                                        : const Color(0xFF43A047),
+                                        : (isAvailable && widget.currentStore?.id != 'all' ? const Color(0xFF43A047) : Colors.grey),
                                     size: 28,
                                   ),
-                                  onPressed: alreadyInCart
+                                  onPressed: alreadyInCart || !isAvailable || widget.currentStore?.id == 'all'
                                       ? null
                                       : _isAddingIndex == index
                                           ? null
@@ -258,8 +284,16 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                                               setState(() {
                                                 _isAddingIndex = index;
                                               });
-                                              // À ADAPTER : récupérer le storeId depuis le contexte ou un Provider
-                                              final String storeId = 'default';
+                                              final String? storeId = widget.currentStore?.id;
+                                              if (storeId == null) {
+                                                ScaffoldMessenger.of(context).showSnackBar(
+                                                  const SnackBar(
+                                                    content: Text('Veuillez sélectionner un magasin.'),
+                                                    backgroundColor: Colors.red,
+                                                  ),
+                                                );
+                                                return;
+                                              }
                                               final success = await cart.addProduct(product, storeId: storeId);
                                               setState(() {
                                                 _isAddingIndex = null;
@@ -278,7 +312,7 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
                                             },
                                   tooltip: alreadyInCart
                                       ? 'Ajouté'
-                                      : 'Ajouter au panier',
+                                      : (isAvailable ? 'Ajouter au panier' : 'Stock indisponible'),
                                 ),
                               ),
                             ),
@@ -297,9 +331,9 @@ class _AddProductsMobileState extends State<AddProductsMobile> {
         onPressed: widget.onNext,
         backgroundColor: const Color(0xFF7717E8),
         icon: const Icon(Icons.shopping_cart_checkout, color: Colors.white),
-        label: const Text(
-          'Voir le panier',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        label: Text(
+          'Voir le panier (${cart.items.length})',
+          style: const TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         elevation: 3,
       ),

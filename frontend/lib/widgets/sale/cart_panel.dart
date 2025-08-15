@@ -107,7 +107,7 @@ class CartPanel extends StatelessWidget {
                                       onPressed: () {
                                         if (item.quantity > 1) {
                                           cart.updateQuantity(
-                                            item.product.id ?? '',
+                                            item.product.id,
                                             item.quantity - 1,
                                           );
                                         }

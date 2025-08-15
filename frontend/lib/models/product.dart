@@ -1,3 +1,5 @@
+import 'package:flutter/foundation.dart';
+
 class Product {
   final String id;
   final String name;
@@ -36,6 +38,8 @@ class Product {
   });
 
   factory Product.fromJson(Map<String, dynamic> json) {
+    // debugPrint('[MODEL][Product] fromJson: $json');
+    // debugPrint('[MODEL][Product] name: ${json['name']}');
     return Product(
       id: (json['_id'] ?? json['id'] ?? '').toString(),
       name: json['name'],
@@ -82,7 +86,7 @@ class Product {
   }
 
   // Ajout d'un getter 'reference' pour compatibilité UI
-  String get ref => reference ?? barcode ?? id ?? '';
+  String get ref => reference ?? barcode ?? id;
 
   // Ajout d'une méthode copyWith pour permettre la modification immuable
   Product copyWith({

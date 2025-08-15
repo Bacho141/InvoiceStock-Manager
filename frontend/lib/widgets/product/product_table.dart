@@ -88,6 +88,7 @@ class ProductTable extends StatelessWidget {
               DataColumn(label: Text('Actions')),
             ],
             rows: products.map((product) {
+              debugPrint('[VIEW][ProductTable] Product data: $product');
               final stock = product['stock'] ?? 0;
               final minStock = product['minStock'] ?? 0;
               final marginValue = product['marginValue'] ?? 0;
@@ -115,7 +116,7 @@ class ProductTable extends StatelessWidget {
                     ),
                   ),
                   DataCell(Text(product['reference'] ?? '')),
-                  DataCell(Text(product['name'] ?? '')),
+                  DataCell(Text(product['name'] ?? 'Produit inconnu')),
                   DataCell(Text(product['category'] ?? '')),
                   DataCell(Text('${product['purchasePrice'] ?? 0} F')),
                   DataCell(

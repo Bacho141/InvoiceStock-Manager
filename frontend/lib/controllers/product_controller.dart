@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../models/product.dart';
 import '../services/product_service.dart';
 
@@ -19,14 +20,21 @@ class ProductController extends ChangeNotifier {
     _error = null;
     notifyListeners();
     try {
-      _products = await _service.getProducts();
+      final prefs = await SharedPreferences.getInstance();
+      final storeId = prefs.getString('selected_store_id') ?? 'all';
+      debugPrint('[CONTROLLER][ProductController] Store ID: $storeId');
+      final productsWithStock = await _service.getProductsWithStock(storeId);
+      debugPrint('[CONTROLLER][ProductController] Products with stock type: ${productsWithStock.runtimeType}');
+      debugPrint('[CONTROLLER][ProductController] Products with stock: ${productsWithStock}');
+      _products = productsWithStock.map((p) => Product.fromJson(p)).toList();
+      debugPrint('[CONTROLLER][ProductController] Parsed products: ${_products.map((p) => p.toJson()).toList()}');
       debugPrint(
-        '[CONTROLLER][ProductController] Produits chargés: \\${_products.length}',
+        '[CONTROLLER][ProductController] Produits chargés: ${_products.length}',
       );
     } catch (e) {
       _error = e.toString();
       debugPrint(
-        '[CONTROLLER][ProductController] Erreur chargement: \\$_error',
+        '[CONTROLLER][ProductController] Erreur chargement: $_error',
       );
     }
     _loading = false;
@@ -35,7 +43,7 @@ class ProductController extends ChangeNotifier {
 
   Future<Product> addProduct(Product product) async {
     debugPrint(
-      '[CONTROLLER][ProductController] Ajout produit: \\${product.name}',
+      '[CONTROLLER][ProductController] Ajout produit: ${product.name}',
     );
     _loading = true;
     _error = null;
@@ -44,12 +52,12 @@ class ProductController extends ChangeNotifier {
       final newProduct = await _service.addProduct(product);
       _products.insert(0, newProduct);
       debugPrint(
-        '[CONTROLLER][ProductController] Produit ajouté: \\${newProduct.id}',
+        '[CONTROLLER][ProductController] Produit ajouté: ${newProduct.id}',
       );
       return newProduct;
     } catch (e) {
       _error = e.toString();
-      debugPrint('[CONTROLLER][ProductController] Erreur ajout: \\$_error');
+      debugPrint('[CONTROLLER][ProductController] Erreur ajout: $_error');
       rethrow;
     } finally {
       _loading = false;
@@ -59,7 +67,7 @@ class ProductController extends ChangeNotifier {
 
   Future<void> updateProduct(Product product) async {
     debugPrint(
-      '[CONTROLLER][ProductController] Modification produit: \\${product.id}',
+      '[CONTROLLER][ProductController] Modification produit: ${product.id}',
     );
     _loading = true;
     _error = null;
@@ -70,13 +78,13 @@ class ProductController extends ChangeNotifier {
       if (idx != -1) {
         _products[idx] = updated;
         debugPrint(
-          '[CONTROLLER][ProductController] Produit modifié: \\${updated.id}',
+          '[CONTROLLER][ProductController] Produit modifié: ${updated.id}',
         );
       }
     } catch (e) {
       _error = e.toString();
       debugPrint(
-        '[CONTROLLER][ProductController] Erreur modification: \\$_error',
+        '[CONTROLLER][ProductController] Erreur modification: $_error',
       );
     }
     _loading = false;
@@ -84,18 +92,18 @@ class ProductController extends ChangeNotifier {
   }
 
   Future<void> deleteProduct(String id) async {
-    debugPrint('[CONTROLLER][ProductController] Suppression produit: \\${id}');
+    debugPrint('[CONTROLLER][ProductController] Suppression produit: $id');
     _loading = true;
     _error = null;
     notifyListeners();
     try {
       await _service.deleteProduct(id);
       _products.removeWhere((p) => p.id == id);
-      debugPrint('[CONTROLLER][ProductController] Produit supprimé: \\${id}');
+      debugPrint('[CONTROLLER][ProductController] Produit supprimé: $id');
     } catch (e) {
       _error = e.toString();
       debugPrint(
-        '[CONTROLLER][ProductController] Erreur suppression: \\$_error',
+        '[CONTROLLER][ProductController] Erreur suppression: $_error',
       );
     }
     _loading = false;

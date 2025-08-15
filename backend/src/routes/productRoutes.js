@@ -10,6 +10,7 @@ router.use(verifyToken, addStoreContext);
 
 router.get('/', productController.getAllProducts);
 router.get('/categories', productController.getCategories);
+router.get('/all-with-stock', productController.getAllProductsWithAggregatedStock);
 router.get('/:id', productController.getProduct);
 router.post('/', productController.createProduct);
 router.put('/:id', productController.updateProduct);

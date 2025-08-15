@@ -395,11 +395,125 @@ const getCategories = async (req, res) => {
   }
 };
 
+
+
+/**
+ * Récupérer tous les produits avec leur stock agrégé pour les magasins accessibles.
+ */
+const getAllProductsWithAggregatedStock = async (req, res) => {
+  console.log('[PRODUCT][GET_ALL_AGGREGATED_STOCK] Récupération des produits avec stock agrégé');
+
+  try {
+    const { storeContext } = req; // Contient assignedStores et allStores
+
+    // Si l'utilisateur n'a pas accès à tous les magasins et n'a pas de magasins assignés,
+    // ou si aucun magasin n'est assigné, retourner une liste vide.
+    if (!storeContext.allStores && (!storeContext.assignedStores || storeContext.assignedStores.length === 0)) {
+      console.log('[PRODUCT][GET_ALL_AGGREGATED_STOCK] Aucun magasin assigné, retour d\'une liste vide.');
+      return res.json({ success: true, data: [], pagination: { total: 0 } });
+    }
+
+    // Pipeline d'agrégation
+    const pipeline = [];
+
+    // 1. Matcher les produits actifs
+    pipeline.push({
+      $match: { isActive: true }
+    });
+
+    // 2. Joindre avec la collection Stock pour obtenir les quantités
+    pipeline.push({
+      $lookup: {
+        from: 'stocks', // Nom de la collection Stock (généralement en minuscules et pluriel)
+        localField: '_id',
+        foreignField: 'productId',
+        as: 'stockInfo'
+      }
+    });
+
+    // 3. Filtrer les stocks par les magasins accessibles à l'utilisateur
+    // Si l'utilisateur n'est pas super-admin, filtrer par assignedStores
+    if (!storeContext.allStores) {
+      pipeline.push({
+        $addFields: {
+          stockInfo: {
+            $filter: {
+              input: '$stockInfo',
+              as: 'stock',
+              cond: { $in: ['$stock.storeId', storeContext.assignedStores] }
+            }
+          }
+        }
+      });
+    }
+
+    // 4. Calculer la quantité totale de stock disponible pour chaque produit
+    pipeline.push({
+      $addFields: {
+        totalStockQuantity: { $sum: '$stockInfo.quantity' }
+      }
+    });
+
+    // 5. Projeter les champs nécessaires et ajouter les champs de stock enrichis
+    pipeline.push({
+      $project: {
+        _id: 1,
+        name: 1,
+        reference: 1,
+        description: 1,
+        category: 1,
+        unit: 1,
+        purchasePrice: 1,
+        sellingPrice: 1,
+        minStockLevel: 1,
+        maxStockLevel: 1,
+        isActive: 1,
+        createdAt: 1,
+        updatedAt: 1,
+        createdBy: 1, // Conserver createdBy si nécessaire pour populate
+        stockQuantity: '$totalStockQuantity', // Quantité totale agrégée
+        reservedQuantity: { $sum: '$stockInfo.reserved' }, // Agrège les quantités réservées
+        availableQuantity: { $subtract: ['$totalStockQuantity', { $sum: '$stockInfo.reserved' }] }, // Stock disponible
+        isAvailable: { $gt: [{ $subtract: ['$totalStockQuantity', { $sum: '$stockInfo.reserved' }] }, 0] }, // Est disponible si stock > 0
+        isLowStock: { $and: [
+          { $gt: ['$totalStockQuantity', 0] }, // Pas en rupture totale
+          { $lte: ['$totalStockQuantity', '$minStockLevel'] } // Mais en dessous du seuil min
+        ]}
+      }
+    });
+
+    // 6. Exécuter l'agrégation
+    const products = await Product.aggregate(pipeline);
+
+    console.log('[PRODUCT][GET_ALL_AGGREGATED_STOCK] Produits agrégés récupérés:', products.length);
+    console.log('[PRODUCT][GET_ALL_AGGREGATED_STOCK] Exemple produit:', JSON.stringify(products[0], null, 2));
+
+    res.json({
+      success: true,
+      data: products,
+      pagination: { // La pagination est plus complexe avec l'agrégation, ici c'est simplifié
+        total: products.length,
+        page: 1,
+        limit: products.length // Retourne tout pour l'instant
+      }
+    });
+
+  } catch (error) {
+    console.error('[PRODUCT][GET_ALL_AGGREGATED_STOCK] Erreur:', error.message);
+    res.status(500).json({
+      success: false,
+      message: 'Erreur lors de la récupération des produits avec stock agrégé',
+      error: error.message
+    });
+  }
+};
+
 export default {
   getAllProducts,
   getProduct,
   createProduct,
   updateProduct,
   deleteProduct,
-  getCategories
+  getCategories,
+  getAllProductsWithAggregatedStock // Exporter la nouvelle fonction
 }; 

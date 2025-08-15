@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../models/store.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../controllers/cart_controller.dart';
@@ -13,10 +14,13 @@ import 'invoice_a5_mobile_preview.dart';
 class PaymentMobile extends StatefulWidget {
   final VoidCallback onBack;
   final VoidCallback onAddClient;
+  final Store? currentStore;
+
   const PaymentMobile({
     Key? key,
     required this.onBack,
     required this.onAddClient,
+    this.currentStore,
   }) : super(key: key);
 
   @override
@@ -167,7 +171,9 @@ class _PaymentMobileState extends State<PaymentMobile> {
                             borderRadius: BorderRadius.circular(2),
                             boxShadow: [
                               BoxShadow(
-                                color: const Color(0xFF7717E8).withOpacity(0.18),
+                                color: const Color(
+                                  0xFF7717E8,
+                                ).withOpacity(0.18),
                                 blurRadius: 4,
                                 offset: const Offset(0, 2),
                               ),
@@ -191,11 +197,12 @@ class _PaymentMobileState extends State<PaymentMobile> {
               final total = cart.total;
               return SingleChildScrollView(
                 child: ConstrainedBox(
-                  constraints: BoxConstraints(
-                    minHeight: constraints.maxHeight,
-                  ),
+                  constraints: BoxConstraints(minHeight: constraints.maxHeight),
                   child: Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 18),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 16,
+                      vertical: 18,
+                    ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -203,7 +210,10 @@ class _PaymentMobileState extends State<PaymentMobile> {
                         // Section client
                         const Text(
                           'Client',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Container(
@@ -227,7 +237,9 @@ class _PaymentMobileState extends State<PaymentMobile> {
                             children: [
                               Expanded(
                                 child: _loadingClients
-                                    ? const Center(child: CircularProgressIndicator())
+                                    ? const Center(
+                                        child: CircularProgressIndicator(),
+                                      )
                                     : DropdownButtonFormField<String>(
                                         value: _selectedClientId,
                                         items: _clients
@@ -243,8 +255,9 @@ class _PaymentMobileState extends State<PaymentMobile> {
                                               ),
                                             )
                                             .toList(),
-                                        onChanged: (v) =>
-                                            setState(() => _selectedClientId = v),
+                                        onChanged: (v) => setState(
+                                          () => _selectedClientId = v,
+                                        ),
                                         decoration: const InputDecoration(
                                           labelText: 'Sélectionner un client',
                                           border: OutlineInputBorder(),
@@ -289,7 +302,10 @@ class _PaymentMobileState extends State<PaymentMobile> {
                         const SizedBox(height: 8),
                         const Text(
                           'Total de la facture',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Container(
@@ -335,7 +351,10 @@ class _PaymentMobileState extends State<PaymentMobile> {
                         // Section montant payé
                         const Text(
                           'Montant payé',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         TextFormField(
@@ -358,7 +377,10 @@ class _PaymentMobileState extends State<PaymentMobile> {
                         // Section méthode de paiement
                         const Text(
                           'Méthode de paiement',
-                          style: TextStyle(fontWeight: FontWeight.w600, fontSize: 15),
+                          style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 15,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         Container(
@@ -396,7 +418,8 @@ class _PaymentMobileState extends State<PaymentMobile> {
                                   onChanged: (v) =>
                                       setState(() => _selectedMethod = v!),
                                   decoration: const InputDecoration(
-                                    labelText: 'Sélectionner une méthode de paiement',
+                                    labelText:
+                                        'Sélectionner une méthode de paiement',
                                     border: OutlineInputBorder(),
                                     isDense: true,
                                     contentPadding: EdgeInsets.symmetric(
@@ -412,145 +435,243 @@ class _PaymentMobileState extends State<PaymentMobile> {
                           ),
                         ),
                         const SizedBox(height: 22),
-                        ElevatedButton.icon(
-                          onPressed: () async {
-                            final prefs = await SharedPreferences.getInstance();
-                            final currentUserId = prefs.getString('user_id');
-                            final selectedStoreId = prefs.getString('selected_store_id');
-                            debugPrint('[PAYMENT_MOBILE] LECTURE DEPUIS PREFS: selected_store_id = $selectedStoreId');
-                            if (selectedStoreId == null || selectedStoreId == 'all') {
-                              debugPrint('[UI] Erreur : Aucun magasin valide sélectionné');
-                              if (!mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text(
-                                    'Aucun magasin valide sélectionné. Veuillez sélectionner un magasin.',
-                                  ),
-                                ),
-                              );
-                              return;
-                            }
-                            final amountPaid = double.tryParse(_amountController.text) ?? 0;
-                            if (_selectedClientId == null) {
-                              if (!mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Veuillez sélectionner un client.'),
-                                ),
-                              );
-                              return;
-                            }
-                            if (currentUserId == null) {
-                              if (!mounted) return;
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                  content: Text('Utilisateur ou magasin non trouvé.'),
-                                ),
-                              );
-                              return;
-                            }
-                            final payload = {
-                              "client": _selectedClientId,
-                              "store": selectedStoreId,
-                              "user": currentUserId,
-                              "lines": cart.items.map((item) => {
-                                "product": item.product.id,
-                                "productName": item.product.name,
-                                "quantity": item.quantity,
-                                "unitPrice": item.product.sellingPrice,
-                                "discount": item.discount ?? 0,
-                                "totalLine": item.total,
-                              }).toList(),
-                              "total": cart.total,
-                              "totalInWords": numberToWordsFr(cart.total.toInt()),
-                              "discountTotal": cart.totalDiscount,
-                              "status": amountPaid >= cart.total ? "payee" : "reste_a_payer",
-                              "format": "A5", // Le format sera choisi après
-                              "montantPaye": amountPaid,
-                            };
-                            try {
-  final response = await InvoiceService().createInvoice(payload);
-  final newFacture = response['data'];
+                        Tooltip(
+                          message:
+                              (widget.currentStore?.id == null ||
+                                  widget.currentStore?.id == 'all')
+                              ? 'Veuillez sélectionner un magasin spécifique pour valider la facture.'
+                              : '',
+                          child: ElevatedButton.icon(
+                            onPressed:
+                                (widget.currentStore?.id == null ||
+                                    widget.currentStore?.id == 'all')
+                                ? null
+                                : () async {
+                                    final prefs =
+                                        await SharedPreferences.getInstance();
+                                    final currentUserId = prefs.getString(
+                                      'user_id',
+                                    );
+                                    final selectedStoreId =
+                                        widget.currentStore?.id;
+                                    debugPrint(
+                                      '[PAYMENT_MOBILE] LECTURE DEPUIS WIDGET: selected_store_id = $selectedStoreId',
+                                    );
 
-  if (!mounted) return;
+                                    if (selectedStoreId == null ||
+                                        selectedStoreId == 'all') {
+                                      debugPrint(
+                                        '[UI] Erreur : Aucun magasin valide sélectionné',
+                                      );
+                                      if (!mounted) return;
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'Aucun magasin valide sélectionné. Veuillez sélectionner un magasin.',
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
 
-  try {
-    // Appel de validation transactionnelle (stock, statut, etc.)
-    final selectedStoreId = prefs.getString('selected_store_id');
-    debugPrint('[PAYMENT_MOBILE] Préparation de la validation. Facture ID: ${newFacture['_id']}, Store ID: $selectedStoreId');
-    if (selectedStoreId == null || selectedStoreId == 'all') {
-        debugPrint('[PAYMENT_MOBILE] ERREUR: Tentative de validation avec un storeId invalide.');
-        throw Exception('Tentative de validation avec un storeId invalide.');
-    }
-    await InvoiceService().validateInvoice(newFacture['_id'] ?? newFacture['id'], selectedStoreId);
+                                    final amountPaid =
+                                        double.tryParse(
+                                          _amountController.text,
+                                        ) ??
+                                        0;
 
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Facture créée et validée avec succès !'),
-        duration: Duration(seconds: 1),
-      ),
-    );
-    cart.clear();
+                                    if (_selectedClientId == null) {
+                                      if (!mounted) return;
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'Veuillez sélectionner un client.',
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
 
-    // Afficher le sélecteur de format
-    final format = await showReceiptFormatSelector(context: context);
+                                    if (currentUserId == null) {
+                                      if (!mounted) return;
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        const SnackBar(
+                                          content: Text(
+                                            'Utilisateur ou magasin non trouvé.',
+                                          ),
+                                        ),
+                                      );
+                                      return;
+                                    }
 
-    if (format == null) return; // L'utilisateur a fermé la modale
+                                    final payload = {
+                                      "client": _selectedClientId,
+                                      "store": selectedStoreId,
+                                      "user": currentUserId,
+                                      "lines": cart.items
+                                          .map(
+                                            (item) => {
+                                              "product": item.product.id,
+                                              "productName": item.product.name,
+                                              "quantity": item.quantity,
+                                              "unitPrice":
+                                                  item.product.sellingPrice,
+                                              "discount": item.discount ?? 0,
+                                              "totalLine": item.total,
+                                            },
+                                          )
+                                          .toList(),
+                                      "total": cart.total,
+                                      "totalInWords": numberToWordsFr(
+                                        cart.total.toInt(),
+                                      ),
+                                      "discountTotal": cart.totalDiscount,
+                                      "status": amountPaid >= cart.total
+                                          ? "payee"
+                                          : "reste_a_payer",
+                                      "format":
+                                          "A5", // Le format sera choisi après
+                                      "montantPaye": amountPaid,
+                                    };
 
-    if (!mounted) return;
+                                    try {
+                                      final response = await InvoiceService()
+                                          .createInvoice(payload);
+                                      final newFacture = response['data'];
 
-    // Naviguer vers l'aperçu correspondant
-    if (format == ReceiptFormat.a5) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => InvoiceA5MobilePreview(facture: newFacture),
-        ),
-      );
-    } else if (format == ReceiptFormat.pos) {
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (_) => InvoicePOSMobileLayout(facture: newFacture),
-        ),
-      );
-    }
-  } catch (e) {
-    if (!mounted) return;
-    // Ici, la facture a été créée mais la validation (stock, transaction) a échoué : rollback effectué côté backend
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Erreur validation facture : $e'),
-        duration: const Duration(seconds: 4),
-      ),
-    );
-    // Ne pas vider le panier, ne pas afficher le reçu
-    return;
-  }
-} catch (e) {
-  if (!mounted) return;
-  ScaffoldMessenger.of(context).showSnackBar(
-    SnackBar(
-      content: Text('Erreur création facture : $e'),
-    ),
-  );
-}
-                          },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF43A047),
-                            padding: const EdgeInsets.symmetric(vertical: 16, horizontal: 8),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                                      if (!mounted) return;
+
+                                      try {
+                                        // Appel de validation transactionnelle (stock, statut, etc.)
+                                        final selectedStoreId =
+                                            widget.currentStore?.id;
+                                        debugPrint(
+                                          '[PAYMENT_MOBILE] Préparation de la validation. Facture ID: ${newFacture['_id']}, Store ID: $selectedStoreId',
+                                        );
+
+                                        if (selectedStoreId == null ||
+                                            selectedStoreId == 'all') {
+                                          debugPrint(
+                                            '[PAYMENT_MOBILE] ERREUR: Tentative de validation avec un storeId invalide.',
+                                          );
+                                          throw Exception(
+                                            'Tentative de validation avec un storeId invalide.',
+                                          );
+                                        }
+
+                                        await InvoiceService().validateInvoice(
+                                          newFacture['_id'] ?? newFacture['id'],
+                                          selectedStoreId,
+                                        );
+
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Facture créée et validée avec succès !',
+                                            ),
+                                            duration: Duration(seconds: 1),
+                                          ),
+                                        );
+                                        cart.clear();
+
+                                        // Afficher le sélecteur de format
+                                        final format =
+                                            await showReceiptFormatSelector(
+                                              context: context,
+                                            );
+
+                                        if (format == null)
+                                          return; // L'utilisateur a fermé la modale
+
+                                        if (!mounted) return;
+
+                                        // Naviguer vers l'aperçu correspondant
+                                        if (format == ReceiptFormat.a5) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  InvoiceA5MobilePreview(
+                                                    facture: newFacture,
+                                                  ),
+                                            ),
+                                          );
+                                        } else if (format ==
+                                            ReceiptFormat.pos) {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (_) =>
+                                                  InvoicePOSMobileLayout(
+                                                    facture: newFacture,
+                                                  ),
+                                            ),
+                                          );
+                                        }
+                                      } catch (e) {
+                                        if (!mounted) return;
+                                        // Ici, la facture a été créée mais la validation (stock, transaction) a échoué : rollback effectué côté backend
+                                        ScaffoldMessenger.of(
+                                          context,
+                                        ).showSnackBar(
+                                          SnackBar(
+                                            content: Text(
+                                              'Erreur validation facture : $e',
+                                            ),
+                                            duration: const Duration(
+                                              seconds: 4,
+                                            ),
+                                          ),
+                                        );
+                                        // Ne pas vider le panier, ne pas afficher le reçu
+                                        return;
+                                      }
+                                    } catch (e) {
+                                      if (!mounted) return;
+                                      ScaffoldMessenger.of(
+                                        context,
+                                      ).showSnackBar(
+                                        SnackBar(
+                                          content: Text(
+                                            'Erreur création facture : $e',
+                                          ),
+                                        ),
+                                      );
+                                    }
+                                  },
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: const Color(0xFF43A047),
+                              padding: const EdgeInsets.symmetric(
+                                vertical: 16,
+                                horizontal: 8,
+                              ),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10),
+                              ),
+                              elevation: 2,
+                              minimumSize: const Size(
+                                double.infinity,
+                                50,
+                              ), // Hauteur minimale fixe
                             ),
-                            elevation: 2,
-                            minimumSize: const Size(double.infinity, 50), // Hauteur minimale fixe
-                          ),
-                          icon: const Icon(Icons.check_circle, color: Colors.white),
-                          label: const Text(
-                            'Valider la facture',
-                            style: TextStyle(
-                              fontWeight: FontWeight.bold,
+                            icon: const Icon(
+                              Icons.check_circle,
                               color: Colors.white,
+                            ),
+                            label: const Text(
+                              'Valider la facture',
+                              style: TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),

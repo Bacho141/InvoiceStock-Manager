@@ -8,6 +8,13 @@ const invoiceHistorySchema = new mongoose.Schema({
   reason: { type: String },
 }, { _id: false });
 
+const paymentSchema = new mongoose.Schema({
+  date: { type: Date, default: Date.now },
+  amount: { type: Number, required: true },
+  method: { type: String, required: true, enum: ['espece', 'carte', 'virement', 'autre'] },
+  user: { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
+}, { _id: false });
+
 const invoiceSchema = new mongoose.Schema({
   number: {
     type: String,
@@ -62,7 +69,7 @@ const invoiceSchema = new mongoose.Schema({
   },
   status: {
     type: String,
-    enum: ['payee', 'reste_a_payer', 'annulee', 'en_attente'],
+    enum: ['payee', 'reste_a_payer', 'annulee', 'en_attente', 'validée'],
     required: true,
   },
   format: {
@@ -71,6 +78,7 @@ const invoiceSchema = new mongoose.Schema({
     required: true,
   },
   history: [invoiceHistorySchema],
+  paymentHistory: [paymentSchema],
   cancelledBy: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',

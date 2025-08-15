@@ -3,55 +3,19 @@ import '../../widgets/sale/catalog_panel.dart';
 import '../../widgets/sale/cart_panel.dart';
 import '../../widgets/sale/client_payment_panel.dart';
 import '../../widgets/sale/sale_action_bar.dart';
-import '../../widgets/store_selector.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../models/store.dart';
 
-class SaleDesktopView extends StatefulWidget {
-  const SaleDesktopView({Key? key}) : super(key: key);
+class SaleDesktopView extends StatelessWidget {
+  final Store? currentStore;
 
-  @override
-  State<SaleDesktopView> createState() => _SaleDesktopViewState();
-}
-
-class _SaleDesktopViewState extends State<SaleDesktopView> {
-  String? _selectedStoreId;
-
-  @override
-  void initState() {
-    super.initState();
-    // Load selected storeId from SharedPreferences if available
-    _loadSelectedStoreId();
-  }
-
-  Future<void> _loadSelectedStoreId() async {
-    final prefs = await SharedPreferences.getInstance();
-    setState(() {
-      _selectedStoreId = prefs.getString('selected_store_id');
-    });
-  }
-
-  void _onStoreChanged(Store store) async {
-    setState(() {
-      _selectedStoreId = store.id;
-    });
-    final prefs = await SharedPreferences.getInstance();
-    await prefs.setString('selected_store_id', store.id);
-  }
+  const SaleDesktopView({Key? key, this.currentStore}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final selectedStoreId = currentStore?.id;
+
     return Column(
       children: [
-        // StoreSelector intégré en haut
-        Padding(
-          padding: const EdgeInsets.symmetric(vertical: 8.0),
-          child: StoreSelector(
-            onStoreChanged: _onStoreChanged,
-            currentStore:
-                null, // Optionnel: peut être reconstruit pour afficher le store courant
-          ),
-        ),
         Expanded(
           child: LayoutBuilder(
             builder: (context, constraints) {
@@ -62,19 +26,19 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                   children: [
                     SizedBox(
                       height: 320,
-                      child: CatalogPanel(key: ValueKey<String?>(_selectedStoreId), storeId: _selectedStoreId),
+                      child: CatalogPanel(key: ValueKey<String?>(selectedStoreId), storeId: selectedStoreId),
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
                       height: 320,
-                      child: CartPanel(storeId: _selectedStoreId),
+                      child: CartPanel(storeId: selectedStoreId),
                     ),
                     const SizedBox(height: 12),
                     SizedBox(
                       height: 400,
                       child: ClientPaymentPanel(
                         isTablet: true,
-                        storeId: _selectedStoreId,
+                        storeId: selectedStoreId,
                       ),
                     ),
                   ],
@@ -85,17 +49,17 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
                   children: [
                     Expanded(
                       flex: 3,
-                      child: CatalogPanel(key: ValueKey<String?>(_selectedStoreId), storeId: _selectedStoreId),
+                      child: CatalogPanel(key: ValueKey<String?>(selectedStoreId), storeId: selectedStoreId),
                     ),
                     VerticalDivider(width: 1),
                     Expanded(
                       flex: 4,
-                      child: CartPanel(storeId: _selectedStoreId),
+                      child: CartPanel(storeId: selectedStoreId),
                     ),
                     VerticalDivider(width: 1),
                     Expanded(
                       flex: 3,
-                      child: ClientPaymentPanel(storeId: _selectedStoreId),
+                      child: ClientPaymentPanel(storeId: selectedStoreId),
                     ),
                   ],
                 );
@@ -103,7 +67,7 @@ class _SaleDesktopViewState extends State<SaleDesktopView> {
             },
           ),
         ),
-        SaleActionBar(storeId: _selectedStoreId),
+        SaleActionBar(storeId: selectedStoreId),
       ],
     );
   }

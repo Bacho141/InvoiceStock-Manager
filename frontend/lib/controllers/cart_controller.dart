@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter/widgets.dart';
 import '../models/cart.dart';
 import '../models/cart_item.dart';
 import '../models/product.dart';
@@ -28,12 +29,12 @@ class CartController extends ChangeNotifier {
 
   void setAmountPaid(double amount) {
     _amountPaid = amount;
-    notifyListeners();
+    _notifyListenersAfterFrame();
   }
 
   void setPaymentMethod(String method) {
     _paymentMethod = method;
-    notifyListeners();
+    _notifyListenersAfterFrame();
   }
   // --- End of state for payment ---
 
@@ -55,13 +56,13 @@ class CartController extends ChangeNotifier {
         CartItem(product: product, quantity: quantity, discount: discount),
       );
     }
-    notifyListeners();
+    _notifyListenersAfterFrame();
     return true;
   }
 
   void removeProduct(String productId) {
     _cart.items.removeWhere((item) => item.product.id == productId);
-    notifyListeners();
+    _notifyListenersAfterFrame();
   }
 
   void updateQuantity(String productId, int quantity) {
@@ -70,7 +71,7 @@ class CartController extends ChangeNotifier {
     );
     if (index >= 0) {
       _cart.items[index].quantity = quantity;
-      notifyListeners();
+      _notifyListenersAfterFrame();
     }
   }
 
@@ -80,13 +81,13 @@ class CartController extends ChangeNotifier {
     );
     if (index >= 0) {
       _cart.items[index].discount = discount;
-      notifyListeners();
+      _notifyListenersAfterFrame();
     }
   }
 
   void setClient(User? client) {
     _cart.client = client;
-    notifyListeners();
+    _notifyListenersAfterFrame();
   }
 
   void clear() {
@@ -94,7 +95,7 @@ class CartController extends ChangeNotifier {
     // Reset payment info as well
     _amountPaid = 0;
     _paymentMethod = 'especes';
-    notifyListeners();
+    _notifyListenersAfterFrame();
   }
 
   double get subtotal => _cart.subtotal;
@@ -124,6 +125,12 @@ class CartController extends ChangeNotifier {
       debugPrint('[CART_CONTROLLER] ERREUR lors de la validation: $e');
       rethrow;
     }
+  }
+
+  void _notifyListenersAfterFrame() {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      notifyListeners();
+    });
   }
 }
 

@@ -610,52 +610,54 @@ class _StockHistoryModalState extends State<StockHistoryModal> {
             ],
           ),
           child: SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: DataTable(
-              headingRowColor: MaterialStateProperty.all(
-                const Color(0xFF7717E8),
-              ),
-              headingTextStyle: const TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.bold,
-                fontSize: 14,
-              ),
-              dataRowColor: MaterialStateProperty.resolveWith<Color?>((states) {
-                if (states.contains(MaterialState.hovered)) {
-                  return const Color(0xFFF8F8FA);
-                }
-                return null;
-              }),
-              columnSpacing: 18,
-              horizontalMargin: 14,
-              columns: const [
-                DataColumn(label: Text('Date/Heure')),
-                DataColumn(label: Text('Type')),
-                DataColumn(label: Text('Quantité')),
-                DataColumn(label: Text('Stock Résultant')),
-                DataColumn(label: Text('Utilisateur')),
-                DataColumn(label: Text('Référence/Raison')),
-              ],
-              rows: _controller.movements
-                  .map(
-                    (movement) => DataRow(
-                      cells: [
-                        DataCell(Text(_formatDateTime(movement.createdAt))),
-                        DataCell(_buildMouvementBadge(movement.type)),
-                        DataCell(
-                          Text(
-                            '${movement.quantity > 0 ? '+' : ''}${movement.quantity}',
+            child: SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: DataTable(
+                headingRowColor: MaterialStateProperty.all(
+                  const Color(0xFF7717E8),
+                ),
+                headingTextStyle: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 14,
+                ),
+                dataRowColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.hovered)) {
+                    return const Color(0xFFF8F8FA);
+                  }
+                  return null;
+                }),
+                columnSpacing: 18,
+                horizontalMargin: 14,
+                columns: const [
+                  DataColumn(label: Text('Date/Heure')),
+                  DataColumn(label: Text('Type')),
+                  DataColumn(label: Text('Quantité')),
+                  DataColumn(label: Text('Stock Résultant')),
+                  DataColumn(label: Text('Utilisateur')),
+                  DataColumn(label: Text('Référence/Raison')),
+                ],
+                rows: _controller.movements
+                    .map(
+                      (movement) => DataRow(
+                        cells: [
+                          DataCell(Text(_formatDateTime(movement.createdAt))),
+                          DataCell(_buildMouvementBadge(movement.type)),
+                          DataCell(
+                            Text(
+                              '${movement.quantity > 0 ? '+' : ''}${movement.quantity}',
+                            ),
                           ),
-                        ),
-                        DataCell(Text('${movement.newQuantity}')),
-                        DataCell(
-                          Text(movement.userName ?? 'Utilisateur inconnu'),
-                        ),
-                        DataCell(Text(movement.reason ?? '-')),
-                      ],
-                    ),
-                  )
-                  .toList(),
+                          DataCell(Text('${movement.newQuantity}')),
+                          DataCell(
+                            Text(movement.userName ?? 'Utilisateur inconnu'),
+                          ),
+                          DataCell(Text(movement.reason ?? '-')),
+                        ],
+                      ),
+                    )
+                    .toList(),
+              ),
             ),
           ),
         ),

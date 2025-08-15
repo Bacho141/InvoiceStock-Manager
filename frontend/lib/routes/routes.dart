@@ -4,7 +4,7 @@ import '../screens/login_screen.dart';
 import '../screens/dashboard_screen.dart';
 import '../screens/user_management_screen.dart';
 import '../screens/new_sale_screen.dart';
-import '../screens/invoices_screen.dart';
+import '../screens/managementInvoice/invoices_list_screen.dart';
 import '../screens/products_screen.dart';
 import '../screens/reports_screen.dart';
 import '../screens/settings_screen.dart';
@@ -20,7 +20,7 @@ class AppRoutes {
     '/dashboard': (context) => const DashboardScreen(),
     '/user-management': (context) => const UserManagementScreen(),
     '/new-sale': (context) => const NewSaleScreen(),
-    '/invoices': (context) => const InvoicesScreen(),
+    '/invoices': (context) => const InvoicesListScreen(),
     '/products': (context) => const ProductsScreen(),
     '/reports': (context) => const ReportsScreen(),
     '/settings': (context) => const SettingsScreen(),

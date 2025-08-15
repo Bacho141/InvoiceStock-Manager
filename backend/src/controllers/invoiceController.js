@@ -88,6 +88,11 @@ const invoiceController = {
           reason: 'Création de la facture',
         },
       ];
+
+      // Calcul du statut de la facture
+      const total = invoiceData.total || 0;
+      const montantPaye = invoiceData.montantPaye || 0;
+      invoiceData.status = invoiceData.status || (montantPaye >= total ? 'payee' : 'reste_a_payer');
       // Décrémenter stock + enregistrer mouvement pour chaque ligne
       for (const line of invoiceData.lines) {
         const stock = await Stock.findOne({ productId: line.product, storeId: invoiceData.store }).session(session);
@@ -144,12 +149,74 @@ const invoiceController = {
     }
   },
 
-  // [INVOICE][GET] Lister les factures
+  // [INVOICE][GET] Lister les factures avec filtres et pagination
   async getInvoices(req, res) {
-    console.log('[INVOICE][GET] Récupération de la liste des factures');
+    console.log(`[INVOICE][GET] Récupération de la liste des factures avec query:`, req.query);
     try {
-      const invoices = await Invoice.find().populate('client store user');
-      res.json({ success: true, data: invoices });
+      const { page = 1, limit = 10, storeId, status, search, period, startDate, endDate } = req.query;
+
+      const query = {};
+
+      if (storeId) {
+        query.store = storeId;
+      }
+      if (status) {
+        query.status = status;
+      }
+      if (search) {
+        const searchRegex = new RegExp(search, 'i');
+        const clients = await Client.find({
+          $or: [
+            { firstName: searchRegex },
+            { lastName: searchRegex },
+          ],
+        }).select('_id');
+        const clientIds = clients.map(c => c._id);
+        
+        query.$or = [
+          { number: searchRegex },
+          { client: { $in: clientIds } }
+        ];
+      }
+      
+      // Gérer la période
+      if (startDate && endDate) {
+        query.date = { $gte: new Date(startDate), $lte: new Date(endDate) };
+      } else if (startDate) {
+        const start = new Date(startDate);
+        start.setHours(0, 0, 0, 0);
+        const end = new Date(startDate);
+        end.setHours(23, 59, 59, 999);
+        query.date = { $gte: start, $lte: end };
+      } else if (period) {
+        const now = new Date();
+        let startDatePeriod;
+        if (period === 'today') {
+          startDatePeriod = new Date(now.setHours(0, 0, 0, 0));
+        } else if (period === 'this_month') {
+          startDatePeriod = new Date(now.getFullYear(), now.getMonth(), 1);
+        } else if (period === 'this_year') {
+          startDatePeriod = new Date(now.getFullYear(), 0, 1);
+        }
+        if(startDatePeriod) {
+            query.date = { $gte: startDatePeriod };
+        }
+      }
+
+      const total = await Invoice.countDocuments(query);
+      const invoices = await Invoice.find(query)
+        .populate('client store user')
+        .sort({ date: -1 })
+        .skip((page - 1) * limit)
+        .limit(parseInt(limit));
+
+      res.json({
+        success: true,
+        data: invoices,
+        total,
+        currentPage: parseInt(page),
+        totalPages: Math.ceil(total / limit),
+      });
     } catch (error) {
       console.error('[INVOICE][GET] Erreur:', error.message);
       res.status(500).json({ message: 'Erreur lors de la récupération des factures.' });
@@ -172,51 +239,83 @@ const invoiceController = {
   },
 
   // [INVOICE][PUT] Modifier une facture (optionnel)
+   // [INVOICE][PUT] Modifier une facture (paiements, etc.)
   async updateInvoice(req, res) {
     console.log('[INVOICE][PUT] Modification de la facture', req.params.id);
     try {
-      const update = req.body;
-      // Validation métier
-      if (update.lines) {
-        for (const line of update.lines) {
-          if (!line.quantity || line.quantity <= 0) {
-            return res.status(400).json({ message: `Quantité invalide pour le produit ${line.productName || line.product}` });
-          }
-        }
-      }
-      // Recalcul des totaux si lines fourni
-      if (update.lines) {
-        update.total = update.lines.reduce((sum, l) => sum + (l.totalLine || 0), 0);
-        update.discountTotal = update.lines.reduce((sum, l) => sum + (l.discount || 0), 0);
-      }
-      // Validation montant payé
-      if (update.montantPaye && update.total && update.montantPaye > update.total) {
-        return res.status(400).json({ message: 'Le montant payé ne peut pas dépasser le total.' });
-      }
-      // Ajout historique
-      const invoiceBefore = await Invoice.findById(req.params.id);
-      if (!invoiceBefore) {
-        return res.status(404).json({ message: 'Facture non trouvée.' });
-      }
-      const userId = (req.user && req.user._id) ? req.user._id : (invoiceBefore.user ? invoiceBefore.user : undefined);
-      if (!userId) {
-        console.error('[INVOICE][PUT] Aucun utilisateur trouvé pour l\'historique.');
-        return res.status(400).json({ message: 'Impossible de déterminer l\'utilisateur pour l\'historique.' });
-      }
-      const historyEntry = {
-        action: 'update',
-        user: userId,
-        date: new Date(),
-        reason: 'Modification du reçu via POS',
-      };
-      if (!update.history) update.history = invoiceBefore.history || [];
-      update.history.push(historyEntry);
-      // Mise à jour
-      const invoice = await Invoice.findByIdAndUpdate(req.params.id, update, { new: true });
+      const { payment, ...otherUpdates } = req.body;
+      const { id: invoiceId } = req.params;
+
+      const invoice = await Invoice.findById(invoiceId);
       if (!invoice) {
         return res.status(404).json({ message: 'Facture non trouvée.' });
       }
-      res.json({ success: true, data: invoice });
+
+      const userId = req.user?._id || invoice.user;
+      if (!userId) {
+        return res.status(400).json({ message: 'Impossible de déterminer l\'utilisateur pour l\'historique.' });
+      }
+
+      // --- Logique de mise à jour générale (inspirée de l'ancienne version) ---
+      if (Object.keys(otherUpdates).length > 0) {
+        // Validation métier pour les lignes
+        if (otherUpdates.lines) {
+          for (const line of otherUpdates.lines) {
+            if (!line.quantity || line.quantity <= 0) {
+              return res.status(400).json({ message: `Quantité invalide pour le produit ${line.productName || line.product}` });
+            }
+          }
+          // Recalcul des totaux si les lignes changent
+          otherUpdates.total = otherUpdates.lines.reduce((sum, l) => sum + (l.totalLine || 0), 0);
+          otherUpdates.discountTotal = otherUpdates.lines.reduce((sum, l) => sum + (l.discount || 0), 0);
+        }
+        
+        // Appliquer les autres mises à jour
+        Object.assign(invoice, otherUpdates);
+
+        invoice.history.push({
+          action: 'update',
+          user: userId,
+          date: new Date(),
+          reason: 'Modification manuelle de la facture',
+        });
+      }
+
+      // --- Gestion d'un nouveau paiement ---
+      if (payment && payment.amount > 0) {
+        const paymentAmount = Number(payment.amount);
+        
+        if ((invoice.montantPaye + paymentAmount) > invoice.total) {
+            return res.status(400).json({ message: 'Le montant total payé ne peut pas dépasser le total de la facture.' });
+        }
+
+        invoice.paymentHistory.push({
+          amount: paymentAmount,
+          method: payment.method || 'espece',
+          user: userId,
+          date: new Date(),
+        });
+
+        invoice.montantPaye += paymentAmount;
+
+        if (invoice.montantPaye >= invoice.total) {
+          invoice.status = 'payee';
+        } else {
+          invoice.status = 'reste_a_payer';
+        }
+        
+        invoice.history.push({
+          action: 'payment',
+          user: userId,
+          date: new Date(),
+          reason: `Paiement de ${paymentAmount} par ${payment.method || 'espece'}`, 
+        });
+      }
+      
+      const updatedInvoice = await invoice.save();
+      const populatedInvoice = await Invoice.findById(updatedInvoice._id).populate('client store user');
+
+      res.json({ success: true, data: populatedInvoice });
     } catch (error) {
       console.error('[INVOICE][PUT] Erreur:', error.message);
       res.status(500).json({ message: 'Erreur lors de la modification de la facture.' });

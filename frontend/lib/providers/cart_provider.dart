@@ -37,8 +37,8 @@ class CartProvider extends ChangeNotifier {
       product.id,
       quantity,
       sessionId: sessionId,
-      duration: Duration(minutes: 30), // réservation temporaire
-    ) == true;
+      duration: const Duration(minutes: 30), // réservation temporaire
+    );
     if (!reserved) {
       // Échec réservation
       return false;
@@ -107,7 +107,7 @@ if (storeId == null || storeId == 'default') {
   throw Exception('Aucun magasin sélectionné ou storeId invalide lors de la libération des réservations.');
 }
       final sessionId = prefs.getString('session_id');
-      if (storeId != null && sessionId != null) {
+      if (sessionId != null) {
         final stockService = StockService();
         await stockService.releaseAllSessionReservations(storeId, sessionId: sessionId);
         debugPrint('[PROVIDER][CartProvider] Réservations libérées lors du clear()');

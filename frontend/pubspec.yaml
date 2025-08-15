@@ -50,6 +50,7 @@ dependencies:
     # CONSERVÉ : Pour la gestion de la file d'attente (FIFO).
   collection: ^1.19.1
 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

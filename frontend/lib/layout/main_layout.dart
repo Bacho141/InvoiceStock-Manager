@@ -5,6 +5,8 @@ import '../controllers/auth_controller.dart';
 import '../widgets/store_selector.dart'; // NOUVEAU
 import '../models/store.dart'; // NOUVEAU
 import '../screens/stock/stocks_screen.dart'; // NOUVEAU
+import '../screens/sale/sale_desktop_view.dart';
+import '../screens/sale/sale_mobile_view.dart';
 
 class MainLayout extends StatefulWidget {
   final Widget child;
@@ -525,12 +527,14 @@ class _MainLayoutState extends State<MainLayout> {
                     const SizedBox(height: 16),
                     // Contenu de la page
                     Expanded(
-                      child: widget.currentRoute == '/stocks'
-                          ? StocksScreen(
-                              key: ValueKey(_currentStore?.id),
-                              currentStore: _currentStore,
-                            )
-                          : widget.child,
+                      child: widget.currentRoute == '/new-sale'
+                          ? SaleDesktopView(currentStore: _currentStore)
+                          : widget.currentRoute == '/stocks'
+                              ? StocksScreen(
+                                  key: ValueKey(_currentStore?.id),
+                                  currentStore: _currentStore,
+                                )
+                              : widget.child,
                     ),
                   ],
                 ),
@@ -734,12 +738,14 @@ class _MainLayoutState extends State<MainLayout> {
             ),
             // Contenu de la page
             Expanded(
-              child: widget.currentRoute == '/stocks'
-                  ? StocksScreen(
-                      key: ValueKey(_currentStore?.id),
-                      currentStore: _currentStore,
-                    )
-                  : widget.child,
+              child: widget.currentRoute == '/new-sale'
+                  ? SaleMobileView(currentStore: _currentStore)
+                  : widget.currentRoute == '/stocks'
+                      ? StocksScreen(
+                          key: ValueKey(_currentStore?.id),
+                          currentStore: _currentStore,
+                        )
+                      : widget.child,
             ),
           ],
         ),

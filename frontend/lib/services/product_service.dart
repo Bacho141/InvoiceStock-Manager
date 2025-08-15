@@ -35,10 +35,41 @@ class ProductService {
     }
   }
 
+  /// Récupère tous les produits avec leur stock agrégé sur tous les magasins accessibles.
+  Future<List<Map<String, dynamic>>> getProductsWithAggregatedStock() async {
+    debugPrint('[ProductService][getProductsWithAggregatedStock] Chargement produits avec stock agrégé');
+    final prefs = await SharedPreferences.getInstance();
+    final token = prefs.getString('jwt_token');
+    final url = '${ApiUrls.products}/all-with-stock';
+
+    try {
+      final response = await http.get(
+        Uri.parse(url),
+        headers: {'Authorization': 'Bearer $token'},
+      );
+
+      if (response.statusCode == 200) {
+        debugPrint('[ProductService][getProductsWithAggregatedStock] Raw response: ${response.body}');
+        final data = jsonDecode(response.body);
+        return List<Map<String, dynamic>>.from(data['data'] ?? []);
+      } else {
+        debugPrint('[ProductService][getProductsWithAggregatedStock] Erreur: ${response.statusCode} - ${response.body}');
+        throw Exception('Erreur chargement produits avec stock agrégé: ${response.body}');
+      }
+    } catch (e) {
+      debugPrint('[ProductService][getProductsWithAggregatedStock] Erreur: $e');
+      throw Exception('Erreur chargement produits avec stock agrégé: $e');
+    }
+  }
+
   /// Récupère les produits enrichis avec les données de stock pour un magasin spécifique
   Future<List<Map<String, dynamic>>> getProductsWithStock(String storeId) async {
     debugPrint('[ProductService][getProductsWithStock] Chargement produits avec stock pour magasin $storeId');
     
+    if (storeId == 'all') {
+      return getProductsWithAggregatedStock();
+    }
+
     try {
       // Récupérer les produits
       final products = await getProducts();

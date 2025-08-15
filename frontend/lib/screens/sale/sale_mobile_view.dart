@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import '../../models/store.dart';
 import 'mobile/add_products_mobile.dart';
 import 'mobile/cart_mobile.dart';
 import 'mobile/payment_mobile.dart';
 import 'mobile/add_client_mobile.dart';
 
 class SaleMobileView extends StatefulWidget {
-  const SaleMobileView({Key? key}) : super(key: key);
+  final Store? currentStore;
+
+  const SaleMobileView({Key? key, this.currentStore}) : super(key: key);
 
   @override
   State<SaleMobileView> createState() => _SaleMobileViewState();
@@ -25,7 +28,7 @@ class _SaleMobileViewState extends State<SaleMobileView> {
     Widget content;
     switch (_step) {
       case 0:
-        content = AddProductsMobile(onNext: () => _goToStep(1));
+        content = AddProductsMobile(onNext: () => _goToStep(1), currentStore: widget.currentStore);
         break;
       case 1:
         content = CartMobile(
@@ -37,6 +40,7 @@ class _SaleMobileViewState extends State<SaleMobileView> {
         content = PaymentMobile(
           onBack: () => _goToStep(1),
           onAddClient: () => _goToStep(3),
+          currentStore: widget.currentStore,
         );
         break;
       case 3:
@@ -46,7 +50,7 @@ class _SaleMobileViewState extends State<SaleMobileView> {
         );
         break;
       default:
-        content = AddProductsMobile(onNext: () => _goToStep(1));
+        content = AddProductsMobile(onNext: () => _goToStep(1), currentStore: widget.currentStore);
     }
     return Scaffold(body: SafeArea(child: content));
   }

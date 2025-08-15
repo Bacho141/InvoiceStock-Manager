@@ -1,12 +1,12 @@
 import express from 'express';
 import invoiceController from '../controllers/invoiceController.js';
 import { checkStoreAccess } from '../middleware/storeAccessMiddleware.js';
-
+import { verifyToken } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 // Créer une facture
-router.post('/', invoiceController.createInvoice);
+router.post('/', verifyToken, invoiceController.createInvoice);
 // Lister les factures
 router.get('/', invoiceController.getInvoices);
 // Détail d'une facture
@@ -25,6 +25,6 @@ router.patch('/:id/add-lines', invoiceController.addLinesToInvoice);
 router.patch('/:id/remove-line', invoiceController.removeLineFromInvoice);
 
 // Validation finale de la facture
-router.post('/:id/validate/:storeId', checkStoreAccess, invoiceController.validateInvoice);
+router.post('/:id/validate/:storeId', verifyToken, checkStoreAccess, invoiceController.validateInvoice);
 
 export default router; 
