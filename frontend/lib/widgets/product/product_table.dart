@@ -14,9 +14,12 @@ class ProductTable extends StatelessWidget {
     required this.onShowActions,
   });
 
-  String _getStockStatus(int stock, int minStock) {
-    if (stock == 0) return 'Rupture';
-    if (stock <= minStock) return 'Bas';
+  String _getStockStatus(int? stock, int? minStock) {
+    final currentStock = stock ?? 0;
+    final minimumStock = minStock ?? 0;
+
+    if (currentStock == 0) return 'Rupture';
+    if (currentStock <= minimumStock) return 'Bas';
     return 'Normal';
   }
 
@@ -89,10 +92,10 @@ class ProductTable extends StatelessWidget {
             ],
             rows: products.map((product) {
               debugPrint('[VIEW][ProductTable] Product data: $product');
-              final stock = product['stock'] ?? 0;
-              final minStock = product['minStock'] ?? 0;
-              final marginValue = product['marginValue'] ?? 0;
-              final margin = (product['margin'] ?? 0).toDouble();
+              final stock = product['stock'] as int? ?? 0;
+              final minStock = product['minStockLevel'] as int? ?? 0;
+              final marginValue = product['marginValue'] as double? ?? 0.0;
+              final margin = (product['margin'] as double? ?? 0.0);
               final stockStatus = _getStockStatus(stock, minStock);
               return DataRow(
                 cells: [

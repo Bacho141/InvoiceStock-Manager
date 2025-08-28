@@ -42,7 +42,8 @@ class InvoiceProvider extends ChangeNotifier {
   int get totalInvoices => _totalInvoices;
   int get pageSize => _pageSize;
   Set<String> get selectedInvoices => _selectedInvoices;
-  bool get areAllSelected => _invoices.isNotEmpty && _selectedInvoices.length == _invoices.length;
+  bool get areAllSelected =>
+      _invoices.isNotEmpty && _selectedInvoices.length == _invoices.length;
 
   String get periodFilterText {
     if (_startDate != null && _endDate != null) {
@@ -70,7 +71,7 @@ class InvoiceProvider extends ChangeNotifier {
   Future<void> _initialize() async {
     final prefs = await SharedPreferences.getInstance();
     _storeId = prefs.getString('selected_store_id');
-    
+
     if (_storeId != null && _storeId!.isNotEmpty) {
       await loadInvoices();
     } else {
@@ -115,9 +116,11 @@ class InvoiceProvider extends ChangeNotifier {
       }
 
       final response = await _invoiceService.getInvoices(filters: filters);
-      final invoicesData = List<Map<String, dynamic>>.from(response['data'] ?? []);
+      final invoicesData = List<Map<String, dynamic>>.from(
+        response['data'] ?? [],
+      );
       _invoices = invoicesData.map((data) => Invoice.fromJson(data)).toList();
-      
+
       _totalInvoices = response['total'] ?? 0;
       _totalPages = response['totalPages'] ?? 1;
       _currentPage = response['currentPage'] ?? 1;
@@ -203,8 +206,91 @@ class InvoiceProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Télécharge les factures sélectionnées en ZIP
+  Future<String> downloadSelectedInvoicesZIP() async {
+    if (_selectedInvoices.isEmpty) {
+      throw Exception('Aucune facture sélectionnée');
+    }
+
+    final selectedIds = _selectedInvoices.toList();
+    debugPrint(
+      '[InvoiceProvider] Téléchargement ZIP pour ${selectedIds.length} factures: ${selectedIds.join(", ")}',
+    );
+
+    try {
+      final downloadUrl = await _invoiceService.downloadInvoicesZIP(
+        selectedIds,
+      );
+      debugPrint(
+        '[InvoiceProvider] URL de téléchargement ZIP générée: $downloadUrl',
+      );
+      return downloadUrl;
+    } catch (e) {
+      debugPrint('[InvoiceProvider] Erreur téléchargement ZIP: $e');
+      throw Exception('Erreur lors du téléchargement ZIP: $e');
+    }
+  }
+
   Future<void> refresh() async {
     _currentPage = 1;
     await loadInvoices();
+  }
+
+  // Méthode pour la pagination infinie (chargement de pages supplémentaires)
+  Future<void> loadMoreInvoices() async {
+    // Vérifications de sécurité
+    if (_isLoading) return;
+    if (_currentPage >= _totalPages) return;
+    if (_storeId == null) return;
+
+    final nextPage = _currentPage + 1;
+    _isLoading = true;
+    notifyListeners();
+
+    try {
+      final filters = <String, String>{
+        'storeId': _storeId!,
+        'page': nextPage.toString(),
+        'limit': _pageSize.toString(),
+      };
+      if (_statusFilter != null && _statusFilter!.isNotEmpty) {
+        filters['status'] = _statusFilter!;
+      }
+      if (_periodFilter != null && _periodFilter!.isNotEmpty) {
+        filters['period'] = _periodFilter!;
+      }
+      if (_searchTerm != null && _searchTerm!.isNotEmpty) {
+        filters['search'] = _searchTerm!;
+      }
+      if (_startDate != null) {
+        filters['startDate'] = _startDate!.toIso8601String();
+      }
+      if (_endDate != null) {
+        filters['endDate'] = _endDate!.toIso8601String();
+      }
+
+      final response = await _invoiceService.getInvoices(filters: filters);
+      final newInvoicesData = List<Map<String, dynamic>>.from(
+        response['data'] ?? [],
+      );
+      final newInvoices = newInvoicesData
+          .map((data) => Invoice.fromJson(data))
+          .toList();
+
+      // Ajouter les nouvelles factures à la liste existante
+      _invoices.addAll(newInvoices);
+
+      // Mettre à jour les informations de pagination
+      _currentPage = response['currentPage'] ?? nextPage;
+      _totalPages = response['totalPages'] ?? _totalPages;
+      _totalInvoices = response['total'] ?? _totalInvoices;
+
+      _error = null;
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
   }
 }

@@ -4,7 +4,14 @@ import Session from '../models/Session.js';
 export const verifyToken = async (req, res, next) => {
   console.log('[AUTH][MIDDLEWARE] Début de verifyToken');
   const authHeader = req.headers['authorization'];
-  const token = authHeader && authHeader.split(' ')[1];
+  let token = authHeader && authHeader.split(' ')[1];
+  
+  // Si pas de token dans le header, vérifier dans les query parameters pour les accès navigateur
+  if (!token && req.query.token) {
+    token = req.query.token;
+    console.log('[AUTH][MIDDLEWARE] Token récupéré depuis query params');
+  }
+  
   console.log('[AUTH][MIDDLEWARE] Token reçu (partiel): ', token ? token.substring(0, 10) + '...' : 'null');
 
   if (!token) {

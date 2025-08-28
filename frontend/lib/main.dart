@@ -4,9 +4,7 @@ import 'package:intl/date_symbol_data_local.dart';
 import 'routes/routes.dart';
 import 'utiles/app_theme.dart';
 import 'providers/cart_provider.dart';
-// import 'providers/invoice_provider.dart';
-// import 'services/invoice_service.dart';
-// import 'services/store_service.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -29,7 +27,7 @@ class InvoiceStockApp extends StatelessWidget {
         title: 'InvoiceStock Manager',
         theme: AppTheme.themeData,
         initialRoute: '/',
-        routes: AppRoutes.routes,
+        onGenerateRoute: AppRoutes.onGenerateRoute, // Utilisation de onGenerateRoute
       ),
     );
   }

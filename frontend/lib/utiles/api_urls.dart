@@ -1,6 +1,6 @@
 class ApiUrls {
-  // static const String baseUrl = 'http://192.168.43.97:5000/api';
-  static const String baseUrl = 'http://10.10.10.42:5000/api';
+  static const String baseUrl = 'http://192.168.3.26:5000/api';
+  // static const String baseUrl = 'http://10.10.10.31:5000/api';
   static const String login = '$baseUrl/auth/login';
   static const String logout = '$baseUrl/auth/logout';
   static const String verifySession = '$baseUrl/auth/verify';
@@ -38,6 +38,21 @@ class ApiUrls {
   static String getProductStock(String storeId, String productId) =>
       '$baseUrl/stocks/$storeId/$productId';
 
-  static String invoicesRemoveLine(String invoiceId) => '$invoices/$invoiceId/remove-line';
-static String invoicesValidate(String invoiceId, String storeId) => '$invoices/$invoiceId/validate/$storeId';
+  static String invoicesRemoveLine(String invoiceId) =>
+      '$invoices/$invoiceId/remove-line';
+  static String invoicesValidate(String invoiceId, String storeId) =>
+      '$invoices/$invoiceId/validate/$storeId';
+
+  // URLs pour la gestion des paiements
+  static String invoicePayments(String invoiceId) =>
+      '$invoices/$invoiceId/payments';
+  static String invoicePayment(String invoiceId, String paymentId) =>
+      '$invoices/$invoiceId/payments/$paymentId';
+  static String confirmPayment(String invoiceId, String paymentId) =>
+      '$invoices/$invoiceId/payments/$paymentId/confirm';
+  static String paymentReceipt(String invoiceId, String paymentId) =>
+      '$invoices/$invoiceId/payments/$paymentId/receipt';
+
+  // URL pour générer le PDF d'une facture
+  static String invoicePDF(String invoiceId) => '$invoices/$invoiceId/pdf';
 }

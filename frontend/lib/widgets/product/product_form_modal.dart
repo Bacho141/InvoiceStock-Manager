@@ -22,7 +22,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
   final _maxStockController = TextEditingController();
 
   String _selectedCategory = 'Boissons';
-  String _selectedUnit = 'Pièce';
+  String _selectedUnit = 'pièce';
   bool _isActive = true;
   String? _selectedImage;
 
@@ -36,7 +36,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
   ];
 
   final List<String> _units = [
-    'Pièce',
+    'pièce',
     'kg',
     'g',
     'litre',
@@ -66,14 +66,12 @@ class _ProductFormModalState extends State<ProductFormModal> {
           .toString();
       _sellingPriceController.text = (widget.product!['sellingPrice'] ?? 0)
           .toString();
-      _minStockController.text =
-          (widget.product!['minStock'] ?? widget.product!['minStockLevel'] ?? 0)
-              .toString();
-      _maxStockController.text =
-          (widget.product!['maxStock'] ?? widget.product!['maxStockLevel'] ?? 0)
-              .toString();
+      _minStockController.text = (widget.product!['minStockLevel'] ?? 0)
+          .toString();
+      _maxStockController.text = (widget.product!['maxStockLevel'] ?? 0)
+          .toString();
       _selectedCategory = widget.product!['category'] ?? 'Boissons';
-      _selectedUnit = widget.product!['unit'] ?? 'Pièce';
+      _selectedUnit = widget.product!['unit'] ?? 'pièce';
       _isActive = widget.product!['isActive'] ?? true;
       _selectedImage = widget.product!['image'];
     }
@@ -113,7 +111,9 @@ class _ProductFormModalState extends State<ProductFormModal> {
         '[WIDGET][ProductFormModal] Sauvegarde du produit: \\${_nameController.text}',
       );
       final productData = {
-        'id': widget.product?['id'] ?? DateTime.now().millisecondsSinceEpoch.toString(),
+        'id':
+            widget.product?['id'] ??
+            DateTime.now().millisecondsSinceEpoch.toString(),
         'reference': _referenceController.text.trim(),
         'name': _nameController.text.trim(),
         'description': _descriptionController.text.trim(),
@@ -122,8 +122,8 @@ class _ProductFormModalState extends State<ProductFormModal> {
         'sellingPrice': double.parse(_sellingPriceController.text),
         'margin': _calculateMargin(),
         'marginValue': _calculateMarginValue(),
-        'minStock': int.parse(_minStockController.text),
-        'maxStock': int.parse(_maxStockController.text),
+        'minStockLevel': int.parse(_minStockController.text),
+        'maxStockLevel': int.parse(_maxStockController.text),
         'unit': _selectedUnit,
         'isActive': _isActive,
         'image': _selectedImage,
@@ -210,7 +210,7 @@ class _ProductFormModalState extends State<ProductFormModal> {
                           ),
                         ),
                         const SizedBox(height: 10),
-                        
+
                         _buildField(
                           'Prix d\'Achat H.T. *',
                           _purchasePriceController,

@@ -1,3 +1,5 @@
+import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import './client.dart';
 import './store.dart';
 import './user.dart';
@@ -44,6 +46,7 @@ class Invoice {
   final List<InvoiceItem> lines;
   final double total;
   final double montantPaye;
+  final double discountTotal;
   final String status;
   final List<PaymentHistory> paymentHistory;
   final String? notes;
@@ -58,12 +61,14 @@ class Invoice {
     required this.lines,
     required this.total,
     required this.montantPaye,
+    required this.discountTotal,
     required this.status,
     required this.paymentHistory,
     this.notes,
   });
 
   factory Invoice.fromJson(Map<String, dynamic> json) {
+
     return Invoice(
       id: json['_id'] ?? '',
       number: json['number'] ?? '',
@@ -77,6 +82,7 @@ class Invoice {
           [],
       total: (json['total'] ?? 0).toDouble(),
       montantPaye: (json['montantPaye'] ?? 0).toDouble(),
+      discountTotal: (json['discountTotal'] ?? 0).toDouble(),
       status: json['status'] ?? 'reste_a_payer',
       paymentHistory: (json['paymentHistory'] as List<dynamic>?)
               ?.map((item) => PaymentHistory.fromJson(item))
@@ -97,6 +103,7 @@ class Invoice {
       'lines': lines.map((item) => item.toJson()).toList(),
       'total': total,
       'montantPaye': montantPaye,
+      'discountTotal': discountTotal,
       'status': status,
       'paymentHistory': paymentHistory.map((item) => item.toJson()).toList(),
       'notes': notes,

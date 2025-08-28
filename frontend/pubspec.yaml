@@ -43,6 +43,10 @@ dependencies:
   data_table_2: ^2.5.10
   intl: ^0.18.1
   provider: ^6.1.5
+  url_launcher: ^6.2.2
+  path_provider: ^2.1.1
+  permission_handler: ^11.0.1
+  share_plus: ^7.2.1
 
   flutter_pos_printer_platform_image_3: ^1.2.4
    # CONSERVÉ : Uniquement pour la génération du format du ticket (commandes ESC/POS).

@@ -5,9 +5,12 @@ class ProductDetailModal extends StatelessWidget {
 
   const ProductDetailModal({super.key, required this.product});
 
-  String _getStockStatus(int stock, int minStock) {
-    if (stock == 0) return 'Rupture';
-    if (stock <= minStock) return 'Bas';
+  String _getStockStatus(int? stock, int? minStock) {
+    final currentStock = stock ?? 0;
+    final minimumStock = minStock ?? 0;
+
+    if (currentStock == 0) return 'Rupture';
+    if (currentStock <= minimumStock) return 'Bas';
     return 'Normal';
   }
 
@@ -29,12 +32,8 @@ class ProductDetailModal extends StatelessWidget {
     debugPrint(
       '[WIDGET][ProductDetailModal] Affichage détails produit: \\${product['name'] ?? ''}',
     );
-    final stock =
-        product['stock'] ??
-        product['minStock'] ??
-        product['minStockLevel'] ??
-        0;
-    final minStock = product['minStock'] ?? product['minStockLevel'] ?? 0;
+    final stock = product['stock'] as int? ?? 0;
+    final minStock = product['minStockLevel'] as int? ?? 0;
     final stockStatus = _getStockStatus(stock, minStock);
     final createdAt = product['createdAt'];
     DateTime? createdDate;
@@ -259,7 +258,7 @@ class ProductDetailModal extends StatelessWidget {
                     Expanded(
                       child: _buildInfoCard(
                         'Stock minimum',
-                        '${product['minStock'] ?? product['minStockLevel'] ?? 0}',
+                        '${product['minStockLevel'] ?? 0}',
                         Icons.warning,
                         color: Colors.orange,
                       ),
@@ -272,7 +271,7 @@ class ProductDetailModal extends StatelessWidget {
                     Expanded(
                       child: _buildInfoCard(
                         'Stock maximum',
-                        '${product['maxStock'] ?? product['maxStockLevel'] ?? 0}',
+                        '${product['maxStockLevel'] ?? 0}',
                         Icons.inventory_2,
                         color: Colors.blue,
                       ),

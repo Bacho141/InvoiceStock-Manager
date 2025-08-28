@@ -5,6 +5,13 @@ import '../../widgets/product/product_actions_modal.dart';
 import '../../widgets/product/product_mobile_header.dart';
 import '../../widgets/product/product_mobile_filters.dart';
 import '../../widgets/product/product_mobile_list.dart';
+import '../../controllers/product_controller.dart';
+import '../../models/product.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import '../../models/store.dart';
+import '../../models/stock.dart';
+import '../../widgets/stock/stock_adjust_modal.dart';
+import 'dart:convert';
 
 class ProductMobileView extends StatefulWidget {
   const ProductMobileView({super.key});
@@ -14,91 +21,24 @@ class ProductMobileView extends StatefulWidget {
 }
 
 class _ProductMobileViewState extends State<ProductMobileView> {
+  final ProductController _productController = ProductController();
   final TextEditingController _searchController = TextEditingController();
   String _selectedCategory = 'Toutes';
   String _selectedStatus = 'Tous';
   String _sortBy = 'Prix';
   bool _showFilters = false;
 
-  // Données simulées pour le développement
-  final List<Map<String, dynamic>> _products = [
-    {
-      'id': '1',
-      'reference': 'COCA01',
-      'name': 'Coca-Cola 33cl',
-      'description': 'Coca-Cola 33cl',
-      'category': 'Boissons',
-      'purchasePrice': 400,
-      'sellingPrice': 500,
-      'margin': 25.0,
-      'marginValue': 100,
-      'stock': 45,
-      'minStock': 10,
-      'maxStock': 100,
-      'unit': 'Pièce',
-      'barcode': '1234567890123',
-      'isActive': true,
-      'image': null,
-      'createdAt': DateTime.now().subtract(const Duration(days: 5)),
-    },
-    {
-      'id': '2',
-      'reference': 'EAU01',
-      'name': 'Eau Minérale 1.5L',
-      'description': 'Eau Minérale 1.5L',
-      'category': 'Boissons',
-      'purchasePrice': 200,
-      'sellingPrice': 300,
-      'margin': 50.0,
-      'marginValue': 100,
-      'stock': 80,
-      'minStock': 10,
-      'maxStock': 100,
-      'unit': 'Pièce',
-      'barcode': '1234567890124',
-      'isActive': true,
-      'image': null,
-      'createdAt': DateTime.now().subtract(const Duration(days: 3)),
-    },
-    {
-      'id': '3',
-      'reference': 'BIS01',
-      'name': 'Biscuit Chocolat',
-      'description': 'Biscuit Chocolat',
-      'category': 'Snacks',
-      'purchasePrice': 600,
-      'sellingPrice': 750,
-      'margin': 25.0,
-      'marginValue': 150,
-      'stock': 0,
-      'minStock': 10,
-      'maxStock': 100,
-      'unit': 'Paquet',
-      'barcode': '1234567890125',
-      'isActive': true,
-      'image': null,
-      'createdAt': DateTime.now().subtract(const Duration(days: 1)),
-    },
-    {
-      'id': '4',
-      'reference': 'ANCIEN',
-      'name': 'Produit Ancien',
-      'description': 'Produit Ancien',
-      'category': 'Divers',
-      'purchasePrice': 80,
-      'sellingPrice': 100,
-      'margin': 25.0,
-      'marginValue': 20,
-      'stock': 5,
-      'minStock': 10,
-      'maxStock': 100,
-      'unit': 'Pièce',
-      'barcode': '1234567890126',
-      'isActive': false,
-      'image': null,
-      'createdAt': DateTime.now().subtract(const Duration(days: 30)),
-    },
-  ];
+  @override
+  void initState() {
+    super.initState();
+    _loadProducts();
+  }
+
+  Future<void> _loadProducts() async {
+    debugPrint('[VIEW][ProductMobileView] Chargement des produits...');
+    await _productController.fetchProducts();
+    setState(() {});
+  }
 
   @override
   void dispose() {
@@ -106,44 +46,144 @@ class _ProductMobileViewState extends State<ProductMobileView> {
     super.dispose();
   }
 
-  void _showProductForm({Map<String, dynamic>? product}) {
+  void _showProductForm({Product? product}) {
     debugPrint('[VIEW][ProductMobileView] Ouverture formulaire produit');
     showDialog(
       context: context,
       builder: (context) => ProductFormModal(
-        product: product,
-        onSave: (productData) {
+        product: product?.toJson(),
+        onSave: (productData) async {
           debugPrint(
             '[VIEW][ProductMobileView] Sauvegarde produit: ${productData['reference']}',
           );
-          setState(() {
-            if (product != null) {
-              // Modification
-              final index = _products.indexWhere(
-                (p) => p['id'] == product['id'],
-              );
-              if (index != -1) {
-                _products[index] = productData;
-              }
-            } else {
-              // Création
-              productData['id'] = DateTime.now().millisecondsSinceEpoch
-                  .toString();
-              _products.add(productData);
-            }
-          });
+          if (product != null) {
+            // Modification
+            await _editProduct(productData);
+          } else {
+            // Création
+            await _addProduct(productData);
+          }
+          setState(() {});
         },
       ),
     );
   }
 
-  void _showProductDetails(Map<String, dynamic> product) {
+  Future<void> _addProduct(Map<String, dynamic> productData) async {
     debugPrint(
-      '[VIEW][ProductMobileView] Affichage détails produit ${product['reference']}',
+      '[VIEW][ProductMobileView] Début ajout produit: ${productData['name']}',
+    );
+    final product = Product.fromJson(productData);
+    try {
+      final createdProduct = await _productController.addProduct(product);
+      debugPrint(
+        '[VIEW][ProductMobileView] Succès ajout produit: id=${createdProduct.id}, name=${createdProduct.name}, reference=${createdProduct.reference}',
+      );
+      setState(() {});
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Produit ajouté !')));
+
+      // Récupérer le magasin courant depuis SharedPreferences
+      final prefs = await SharedPreferences.getInstance();
+      final storesJson = prefs.getString('assigned_stores');
+      final selectedStoreId = prefs.getString('selected_store_id');
+      Store? currentStore;
+      debugPrint('[VIEW][ProductMobileView] selectedStoreId: $selectedStoreId');
+      if (storesJson != null && selectedStoreId != null) {
+        final storesList = (storesJson.isNotEmpty
+            ? List<Map<String, dynamic>>.from(jsonDecode(storesJson))
+            : []);
+        for (final s in storesList) {
+          if ((s['_id'] ?? s['id']).toString() == selectedStoreId) {
+            currentStore = Store.fromJson(s);
+            break;
+          }
+        }
+      }
+      debugPrint(
+        '[VIEW][ProductMobileView] currentStore: id=${currentStore?.id}, name=${currentStore?.name}',
+      );
+      if (currentStore != null && currentStore.id != 'all') {
+        // Créer un Stock temporaire pour le modal
+        final stock = Stock(
+          id: '',
+          productId: createdProduct.id ?? '',
+          storeId: currentStore.id,
+          quantity: 0,
+          minQuantity: createdProduct.minStockLevel,
+          isActive: true,
+          lastUpdated: DateTime.now(),
+          description: createdProduct.name,
+          storeName: currentStore.name,
+        );
+        debugPrint(
+          '[VIEW][ProductMobileView] Stock pour ajustement: productId=${stock.productId}, storeId=${stock.storeId}, name=${stock.description}',
+        );
+        showDialog(
+          context: context,
+          builder: (_) => StockAdjustModal(
+            store: currentStore,
+            stocks: [stock],
+            onSave: () {
+              // Optionnel : rafraîchir la liste des stocks si besoin
+            },
+          ),
+        );
+      } else if (currentStore != null && currentStore.id == 'all') {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            content: Text(
+              'Veuillez sélectionner un magasin précis pour initialiser le stock.',
+            ),
+            backgroundColor: Colors.red,
+          ),
+        );
+      }
+    } catch (e) {
+      debugPrint(
+        '[VIEW][ProductMobileView] Erreur ajout produit: ${e.toString()}',
+      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Erreur ajout produit')));
+    }
+  }
+
+  Future<void> _editProduct(Map<String, dynamic> productData) async {
+    debugPrint(
+      '[VIEW][ProductMobileView] Début modification produit: ${productData['id']}',
+    );
+    final product = Product.fromJson(productData);
+    try {
+      await _productController.updateProduct(product);
+      debugPrint(
+        '[VIEW][ProductMobileView] Succès modification produit: ${product.id}',
+      );
+      setState(() {});
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Produit modifié !')));
+    } catch (e) {
+      debugPrint(
+        '[VIEW][ProductMobileView] Erreur modification produit: ${e.toString()}',
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Erreur modification produit')),
+      );
+    }
+  }
+
+  void _showProductDetails(Product product) {
+    debugPrint(
+      '[VIEW][ProductMobileView] Affichage détails produit ${product.reference}',
+    );
+    debugPrint(
+      '[VIEW][ProductMobileView] Données produit: ${product.toJson()}',
     );
     showDialog(
       context: context,
-      builder: (context) => ProductDetailModal(product: product),
+      builder: (context) => ProductDetailModal(product: product.toJson()),
     ).then((result) {
       if (result == 'edit') {
         _showProductForm(product: product);
@@ -153,13 +193,13 @@ class _ProductMobileViewState extends State<ProductMobileView> {
     });
   }
 
-  void _showProductActions(Map<String, dynamic> product) {
+  void _showProductActions(Product product) {
     debugPrint(
-      '[VIEW][ProductMobileView] Menu actions produit ${product['reference']}',
+      '[VIEW][ProductMobileView] Menu actions produit ${product.reference}',
     );
     showDialog(
       context: context,
-      builder: (context) => ProductActionsModal(product: product),
+      builder: (context) => ProductActionsModal(product: product.toJson()),
     ).then((result) {
       if (result == 'edit') {
         _showProductForm(product: product);
@@ -173,26 +213,71 @@ class _ProductMobileViewState extends State<ProductMobileView> {
     });
   }
 
-  void _deleteProduct(Map<String, dynamic> product) {
+  Future<void> _deleteProduct(Product product) async {
     debugPrint(
-      '[VIEW][ProductMobileView] Suppression produit ${product['reference']}',
+      '[VIEW][ProductMobileView] Début suppression produit: ${product.id}',
     );
-    setState(() {
-      _products.removeWhere((p) => p['id'] == product['id']);
-    });
+    try {
+      await _productController.deleteProduct(product.id!);
+      debugPrint(
+        '[VIEW][ProductMobileView] Succès suppression produit: ${product.id}',
+      );
+      setState(() {});
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Produit supprimé !')));
+    } catch (e) {
+      debugPrint(
+        '[VIEW][ProductMobileView] Erreur suppression produit: ${e.toString()}',
+      );
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Erreur suppression produit')),
+      );
+    }
   }
 
-  void _toggleProductStatus(Map<String, dynamic> product) {
-    debugPrint(
-      '[VIEW][ProductMobileView] Changement statut produit ${product['reference']}',
-    );
-    setState(() {
-      product['isActive'] = !product['isActive'];
-    });
+  Future<void> _toggleProductStatus(Product product) async {
+    final updated = product.copyWith(isActive: !product.isActive);
+    await _productController.updateProduct(updated);
+    setState(() {});
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Statut produit mis à jour !')));
   }
 
   @override
   Widget build(BuildContext context) {
+    // Gestion des états de chargement et d'erreur
+    if (_productController.loading) {
+      return const Scaffold(body: Center(child: CircularProgressIndicator()));
+    }
+
+    if (_productController.error != null) {
+      return Scaffold(
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.error_outline, size: 64, color: Colors.red[400]),
+              const SizedBox(height: 16),
+              Text(
+                'Erreur: ${_productController.error}',
+                style: const TextStyle(fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+              const SizedBox(height: 16),
+              ElevatedButton(
+                onPressed: _loadProducts,
+                child: const Text('Réessayer'),
+              ),
+            ],
+          ),
+        ),
+      );
+    }
+
+    final products = _productController.products;
+
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(110),
@@ -217,11 +302,25 @@ class _ProductMobileViewState extends State<ProductMobileView> {
               onSortByChanged: (value) => setState(() => _sortBy = value!),
             ),
           Expanded(
-            child: ProductMobileList(
-              products: _products,
-              onEditProduct: (product) => _showProductForm(product: product),
-              onShowDetails: (product) => _showProductDetails(product),
-              onShowActions: (product) => _showProductActions(product),
+            child: RefreshIndicator(
+              onRefresh: () async {
+                await _loadProducts();
+              },
+              child: ProductMobileList(
+                products: products.map((p) => p.toJson()).toList(),
+                onEditProduct: (productMap) {
+                  final product = Product.fromJson(productMap);
+                  _showProductForm(product: product);
+                },
+                onShowDetails: (productMap) {
+                  final product = Product.fromJson(productMap);
+                  _showProductDetails(product);
+                },
+                onShowActions: (productMap) {
+                  final product = Product.fromJson(productMap);
+                  _showProductActions(product);
+                },
+              ),
             ),
           ),
         ],

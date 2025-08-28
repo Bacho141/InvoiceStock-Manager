@@ -6,6 +6,9 @@ import Stock from '../models/Stock.js';
 import Product from '../models/Product.js';
 import StockMovement from '../models/StockMovement.js';
 import AuditLog from '../models/AuditLog.js';
+import { generateInvoiceHTML, generateSimpleTestHTML } from '../utils/pdfGenerator.js';
+import { generateInvoicesZIP, validateAndFetchInvoices } from '../utils/zipGenerator.js';
+import puppeteer from 'puppeteer';
 
 function padNumber(num, size) {
   let s = num + '';
@@ -325,19 +328,46 @@ const invoiceController = {
   // [INVOICE][DELETE] Annuler une facture avec restockage, rollback et traçabilité
   async cancelInvoice(req, res) {
     console.log('[INVOICE][DELETE] Annulation de la facture', req.params.id);
+    console.log('[INVOICE][DELETE] User depuis middleware:', req.user ? req.user._id : 'undefined');
+    console.log('[INVOICE][DELETE] Body reçu:', req.body);
+    
     const session = await Stock.startSession();
     session.startTransaction();
     try {
-      const { reason, userId } = req.body;
+      const { reason, userId: bodyUserId } = req.body;
+      
+      // Priorité à l'utilisateur authentifié, sinon fallback sur le body
+      const userId = req.user?._id || bodyUserId;
+      
+      if (!userId) {
+        await session.abortTransaction();
+        session.endSession();
+        console.error('[INVOICE][DELETE] Aucun utilisateur trouvé');
+        return res.status(400).json({ message: 'Utilisateur non identifié pour l\'annulation.' });
+      }
+      
+      if (!reason || reason.trim().length === 0) {
+        await session.abortTransaction();
+        session.endSession();
+        return res.status(400).json({ message: 'Le motif d\'annulation est obligatoire.' });
+      }
+      
+      console.log('[INVOICE][DELETE] Utilisateur final:', userId, 'Motif:', reason);
+      
       const invoice = await Invoice.findById(req.params.id).session(session);
       if (!invoice) {
         await session.abortTransaction();
+        session.endSession();
         return res.status(404).json({ message: 'Facture non trouvée.' });
       }
       if (invoice.status === 'annulee') {
         await session.abortTransaction();
+        session.endSession();
         return res.status(400).json({ message: 'Facture déjà annulée.' });
       }
+      
+      console.log('[INVOICE][DELETE] Facture trouvée:', invoice.number, 'Status:', invoice.status);
+      
       // Restocker chaque produit + mouvement RELEASE
       for (const line of invoice.lines) {
         const stock = await Stock.findOne({ productId: line.product, storeId: invoice.store }).session(session);
@@ -349,8 +379,9 @@ const invoiceController = {
         stock.quantity += line.quantity;
         stock.lastUpdated = new Date();
         await stock.save({ session });
-        // Mouvement RELEASE
-        await StockMovement.create({
+        
+        // Préparer les données pour le mouvement RELEASE
+        const movementData = {
           productId: line.product,
           storeId: invoice.store,
           type: 'RELEASE',
@@ -361,7 +392,12 @@ const invoiceController = {
           reference: invoice.number,
           referenceType: 'INVOICE',
           userId,
-        }, { session });
+        };
+        
+        console.log('[INVOICE][CANCEL][MOVEMENT] Données du mouvement:', JSON.stringify(movementData, null, 2));
+        
+        // Mouvement RELEASE
+        await StockMovement.create([movementData], { session });
         console.log(`[INVOICE][CANCEL][STOCK] Produit ${line.product} - Stock restitué de ${line.quantity} (avant: ${previousQuantity}, après: ${stock.quantity})`);
       }
       invoice.status = 'annulee';
@@ -378,13 +414,14 @@ const invoiceController = {
       await session.abortTransaction();
       session.endSession();
       console.error('[INVOICE][DELETE][ROLLBACK] Erreur transactionnelle:', error.message);
+      console.error('[INVOICE][DELETE][ROLLBACK] Stack trace:', error.stack);
       // Audit log
       await AuditLog.create({
         event: 'INVOICE_CANCEL_ROLLBACK',
         invoiceId: req.params.id,
-        userId: req.body && req.body.userId,
+        userId: req.user?._id || req.body?.userId,
         storeId: undefined, // Peut être enrichi si besoin
-        details: { reason: req.body && req.body.reason },
+        details: { reason: req.body?.reason },
         message: error.message,
       });
       res.status(500).json({ message: "Erreur lors de l'annulation de la facture.", error: error.message });
@@ -556,6 +593,373 @@ const invoiceController = {
     } catch (error) {
       console.error('[INVOICE][REMOVE-LINE] Erreur:', error);
       res.status(500).json({ message: 'Erreur lors de la suppression de la ligne.' });
+    }
+  },
+
+  // [INVOICE][PDF] Générer le PDF d'une facture avec historique de paiement
+  async generateInvoicePDF(req, res) {
+    console.log('[INVOICE][PDF] Génération PDF pour la facture', req.params.id);
+    try {
+      // Vérification d'authentification
+      const userId = req.user ? req.user._id : null;
+      if (!userId) {
+        return res.status(401).json({ message: 'Authentification requise pour télécharger le PDF.' });
+      }
+
+      const invoice = await Invoice.findById(req.params.id)
+        .populate('client')
+        .populate('store')
+        .populate('user');
+      
+      if (!invoice) {
+        return res.status(404).json({ message: 'Facture non trouvée.' });
+      }
+
+      // Vérification des permissions d'accès au magasin
+      const userRole = req.user.role;
+      const userStores = req.user.stores || [];
+      const invoiceStoreId = invoice.store._id || invoice.store;
+      
+      if (userRole !== 'super-admin' && !userStores.includes(invoiceStoreId.toString())) {
+        return res.status(403).json({ message: 'Accès non autorisé à cette facture.' });
+      }
+
+      // Générer le HTML pour le PDF
+      const useSimpleHTML = req.query.simple === 'true';
+      const htmlContent = useSimpleHTML 
+        ? generateSimpleTestHTML(invoice)
+        : generateInvoiceHTML(invoice);
+      
+      console.log('[INVOICE][PDF] Génération PDF avec Puppeteer...');
+      console.log('[INVOICE][PDF] Mode simple:', useSimpleHTML);
+      console.log('[INVOICE][PDF] Taille HTML:', htmlContent.length, 'caractères');
+      
+      let browser = null;
+      
+      try {
+        // Lancer Puppeteer pour convertir HTML en PDF
+        console.log('[INVOICE][PDF] Lancement de Puppeteer...');
+        browser = await puppeteer.launch({
+          headless: true,
+          args: [
+            '--no-sandbox', 
+            '--disable-setuid-sandbox',
+            '--disable-dev-shm-usage',
+            '--disable-web-security',
+            '--disable-features=VizDisplayCompositor'
+          ]
+        });
+        
+        console.log('[INVOICE][PDF] Puppeteer lancé, création de la page...');
+        const page = await browser.newPage();
+        
+        // Définir le contenu HTML
+        console.log('[INVOICE][PDF] Définition du contenu HTML...');
+        await page.setContent(htmlContent, { 
+          waitUntil: 'networkidle0',
+          timeout: 30000
+        });
+        
+        console.log('[INVOICE][PDF] Contenu défini, génération du PDF...');
+        
+        // Générer le PDF avec format A4 comme le HTML de référence
+        const pdfBuffer = await page.pdf({
+          format: 'A4',
+          printBackground: true,
+          preferCSSPageSize: true, // Utiliser les tailles définies dans le CSS
+          margin: {
+            top: '20mm',
+            right: '20mm',
+            bottom: '20mm',
+            left: '20mm'
+          },
+          timeout: 30000
+        });
+        
+        console.log('[INVOICE][PDF] PDF généré avec succès!');
+        console.log('[INVOICE][PDF] Taille PDF:', pdfBuffer.length, 'bytes');
+        console.log('[INVOICE][PDF] Type PDF buffer:', typeof pdfBuffer);
+        console.log('[INVOICE][PDF] Buffer valide:', Buffer.isBuffer(pdfBuffer));
+        console.log('[INVOICE][PDF] Est un Uint8Array:', pdfBuffer instanceof Uint8Array);
+        
+        // Convertir en Buffer si nécessaire
+        let finalBuffer;
+        if (Buffer.isBuffer(pdfBuffer)) {
+          finalBuffer = pdfBuffer;
+          console.log('[INVOICE][PDF] Buffer déjà valide');
+        } else if (pdfBuffer instanceof Uint8Array) {
+          finalBuffer = Buffer.from(pdfBuffer);
+          console.log('[INVOICE][PDF] Conversion Uint8Array vers Buffer');
+        } else {
+          throw new Error('Format de PDF non reconnu: ' + typeof pdfBuffer);
+        }
+        
+        console.log('[INVOICE][PDF] Buffer final valide:', Buffer.isBuffer(finalBuffer));
+        console.log('[INVOICE][PDF] Taille buffer final:', finalBuffer.length, 'bytes');
+        
+        // Vérifier que le buffer n'est pas vide
+        if (!finalBuffer || finalBuffer.length === 0) {
+          throw new Error('Le buffer PDF généré est vide');
+        }
+        
+        // Vérifier les premiers bytes pour confirmer que c'est un PDF
+        const pdfHeader = finalBuffer.slice(0, 4).toString();
+        console.log('[INVOICE][PDF] En-tête PDF:', pdfHeader);
+        if (!pdfHeader.startsWith('%PDF')) {
+          console.warn('[INVOICE][PDF] ATTENTION: Le fichier ne semble pas être un PDF valide');
+          console.log('[INVOICE][PDF] Premiers 20 bytes:', finalBuffer.slice(0, 20));
+        }
+        
+        // Déterminer si c'est un téléchargement ou un aperçu
+        const isDownload = req.query.download === 'true';
+        console.log('[INVOICE][PDF] Mode téléchargement:', isDownload);
+        
+        // Définir les en-têtes pour le PDF
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', isDownload 
+          ? `attachment; filename="facture-${invoice.number}.pdf"` 
+          : `inline; filename="facture-${invoice.number}.pdf"`);
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader('Content-Length', finalBuffer.length);
+        
+        console.log('[INVOICE][PDF] En-têtes définis, envoi du PDF...');
+        
+        // Option de débogage: sauvegarder temporairement le PDF
+        if (process.env.NODE_ENV === 'development' || req.query.debug === 'true') {
+          try {
+            const fs = await import('fs');
+            const path = await import('path');
+            const tempPath = path.join(process.cwd(), 'temp_debug_invoice.pdf');
+            fs.writeFileSync(tempPath, finalBuffer);
+            console.log('[INVOICE][PDF] PDF sauvegardé temporairement:', tempPath);
+          } catch (debugError) {
+            console.log('[INVOICE][PDF] Erreur sauvegarde debug:', debugError.message);
+          }
+        }
+        
+        // Envoyer le PDF
+        res.send(finalBuffer);
+        
+        console.log('[INVOICE][PDF] PDF envoyé avec succès!');
+        
+      } catch (pdfError) {
+        console.error('[INVOICE][PDF] ERREUR lors de la génération PDF:', pdfError.message);
+        console.error('[INVOICE][PDF] Stack trace:', pdfError.stack);
+        
+        // En cas d'erreur, retourner le HTML comme fallback
+        console.log('[INVOICE][PDF] Fallback vers HTML...');
+        res.setHeader('Content-Type', 'text/html; charset=utf-8');
+        res.setHeader('Content-Disposition', `inline; filename="facture-${invoice.number}.html"`);
+        res.setHeader('Cache-Control', 'no-cache');
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        res.send(htmlContent);
+        
+      } finally {
+        if (browser) {
+          console.log('[INVOICE][PDF] Fermeture de Puppeteer...');
+          await browser.close();
+          console.log('[INVOICE][PDF] Puppeteer fermé.');
+        }
+      }
+      
+      // Log de l'accès pour audit
+      console.log(`[INVOICE][PDF] PDF généré pour facture ${invoice.number} par utilisateur ${userId}`);
+      
+    } catch (error) {
+      console.error('[INVOICE][PDF] Erreur:', error.message);
+      res.status(500).json({ message: 'Erreur lors de la génération du PDF.' });
+    }
+  },
+
+  // [INVOICE][ZIP] Télécharger plusieurs factures en ZIP
+  async downloadInvoicesZIP(req, res) {
+    console.log('[INVOICE][ZIP] Téléchargement groupé de factures en ZIP');
+    try {
+      // Vérification d'authentification
+      const userId = req.user ? req.user._id : null;
+      if (!userId) {
+        return res.status(401).json({ message: 'Authentification requise pour télécharger les factures.' });
+      }
+
+      // Récupérer les IDs des factures depuis les query params
+      const { ids } = req.query;
+      
+      if (!ids) {
+        return res.status(400).json({ message: 'Paramètre \'ids\' requis.' });
+      }
+      
+      // Convertir la chaîne d'IDs en tableau
+      const invoiceIds = ids.split(',').filter(id => id.trim().length > 0);
+      
+      if (invoiceIds.length === 0) {
+        return res.status(400).json({ message: 'Aucun ID de facture valide fourni.' });
+      }
+
+      console.log(`[INVOICE][ZIP] Demande de téléchargement pour ${invoiceIds.length} factures`);
+      console.log(`[INVOICE][ZIP] IDs: ${invoiceIds.join(', ')}`);
+
+      // Valider et récupérer les factures
+      const invoices = await validateAndFetchInvoices(invoiceIds, Invoice);
+      
+      // Vérification des permissions d'accès aux magasins
+      const userRole = req.user.role;
+      const userStores = req.user.stores || [];
+      
+      if (userRole !== 'super-admin') {
+        const unauthorizedInvoices = invoices.filter(invoice => {
+          const invoiceStoreId = invoice.store._id || invoice.store;
+          return !userStores.includes(invoiceStoreId.toString());
+        });
+        
+        if (unauthorizedInvoices.length > 0) {
+          return res.status(403).json({ 
+            message: `Accès non autorisé à ${unauthorizedInvoices.length} facture(s).` 
+          });
+        }
+      }
+
+      console.log(`[INVOICE][ZIP] Génération ZIP pour ${invoices.length} factures autorisées`);
+      
+      // Ajouter des informations dans les en-têtes pour le frontend
+      res.setHeader('X-Total-Invoices', invoices.length.toString());
+      res.setHeader('X-Invoice-Numbers', invoices.map(inv => inv.number).join(','));
+      
+      // Générer et envoyer l'archive ZIP
+      await generateInvoicesZIP(invoices, res);
+      
+      // Log de l'accès pour audit
+      console.log(`[INVOICE][ZIP] Archive ZIP générée pour ${invoices.length} factures par utilisateur ${userId}`);
+      
+    } catch (error) {
+      console.error('[INVOICE][ZIP] Erreur:', error.message);
+      
+      // Si la réponse n'a pas encore été envoyée, retourner une erreur JSON
+      if (!res.headersSent) {
+        res.status(500).json({ message: 'Erreur lors de la génération de l\'archive ZIP.', error: error.message });
+      }
+    }
+  },
+
+  // [INVOICE][TEST] Méthode de test pour diagnostiquer les problèmes PDF
+  async testPDFGeneration(req, res) {
+    console.log('[INVOICE][TEST] Test de génération PDF pour facture', req.params.id);
+    try {
+      const invoice = await Invoice.findById(req.params.id)
+        .populate('client')
+        .populate('store')
+        .populate('user');
+      
+      if (!invoice) {
+        return res.status(404).json({ message: 'Facture non trouvée.' });
+      }
+
+      console.log('[INVOICE][TEST] Facture trouvée:', {
+        id: invoice._id,
+        number: invoice.number,
+        client: invoice.client ? 'présent' : 'absent',
+        store: invoice.store ? 'présent' : 'absent',
+        lines: invoice.lines ? invoice.lines.length : 0
+      });
+
+      // Générer le HTML
+      const htmlContent = generateInvoiceHTML(invoice);
+      console.log(`[INVOICE][TEST] HTML généré: ${htmlContent.length} caractères`);
+      
+      // Test avec Puppeteer basique
+      let browser = null;
+      try {
+        browser = await puppeteer.launch({ headless: true, args: ['--no-sandbox'] });
+        const page = await browser.newPage();
+        
+        await page.setContent(htmlContent, { waitUntil: 'load', timeout: 30000 });
+        await new Promise(resolve => setTimeout(resolve, 1000));
+        
+        const pdfBuffer = await page.pdf({ format: 'A4', printBackground: true });
+        
+        await page.close();
+        console.log(`[INVOICE][TEST] PDF généré avec succès: ${pdfBuffer.length} bytes`);
+        
+        res.json({ 
+          success: true, 
+          message: 'Test réussi',
+          htmlLength: htmlContent.length,
+          pdfLength: pdfBuffer.length
+        });
+        
+      } finally {
+        if (browser) await browser.close();
+      }
+      
+    } catch (error) {
+      console.error('[INVOICE][TEST] Erreur:', error.message);
+      res.status(500).json({ message: 'Erreur test PDF', error: error.message });
+    }
+  },
+
+  // [INVOICE][TEST] Méthode de test pour diagnostiquer les problèmes d'annulation
+  async testCancelInvoice(req, res) {
+    console.log('[INVOICE][TEST-CANCEL] Test d\'annulation pour facture', req.params.id);
+    console.log('[INVOICE][TEST-CANCEL] User:', req.user);
+    console.log('[INVOICE][TEST-CANCEL] Body:', req.body);
+    
+    try {
+      const invoice = await Invoice.findById(req.params.id);
+      
+      if (!invoice) {
+        return res.status(404).json({ message: 'Facture non trouvée.' });
+      }
+
+      console.log('[INVOICE][TEST-CANCEL] Facture trouvée:', {
+        id: invoice._id,
+        number: invoice.number,
+        status: invoice.status,
+        store: invoice.store,
+        linesCount: invoice.lines?.length || 0
+      });
+
+      // Vérifier chaque produit et son stock
+      const stockChecks = [];
+      for (const line of invoice.lines) {
+        const stock = await Stock.findOne({ 
+          productId: line.product, 
+          storeId: invoice.store 
+        });
+        
+        stockChecks.push({
+          productId: line.product,
+          productName: line.productName,
+          quantity: line.quantity,
+          currentStock: stock ? stock.quantity : 'Stock non trouvé',
+          stockExists: !!stock
+        });
+      }
+      
+      res.json({ 
+        success: true, 
+        message: 'Test réussi - annulation possible',
+        invoice: {
+          id: invoice._id,
+          number: invoice.number,
+          status: invoice.status,
+          canCancel: invoice.status !== 'annulee'
+        },
+        user: {
+          id: req.user?._id,
+          username: req.user?.username,
+          role: req.user?.role
+        },
+        stockChecks
+      });
+      
+    } catch (error) {
+      console.error('[INVOICE][TEST-CANCEL] Erreur:', error.message);
+      console.error('[INVOICE][TEST-CANCEL] Stack:', error.stack);
+      res.status(500).json({ 
+        message: 'Erreur test annulation', 
+        error: error.message,
+        stack: error.stack
+      });
     }
   },
 };

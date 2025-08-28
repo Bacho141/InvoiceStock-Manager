@@ -50,7 +50,7 @@ class _PeriodFilterDialogState extends State<PeriodFilterDialog> with SingleTick
               ],
             ),
             SizedBox(
-              height: 200,
+              height: 210,
               child: TabBarView(
                 controller: _tabController,
                 children: [

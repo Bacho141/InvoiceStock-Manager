@@ -12,12 +12,14 @@ class MainLayout extends StatefulWidget {
   final Widget child;
   final String currentRoute;
   final String pageTitle;
+  final bool showStoreSelector;
 
   const MainLayout({
     Key? key,
     required this.child,
     required this.currentRoute,
     required this.pageTitle,
+    this.showStoreSelector = true,
   }) : super(key: key);
 
   @override
@@ -520,11 +522,12 @@ class _MainLayoutState extends State<MainLayout> {
                 child: Column(
                   children: [
                     // Sélecteur de magasin (si multi-magasins)
-                    StoreSelector(
-                      currentStore: _currentStore,
-                      onStoreChanged: _onStoreChanged,
-                    ),
-                    const SizedBox(height: 16),
+                    if (widget.showStoreSelector)
+                      StoreSelector(
+                        currentStore: _currentStore,
+                        onStoreChanged: _onStoreChanged,
+                      ),
+                    if (widget.showStoreSelector) const SizedBox(height: 16),
                     // Contenu de la page
                     Expanded(
                       child: widget.currentRoute == '/new-sale'
@@ -732,10 +735,11 @@ class _MainLayoutState extends State<MainLayout> {
         body: Column(
           children: [
             // Sélecteur de magasin (si multi-magasins)
-            StoreSelector(
-              currentStore: _currentStore,
-              onStoreChanged: _onStoreChanged,
-            ),
+            if (widget.showStoreSelector)
+              StoreSelector(
+                currentStore: _currentStore,
+                onStoreChanged: _onStoreChanged,
+              ),
             // Contenu de la page
             Expanded(
               child: widget.currentRoute == '/new-sale'

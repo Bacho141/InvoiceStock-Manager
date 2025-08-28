@@ -24,18 +24,39 @@ class ProductController extends ChangeNotifier {
       final storeId = prefs.getString('selected_store_id') ?? 'all';
       debugPrint('[CONTROLLER][ProductController] Store ID: $storeId');
       final productsWithStock = await _service.getProductsWithStock(storeId);
-      debugPrint('[CONTROLLER][ProductController] Products with stock type: ${productsWithStock.runtimeType}');
-      debugPrint('[CONTROLLER][ProductController] Products with stock: ${productsWithStock}');
-      _products = productsWithStock.map((p) => Product.fromJson(p)).toList();
-      debugPrint('[CONTROLLER][ProductController] Parsed products: ${_products.map((p) => p.toJson()).toList()}');
+      debugPrint(
+        '[CONTROLLER][ProductController] Products with stock type: ${productsWithStock.runtimeType}',
+      );
+      debugPrint(
+        '[CONTROLLER][ProductController] Products with stock: ${productsWithStock}',
+      );
+
+      // Gérer les deux types de réponses
+      _products = productsWithStock.map((p) {
+        if (p.containsKey('product') && p['product'] is Product) {
+          // Cas où le service retourne des objets enrichis avec un objet Product déjà instancié
+          debugPrint(
+            '[CONTROLLER][ProductController] Format enrichi détecté pour: ${p['product'].name}',
+          );
+          return p['product'] as Product;
+        } else {
+          // Cas où le service retourne des données JSON pures (format agrégé)
+          debugPrint(
+            '[CONTROLLER][ProductController] Format JSON détecté pour: ${p['name'] ?? 'nom manquant'}',
+          );
+          return Product.fromJson(p);
+        }
+      }).toList();
+
+      debugPrint(
+        '[CONTROLLER][ProductController] Parsed products: ${_products.map((p) => p.toJson()).toList()}',
+      );
       debugPrint(
         '[CONTROLLER][ProductController] Produits chargés: ${_products.length}',
       );
     } catch (e) {
       _error = e.toString();
-      debugPrint(
-        '[CONTROLLER][ProductController] Erreur chargement: $_error',
-      );
+      debugPrint('[CONTROLLER][ProductController] Erreur chargement: $_error');
     }
     _loading = false;
     notifyListeners();
@@ -102,9 +123,7 @@ class ProductController extends ChangeNotifier {
       debugPrint('[CONTROLLER][ProductController] Produit supprimé: $id');
     } catch (e) {
       _error = e.toString();
-      debugPrint(
-        '[CONTROLLER][ProductController] Erreur suppression: $_error',
-      );
+      debugPrint('[CONTROLLER][ProductController] Erreur suppression: $_error');
     }
     _loading = false;
     notifyListeners();

@@ -14,9 +14,12 @@ class ProductMobileList extends StatelessWidget {
     required this.onShowActions,
   });
 
-  String _getStockStatus(int stock, int minStock) {
-    if (stock == 0) return 'Rupture';
-    if (stock <= minStock) return 'Bas';
+  String _getStockStatus(int? stock, int? minStock) {
+    final currentStock = stock ?? 0;
+    final minimumStock = minStock ?? 0;
+
+    if (currentStock == 0) return 'Rupture';
+    if (currentStock <= minimumStock) return 'Bas';
     return 'Normal';
   }
 
@@ -54,8 +57,8 @@ class ProductMobileList extends StatelessWidget {
       itemBuilder: (context, index) {
         final product = products[index];
         final stockStatus = _getStockStatus(
-          product['stock'],
-          product['minStock'],
+          product['stock'] as int?,
+          product['minStockLevel'] as int?,
         );
 
         return Card(
@@ -171,14 +174,15 @@ class ProductMobileList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
-                            'Prix: ${product['sellingPrice']} F',
+                            'Prix: ${product['sellingPrice'] ?? 0} F',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            'Marge: ${product['margin'].toStringAsFixed(0)}%',
+                            'Marge: ${((product['margin'] as double?) ?? 0.0).toStringAsFixed(0)}%',
                             style: TextStyle(
-                              color: product['margin'] > 30
+                              color:
+                                  ((product['margin'] as double?) ?? 0.0) > 30
                                   ? Colors.green
                                   : Colors.orange,
                               fontSize: 12,
@@ -193,12 +197,12 @@ class ProductMobileList extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
                           Text(
-                            'Stock: ${product['stock']}',
+                            'Stock: ${product['stock'] ?? 0}',
                             style: const TextStyle(fontWeight: FontWeight.bold),
                             overflow: TextOverflow.ellipsis,
                           ),
                           Text(
-                            'Achat: ${product['purchasePrice']} F',
+                            'Achat: ${product['purchasePrice'] ?? 0} F',
                             style: const TextStyle(
                               color: Colors.grey,
                               fontSize: 12,
