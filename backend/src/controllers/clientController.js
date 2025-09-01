@@ -1,19 +1,18 @@
 import Client from '../models/Client.js';
+import Invoice from '../models/Invoice.js'; // Ajout de l'import
 import creanceService from '../services/creanceService.js';
 
 export const createClient = async (req, res) => {
   try {
     const { firstName, lastName, phone, email, address, company, customerType, city, region, assignedStore, creditLimit, paymentTerms, category, priority, assignedSalesperson, preferredPaymentMethod, notes } = req.body;
     
-    if (!firstName || !lastName || !phone) {
-      return res.status(400).json({ message: 'firstName, lastName et phone sont requis.' });
+    if (!firstName || !lastName) {
+      return res.status(400).json({ message: 'firstName et lastName sont requis.' });
     }
     
     const clientData = {
       firstName,
       lastName,
-      phone,
-      email,
       address,
       company,
       customerType: customerType || 'particulier',
@@ -28,6 +27,13 @@ export const createClient = async (req, res) => {
       preferredPaymentMethod: preferredPaymentMethod || 'especes',
       notes
     };
+
+    if (email) {
+      clientData.email = email;
+    }
+    if (phone) {
+      clientData.phone = phone;
+    }
     
     const client = await Client.create(clientData);
     console.log(`[CLIENT][CREATE] Nouveau client créé: ${client.fullName}`);
@@ -101,7 +107,31 @@ export const getClientById = async (req, res) => {
 
 export const updateClient = async (req, res) => {
   try {
-    const client = await Client.findByIdAndUpdate(req.params.id, req.body, { new: true });
+    const { id } = req.params;
+    const updateData = req.body;
+    const setOperation = {};
+    const unsetOperation = {};
+
+    // Sépare les champs à mettre à jour de ceux à supprimer (unset)
+    for (const key in updateData) {
+      if (Object.prototype.hasOwnProperty.call(updateData, key)) {
+        if ((key === 'email' || key === 'phone') && !updateData[key]) {
+          unsetOperation[key] = 1; // Ajoute au champ à supprimer
+        } else {
+          setOperation[key] = updateData[key]; // Ajoute au champ à mettre à jour
+        }
+      }
+    }
+
+    const update = {};
+    if (Object.keys(setOperation).length > 0) {
+      update.$set = setOperation;
+    }
+    if (Object.keys(unsetOperation).length > 0) {
+      update.$unset = unsetOperation;
+    }
+
+    const client = await Client.findByIdAndUpdate(id, update, { new: true });
     if (!client) return res.status(404).json({ message: 'Client non trouvé' });
     
     // Recalculer le score après mise à jour
@@ -220,3 +250,82 @@ export const refreshMetrics = async (req, res) => {
     res.status(500).json({ message: 'Erreur actualisation métriques', error: error.message });
   }
 }; 
+
+// Nouvelle fonction pour obtenir les factures en retard
+export const getOverdueInvoices = async (req, res) => {
+  try {
+    const { days = 30 } = req.query;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - days);
+
+    // Trouver les factures en retard
+    const invoices = await Invoice.find({
+      date: { $lte: cutoffDate },
+      status: { $in: ['reste_a_payer', 'validée'] },
+      $expr: { $gt: [{ $subtract: ['$total', '$montantPaye'] }, 0] }
+    })
+    .populate('client', 'firstName lastName company phone category paymentTerms creditLimit creditScore')
+    .populate('store', 'name')
+    .sort({ date: 1 });
+
+    // Enrichir les données avec les informations calculées
+    const enrichedInvoices = await Promise.all(invoices.map(async (invoice) => {
+      const outstanding = invoice.total - invoice.montantPaye;
+      const daysOverdue = Math.floor((new Date() - invoice.date) / (1000 * 60 * 60 * 24));
+      
+      return {
+        ...invoice.toObject(),
+        outstandingAmount: outstanding,
+        daysOverdue: daysOverdue,
+        invoiceNumber: invoice.number,
+        invoiceDate: invoice.date
+      };
+    }));
+
+    res.json({ data: enrichedInvoices });
+  } catch (error) {
+    console.error('[CLIENT][GET_OVERDUE_INVOICES] Erreur récupération factures en retard:', error);
+    res.status(500).json({ message: 'Erreur récupération factures en retard', error: error.message });
+  }
+};
+
+export const getClientOverdueInvoices = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { days = 1 } = req.query;
+    const cutoffDate = new Date();
+    cutoffDate.setDate(cutoffDate.getDate() - parseInt(days));
+
+    const invoices = await Invoice.find({
+      client: id,
+      date: { $lte: cutoffDate },
+      status: { $in: ['reste_a_payer', 'validée', 'sent', 'overdue'] },
+      $expr: { $gt: [{ $subtract: ['$total', '$montantPaye'] }, 0] }
+    })
+    .populate('client', 'firstName lastName company phone category paymentTerms creditLimit creditScore')
+    .sort({ date: 1 });
+
+    if (!invoices) {
+        return res.json({ data: [] });
+    }
+
+    const enrichedInvoices = invoices.map(invoice => {
+      const outstanding = invoice.total - invoice.montantPaye;
+      const daysOverdue = Math.floor((new Date() - new Date(invoice.date)) / (1000 * 60 * 60 * 24));
+      
+      return {
+        ...invoice.toObject(),
+        id: invoice._id, // Ensure id is passed correctly
+        outstandingAmount: outstanding,
+        daysOverdue: daysOverdue,
+        invoiceNumber: invoice.number,
+        invoiceDate: invoice.date
+      };
+    });
+
+    res.json({ data: enrichedInvoices });
+  } catch (error) {
+    console.error(`[CLIENT][GET_CLIENT_OVERDUE_INVOICES] Erreur récupération factures en retard pour le client ${req.params.id}:`, error);
+    res.status(500).json({ message: 'Erreur récupération factures en retard pour le client', error: error.message });
+  }
+};

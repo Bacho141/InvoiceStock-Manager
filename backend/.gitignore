@@ -2,7 +2,7 @@
 node_modules/
 
 #DataBase
-Data/
+Data/mongodb
 
 # 🏗️ Build output
 dist/

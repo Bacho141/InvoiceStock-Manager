@@ -9,9 +9,9 @@ import '../screens/managementInvoice/invoice_detail_screen.dart';
 import '../screens/products_screen.dart';
 import '../screens/reports_screen.dart';
 import '../screens/settings_screen.dart';
-import '../screens/stock/stocks_screen.dart';
-import '../screens/clients_screen.dart';
-import '../screens/creances_screen.dart';
+// import '../screens/stock/stocks_screen.dart';
+import '../screens/clients/clients_screen.dart';
+// import '../screens/creances_screen.dart';
 import '../layout/main_layout.dart';
 
 class AppRoutes {
@@ -56,8 +56,8 @@ class AppRoutes {
           ));
       case '/clients':
         return MaterialPageRoute(builder: (_) => const ClientsScreen());
-      case '/creances':
-        return MaterialPageRoute(builder: (_) => const CreancesScreen());
+      // case '/creances':
+      //   return MaterialPageRoute(builder: (_) => const CreancesScreen());
         
       default:
         return _errorRoute('Page non trouvée: ${settings.name}');
@@ -97,6 +97,6 @@ class AppRoutes {
           Container(),
     ),
     '/clients': (context) => const ClientsScreen(),
-    '/creances': (context) => const CreancesScreen(),
+    // '/creances': (context) => const CreancesScreen(),
   };
 }

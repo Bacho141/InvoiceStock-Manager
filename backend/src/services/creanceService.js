@@ -343,6 +343,49 @@ class CreanceService {
       throw error;
     }
   }
+  
+  /**
+   * Récupère les factures en retard avec les informations du client
+   * @param {Number} days - Nombre de jours de retard minimum
+   * @returns {Array} Factures en retard avec informations du client
+   */
+  async getOverdueInvoices(days = 30) {
+    try {
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - days);
+
+      // Trouver les factures en retard
+      const invoices = await Invoice.find({
+        date: { $lte: cutoffDate },
+        status: { $in: ['reste_a_payer', 'validée'] },
+        $expr: { $gt: [{ $subtract: ['$total', '$montantPaye'] }, 0] }
+      })
+      .populate('client', 'firstName lastName company phone category paymentTerms creditLimit creditScore')
+      .sort({ date: 1 });
+
+      // Enrichir les données avec les informations calculées
+      const enrichedInvoices = invoices.map(invoice => {
+        const outstanding = invoice.total - invoice.montantPaye;
+        const daysOverdue = Math.floor((new Date() - invoice.date) / (1000 * 60 * 60 * 24));
+        
+        return {
+          id: invoice._id,
+          invoiceNumber: invoice.number,
+          invoiceDate: invoice.date,
+          outstandingAmount: outstanding,
+          daysOverdue: daysOverdue,
+          totalAmount: invoice.total,
+          paidAmount: invoice.montantPaye,
+          client: invoice.client
+        };
+      });
+
+      return enrichedInvoices;
+    } catch (error) {
+      console.error('[CREANCE][SERVICE] Erreur récupération factures en retard:', error);
+      throw error;
+    }
+  }
 }
 
 export default new CreanceService();

@@ -1,5 +1,16 @@
 import express from 'express';
-import { createClient, getClients, getClientById, updateClient, deleteClient, addCommunication, updateScore, refreshMetrics } from '../controllers/clientController.js';
+import { 
+  createClient, 
+  getClients, 
+  getClientById, 
+  updateClient, 
+  deleteClient,
+  addCommunication,
+  updateScore,
+  refreshMetrics,
+  getOverdueInvoices, // Ajout de la nouvelle fonction
+  getClientOverdueInvoices
+} from '../controllers/clientController.js';
 import * as clientAnalyticsController from '../controllers/clientAnalyticsController.js';
 import { verifyToken } from '../middleware/authMiddleware.js';
 
@@ -18,9 +29,13 @@ router.get('/analytics/overdue', clientAnalyticsController.getOverdueClients);
 router.post('/', createClient);
 router.get('/', getClients);
 
-// Routes spécifiques par client (APRÈS les routes analytics)
+// Route spécifique pour les factures en retard (AVANT les routes paramétrées)
+router.get('/overdue-invoices', getOverdueInvoices);
+
+// Routes spécifiques par client (APRÈS les routes analytics et autres routes spécifiques)
 router.get('/:id/stats', clientAnalyticsController.getClientStats);
 router.get('/:id/evolution', clientAnalyticsController.getClientEvolution);
+router.get('/:id/overdue-invoices', getClientOverdueInvoices); // Ajout de la route pour les factures en retard d'un client
 router.post('/:id/communication', addCommunication);
 router.put('/:id/score', updateScore);
 router.post('/:id/refresh-metrics', refreshMetrics);
